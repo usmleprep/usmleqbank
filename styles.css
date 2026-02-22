@@ -1040,21 +1040,120 @@ body {
 }
 
 /* ===== RESULTS SCREEN ===== */
-.results-container { max-width: 900px; margin: 0 auto; }
-.results-header {
-    text-align: center;
-    padding: 40px 0;
+.results-container { max-width: 960px; margin: 0 auto; }
+
+/* Hero section with donut chart */
+.results-hero {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 40px;
+    margin-bottom: 24px;
 }
-.results-score {
-    font-size: 72px;
+.results-hero-left {
+    flex-shrink: 0;
+}
+.results-donut {
+    width: 200px;
+    height: 200px;
+}
+.results-donut .donut-pct {
+    font-size: 36px;
     font-weight: 900;
-    background: linear-gradient(135deg, #05BBC9, #8BC34A);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1;
-    margin-bottom: 8px;
+    fill: var(--text);
 }
+.results-donut .donut-label {
+    font-size: 14px;
+    font-weight: 600;
+    fill: var(--text-secondary);
+}
+.results-donut circle {
+    transition: stroke-dasharray 1s ease, stroke-dashoffset 1s ease;
+}
+.results-hero-right {
+    flex: 1;
+    min-width: 0;
+}
+.results-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+.results-mode {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+.results-stats-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+.results-mini-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 18px;
+    border-radius: var(--radius-sm);
+    min-width: 80px;
+}
+.results-mini-stat .stat-num {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+.results-mini-stat .stat-txt {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+.correct-stat { background: var(--success-light); }
+.correct-stat .stat-num { color: var(--success); }
+.incorrect-stat { background: var(--error-light); }
+.incorrect-stat .stat-num { color: var(--error); }
+.omitted-stat { background: #f0f2f5; }
+.omitted-stat .stat-num { color: var(--text-light); }
+.time-stat { background: var(--primary-light); }
+.time-stat .stat-num { color: var(--primary); }
+
+.results-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.results-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Questions card */
+.results-questions-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+.results-questions-header {
+    padding: 20px 24px 0;
+}
+.results-questions-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+.results-tabs {
+    margin-bottom: 0;
+}
+
 .results-subtitle { color: var(--text-secondary); font-size: 16px; }
 
 .results-summary-grid {
@@ -1640,6 +1739,10 @@ body {
 @media (max-width: 1024px) {
     .stats-row { grid-template-columns: repeat(2, 1fr); }
     .results-summary-grid { grid-template-columns: repeat(2, 1fr); }
+    .results-hero { flex-direction: column; padding: 28px; gap: 24px; text-align: center; }
+    .results-donut { width: 160px; height: 160px; }
+    .results-stats-row { justify-content: center; }
+    .results-actions { justify-content: center; }
     .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
     .test-top-center { display: none; }
 }
@@ -1715,6 +1818,13 @@ body {
     /* Results */
     .results-summary-grid { grid-template-columns: 1fr; }
     .results-questions-grid { grid-template-columns: repeat(6, 1fr); }
+    .results-hero { padding: 20px; gap: 16px; }
+    .results-donut { width: 140px; height: 140px; }
+    .results-title { font-size: 20px; }
+    .results-mini-stat { padding: 8px 12px; min-width: 65px; }
+    .results-mini-stat .stat-num { font-size: 18px; }
+    .results-tabs { overflow-x: auto; flex-wrap: nowrap; }
+    .results-tabs .tab { white-space: nowrap; padding: 10px 14px; font-size: 12px; }
 
     /* Previous tests */
     .test-history-item { flex-direction: column; align-items: flex-start; gap: 10px; }

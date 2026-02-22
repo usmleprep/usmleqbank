@@ -1461,51 +1461,84 @@ const App = (() => {
             : state.timerSeconds;
         const avgTime = answered > 0 ? Math.round(totalTimeSec / answered) : 0;
 
+        // Donut chart SVG
+        const radius = 80;
+        const stroke = 14;
+        const circumference = 2 * Math.PI * radius;
+        const correctPct = answered > 0 ? test.correct / answered : 0;
+        const incorrectPct = answered > 0 ? incorrect / answered : 0;
+        const correctLen = correctPct * circumference;
+        const incorrectLen = incorrectPct * circumference;
+        const correctOffset = 0;
+        const incorrectOffset = -correctLen;
+
+        const donutSvg = `
+            <svg viewBox="0 0 200 200" class="results-donut">
+                <circle cx="100" cy="100" r="${radius}" fill="none" stroke="#e8ecf1" stroke-width="${stroke}"/>
+                <circle cx="100" cy="100" r="${radius}" fill="none" stroke="var(--success)" stroke-width="${stroke}"
+                    stroke-dasharray="${correctLen} ${circumference - correctLen}"
+                    stroke-dashoffset="0" stroke-linecap="round"
+                    transform="rotate(-90 100 100)" class="donut-correct"/>
+                <circle cx="100" cy="100" r="${radius}" fill="none" stroke="var(--error)" stroke-width="${stroke}"
+                    stroke-dasharray="${incorrectLen} ${circumference - incorrectLen}"
+                    stroke-dashoffset="${incorrectOffset}" stroke-linecap="round"
+                    transform="rotate(-90 100 100)" class="donut-incorrect"/>
+                <text x="100" y="92" text-anchor="middle" class="donut-pct">${test.score}%</text>
+                <text x="100" y="116" text-anchor="middle" class="donut-label">Score</text>
+            </svg>
+        `;
+
         el.innerHTML = `
             <div class="results-container">
-                <div class="results-header">
-                    <div class="results-score">${test.score}%</div>
-                    <div class="results-subtitle">
-                        You scored ${test.correct} out of ${answered} answered (${test.total} total) — ${test.mode}
+                <div class="results-hero">
+                    <div class="results-hero-left">
+                        ${donutSvg}
+                    </div>
+                    <div class="results-hero-right">
+                        <h2 class="results-title">Test Complete</h2>
+                        <p class="results-mode">${test.mode} • ${test.total} Questions${test.timed ? ' • Timed' : ''}${test.tutor ? ' • Tutor' : ''}</p>
+                        <div class="results-stats-row">
+                            <div class="results-mini-stat correct-stat">
+                                <span class="stat-num">${test.correct}</span>
+                                <span class="stat-txt">Correct</span>
+                            </div>
+                            <div class="results-mini-stat incorrect-stat">
+                                <span class="stat-num">${incorrect}</span>
+                                <span class="stat-txt">Incorrect</span>
+                            </div>
+                            <div class="results-mini-stat omitted-stat">
+                                <span class="stat-num">${omitted}</span>
+                                <span class="stat-txt">Omitted</span>
+                            </div>
+                            <div class="results-mini-stat time-stat">
+                                <span class="stat-num">${formatTime(totalTimeSec)}</span>
+                                <span class="stat-txt">Time (${avgTime}s/q)</span>
+                            </div>
+                        </div>
+                        <div class="results-actions">
+                            <button class="btn btn-primary" onclick="App.reviewTestQuestions()">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                                Review Questions
+                            </button>
+                            <button class="btn btn-secondary" onclick="App.navigate('create')">New Test</button>
+                            <button class="btn btn-ghost" onclick="App.navigate('dashboard')">Dashboard</button>
+                            <button class="btn btn-ghost" onclick="App.copyQuestionIds()" id="copy-ids-btn">📋 Copy IDs</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="results-summary-grid">
-                    <div class="result-stat-card green">
-                        <div class="val">${test.correct}</div>
-                        <div class="lbl">Correct</div>
-                    </div>
-                    <div class="result-stat-card red">
-                        <div class="val">${incorrect}</div>
-                        <div class="lbl">Incorrect</div>
-                    </div>
-                    <div class="result-stat-card" style="border-left:4px solid var(--text-light)">
-                        <div class="val">${omitted}</div>
-                        <div class="lbl">Omitted</div>
-                    </div>
-                    <div class="result-stat-card blue">
-                        <div class="val">${formatTime(totalTimeSec)}</div>
-                        <div class="lbl">Total Time (avg ${avgTime}s/q)</div>
-                    </div>
-                </div>
-
-                <div class="card" style="margin-top:24px">
-                    <div class="card-title">📋 Question Review</div>
-                    <div class="tabs">
-                        <button class="tab active" onclick="App.filterResults('all', this)">All (${test.total})</button>
-                        <button class="tab" onclick="App.filterResults('correct', this)">Correct (${test.correct})</button>
-                        <button class="tab" onclick="App.filterResults('incorrect', this)">Incorrect (${incorrect})</button>
-                        <button class="tab" onclick="App.filterResults('omitted', this)">Omitted (${omitted})</button>
-                        <button class="tab" onclick="App.filterResults('flagged', this)">Flagged</button>
+                <div class="results-questions-card">
+                    <div class="results-questions-header">
+                        <h3>Question Breakdown</h3>
+                        <div class="tabs results-tabs">
+                            <button class="tab active" onclick="App.filterResults('all', this)">All (${test.total})</button>
+                            <button class="tab" onclick="App.filterResults('correct', this)">Correct (${test.correct})</button>
+                            <button class="tab" onclick="App.filterResults('incorrect', this)">Incorrect (${incorrect})</button>
+                            <button class="tab" onclick="App.filterResults('omitted', this)">Omitted (${omitted})</button>
+                            <button class="tab" onclick="App.filterResults('flagged', this)">Flagged</button>
+                        </div>
                     </div>
                     <div class="results-question-list" id="results-q-list"></div>
-                </div>
-
-                <div style="text-align:center; margin-top:24px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
-                    <button class="btn btn-primary" onclick="App.reviewTestQuestions()">Review Questions</button>
-                    <button class="btn btn-secondary" onclick="App.navigate('create')">New Test</button>
-                    <button class="btn btn-ghost" onclick="App.navigate('dashboard')">Dashboard</button>
-                    <button class="btn btn-ghost" onclick="App.copyQuestionIds()" id="copy-ids-btn">📋 Copy Question IDs</button>
                 </div>
             </div>
         `;
