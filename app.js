@@ -19,12 +19,15 @@ const App = (() => {
     };
 
     // ===== PERSISTENCE =====
+    function getPrefix() {
+        return (typeof Auth !== 'undefined' && Auth.getUserPrefix) ? Auth.getUserPrefix() : 'usmle_';
+    }
     function loadData(key, def) {
-        try { return JSON.parse(localStorage.getItem('usmle_' + key)) || def; }
+        try { return JSON.parse(localStorage.getItem(getPrefix() + key)) || def; }
         catch { return def; }
     }
     function saveData(key, val) {
-        localStorage.setItem('usmle_' + key, JSON.stringify(val));
+        localStorage.setItem(getPrefix() + key, JSON.stringify(val));
     }
 
     // Persistent stores
@@ -297,6 +300,9 @@ const App = (() => {
     // ===== NAVIGATION =====
     function navigate(screen) {
         state.screen = screen;
+
+        // Close sidebar on mobile when navigating
+        closeSidebar();
 
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         const target = document.getElementById('screen-' + screen);
@@ -2203,7 +2209,26 @@ const App = (() => {
     `;
 
     // ===== INITIALIZATION =====
+    // ===== MOBILE SIDEBAR =====
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('open');
+    }
+
+    function closeSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        sidebar?.classList.remove('open');
+        overlay?.classList.remove('open');
+    }
+
     function init() {
+        // Check auth session
+        if (typeof Auth !== 'undefined') {
+            if (!Auth.checkSession()) return; // Will show login screen
+        }
         navigate('dashboard');
     }
 
@@ -2213,6 +2238,8 @@ const App = (() => {
     // ===== PUBLIC API =====
     return {
         navigate,
+        toggleSidebar,
+        closeSidebar,
         toggleTopicGroup,
         toggleTopicCheck,
         toggleSubtopic,

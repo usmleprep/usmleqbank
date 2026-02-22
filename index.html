@@ -9,6 +9,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- LOGIN SCREEN -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-card">
+            <div class="login-logo">
+                <div class="logo-icon" style="width:56px;height:56px;font-size:28px;">U</div>
+                <h1>USMLE Step 1</h1>
+                <p>Question Bank</p>
+            </div>
+            <div id="login-form">
+                <div class="login-field">
+                    <label for="login-username">Username</label>
+                    <input type="text" id="login-username" placeholder="Enter your username" autocomplete="username">
+                </div>
+                <div class="login-field">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" autocomplete="current-password">
+                </div>
+                <div id="login-error" class="login-error"></div>
+                <button class="btn btn-primary login-btn" onclick="Auth.login()">Sign In</button>
+                <div class="login-divider"><span>or</span></div>
+                <button class="btn btn-secondary login-btn" onclick="Auth.showRegister()">Create Account</button>
+            </div>
+            <div id="register-form" style="display:none">
+                <div class="login-field">
+                    <label for="reg-username">Username</label>
+                    <input type="text" id="reg-username" placeholder="Choose a username" autocomplete="username">
+                </div>
+                <div class="login-field">
+                    <label for="reg-password">Password</label>
+                    <input type="password" id="reg-password" placeholder="Choose a password" autocomplete="new-password">
+                </div>
+                <div class="login-field">
+                    <label for="reg-password2">Confirm Password</label>
+                    <input type="password" id="reg-password2" placeholder="Confirm your password" autocomplete="new-password">
+                </div>
+                <div id="register-error" class="login-error"></div>
+                <button class="btn btn-primary login-btn" onclick="Auth.register()">Create Account</button>
+                <div class="login-divider"><span>or</span></div>
+                <button class="btn btn-secondary login-btn" onclick="Auth.showLogin()">Back to Sign In</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Container (hidden until login) -->
+    <div id="app-container" style="display:none">
+    <!-- Mobile hamburger -->
+    <button id="hamburger-btn" class="hamburger-btn" onclick="App.toggleSidebar()">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    </button>
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="App.toggleSidebar()"></div>
+
     <!-- Sidebar Navigation -->
     <nav id="sidebar">
         <div class="sidebar-logo">
@@ -45,10 +96,15 @@
             </a>
         </div>
         <div class="sidebar-footer">
+            <div class="sidebar-user" id="sidebar-user"></div>
             <div class="sidebar-stats">
                 <div class="stat-mini"><span id="sidebar-total">0</span> Questions</div>
                 <div class="stat-mini"><span id="sidebar-used">0</span> Used</div>
             </div>
+            <button class="btn btn-ghost btn-sm sidebar-logout" onclick="Auth.logout()">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+                Logout
+            </button>
         </div>
     </nav>
 
@@ -78,6 +134,7 @@
         <!-- ======================== NOTEBOOK ======================== -->
         <div id="screen-notebook" class="screen"></div>
     </main>
+    </div><!-- /app-container -->
 
     <!-- Lab Values Modal -->
     <div id="lab-modal" class="modal-overlay" style="display:none" onclick="if(event.target===this)App.closeLab()">
@@ -136,6 +193,7 @@
         </div>
     </div>
 
+    <script src="auth.js"></script>
     <script src="topics.js"></script>
     <script src="app.js"></script>
 </body>
