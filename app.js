@@ -1501,10 +1501,11 @@ const App = (() => {
                     <div class="results-question-list" id="results-q-list"></div>
                 </div>
 
-                <div style="text-align:center; margin-top:24px; display:flex; gap:12px; justify-content:center">
+                <div style="text-align:center; margin-top:24px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
                     <button class="btn btn-primary" onclick="App.reviewTestQuestions()">Review Questions</button>
                     <button class="btn btn-secondary" onclick="App.navigate('create')">New Test</button>
                     <button class="btn btn-ghost" onclick="App.navigate('dashboard')">Dashboard</button>
+                    <button class="btn btn-ghost" onclick="App.copyQuestionIds()" id="copy-ids-btn">📋 Copy Question IDs</button>
                 </div>
             </div>
         `;
@@ -1712,6 +1713,21 @@ const App = (() => {
         }
 
         tbody.innerHTML = rows || '<tr><td colspan="5" style="text-align:center;padding:24px;color:var(--text-light)">No data yet</td></tr>';
+    }
+
+    function copyQuestionIds() {
+        const test = state.currentTest;
+        if (!test) return;
+        const ids = test.questionIds.join(', ');
+        navigator.clipboard.writeText(ids).then(() => {
+            const btn = document.getElementById('copy-ids-btn');
+            if (btn) {
+                btn.textContent = '✓ Copied!';
+                setTimeout(() => { btn.innerHTML = '📋 Copy Question IDs'; }, 2000);
+            }
+        }).catch(() => {
+            prompt('Copy these IDs:', ids);
+        });
     }
 
     function resetProgress() {
@@ -2359,6 +2375,7 @@ const App = (() => {
         searchByTopic,
         previewQuestion,
         resetProgress,
+        copyQuestionIds,
         loadFromServer,
     };
 })();
