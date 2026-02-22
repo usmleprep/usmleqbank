@@ -43,6 +43,67 @@ const App = (() => {
         saveData('questionStatus', questionStatus);
         saveData('notes', notes);
         saveData('usedQuestions', usedQuestions);
+        debouncedSync();
+    }
+
+    // ===== SERVER SYNC =====
+    let _syncTimer = null;
+    function debouncedSync() {
+        clearTimeout(_syncTimer);
+        _syncTimer = setTimeout(() => syncToServer(), 2000);
+    }
+
+    async function syncToServer() {
+        const token = (typeof Auth !== 'undefined' && Auth.getToken) ? Auth.getToken() : null;
+        if (!token) return;
+        try {
+            await fetch('/api/data/sync', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token,
+                },
+                body: JSON.stringify({
+                    testHistory,
+                    questionStatus,
+                    notes,
+                    usedQuestions,
+                    performance,
+                }),
+            });
+        } catch (e) { console.warn('Sync to server failed:', e); }
+    }
+
+    async function loadFromServer() {
+        const token = (typeof Auth !== 'undefined' && Auth.getToken) ? Auth.getToken() : null;
+        if (!token) return;
+        try {
+            const res = await fetch('/api/data/sync', {
+                headers: { 'Authorization': 'Bearer ' + token },
+            });
+            if (!res.ok) return;
+            const data = await res.json();
+            if (data && data.testHistory) {
+                testHistory = data.testHistory;
+                questionStatus = data.questionStatus || {};
+                notes = data.notes || {};
+                usedQuestions = data.usedQuestions || [];
+                performance = data.performance || {};
+                // Write into localStorage as cache
+                savePersistLocal();
+                // Re-render current screen
+                if (state.screen === 'dashboard') navigate('dashboard');
+            }
+        } catch (e) { console.warn('Load from server failed:', e); }
+    }
+
+    // Save to localStorage only (no server sync) — used after loading from server
+    function savePersistLocal() {
+        saveData('testHistory', testHistory);
+        saveData('performance', performance);
+        saveData('questionStatus', questionStatus);
+        saveData('notes', notes);
+        saveData('usedQuestions', usedQuestions);
     }
 
     // ===== TOPICS HELPER =====
@@ -2230,6 +2291,8 @@ const App = (() => {
             if (!Auth.checkSession()) return; // Will show login screen
         }
         navigate('dashboard');
+        // Load data from server in background
+        loadFromServer();
     }
 
     // Start the app
@@ -2287,5 +2350,6 @@ const App = (() => {
         searchByTopic,
         previewQuestion,
         resetProgress,
+        loadFromServer,
     };
 })();

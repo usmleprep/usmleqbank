@@ -1,99 +1,87 @@
 /* ============================================
-   AUTH — Login / Register / Session
+   AUTH — Login / Register / Session (API-backed)
    ============================================ */
 const Auth = (() => {
-    const USERS_KEY = 'usmle_users';
     const SESSION_KEY = 'usmle_session';
 
-    function getUsers() {
-        try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } 
-        catch { return {}; }
-    }
-    function saveUsers(users) {
-        localStorage.setItem(USERS_KEY, JSON.stringify(users));
-    }
-
-    function hashPassword(pw) {
-        // Simple hash for localStorage-based auth (not cryptographic security)
-        let hash = 0;
-        for (let i = 0; i < pw.length; i++) {
-            const chr = pw.charCodeAt(i);
-            hash = ((hash << 5) - hash) + chr;
-            hash |= 0;
-        }
-        return 'h' + Math.abs(hash).toString(36);
-    }
-
     function getCurrentUser() {
-        try { return JSON.parse(sessionStorage.getItem(SESSION_KEY) || localStorage.getItem(SESSION_KEY)); }
+        try { return JSON.parse(localStorage.getItem(SESSION_KEY)); }
         catch { return null; }
     }
 
-    function setSession(username) {
-        const data = JSON.stringify({ username, loginTime: Date.now() });
-        sessionStorage.setItem(SESSION_KEY, data);
-        localStorage.setItem(SESSION_KEY, data);
+    function setSession(username, token) {
+        localStorage.setItem(SESSION_KEY, JSON.stringify({ username, token, loginTime: Date.now() }));
     }
 
     function clearSession() {
-        sessionStorage.removeItem(SESSION_KEY);
         localStorage.removeItem(SESSION_KEY);
     }
 
-    // ===== USER PREFIX for data isolation =====
+    function getToken() {
+        const user = getCurrentUser();
+        return user ? user.token : null;
+    }
+
+    // User prefix for local cache isolation
     function getUserPrefix() {
         const user = getCurrentUser();
         return user ? `usmle_${user.username}_` : 'usmle_';
     }
 
+    // ===== API HELPERS =====
+    async function apiPost(url, body) {
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Request failed');
+        return data;
+    }
+
     // ===== LOGIN =====
-    function login() {
+    async function login() {
         const username = document.getElementById('login-username').value.trim().toLowerCase();
         const password = document.getElementById('login-password').value;
         const errEl = document.getElementById('login-error');
+        const btn = document.querySelector('#login-form .login-btn');
 
         if (!username || !password) {
             errEl.textContent = 'Please enter username and password.';
             return;
         }
 
-        const users = getUsers();
-        if (!users[username]) {
-            errEl.textContent = 'User not found. Create an account first.';
-            return;
-        }
-
-        if (users[username].hash !== hashPassword(password)) {
-            errEl.textContent = 'Incorrect password.';
-            return;
-        }
-
+        btn.disabled = true;
+        btn.textContent = 'Signing in...';
         errEl.textContent = '';
-        setSession(username);
-        enterApp(username);
+
+        try {
+            const data = await apiPost('/api/auth/login', { username, password });
+            setSession(data.username, data.token);
+            enterApp(data.username);
+            // Load data from server after entering app
+            if (typeof App !== 'undefined' && App.loadFromServer) {
+                await App.loadFromServer();
+            }
+        } catch (err) {
+            errEl.textContent = err.message;
+        } finally {
+            btn.disabled = false;
+            btn.textContent = 'Sign In';
+        }
     }
 
     // ===== REGISTER =====
-    function register() {
+    async function register() {
         const username = document.getElementById('reg-username').value.trim().toLowerCase();
         const password = document.getElementById('reg-password').value;
         const password2 = document.getElementById('reg-password2').value;
         const errEl = document.getElementById('register-error');
+        const btn = document.querySelector('#register-form .login-btn');
 
         if (!username || !password) {
             errEl.textContent = 'Please fill in all fields.';
-            return;
-        }
-        if (username.length < 3) {
-            errEl.textContent = 'Username must be at least 3 characters.';
-            return;
-        }
-        if (!/^[a-z0-9_]+$/.test(username)) {
-            errEl.textContent = 'Username: only letters, numbers and underscore.';
-            return;
-        }
-        if (password.length < 4) {
-            errEl.textContent = 'Password must be at least 4 characters.';
             return;
         }
         if (password !== password2) {
@@ -101,18 +89,20 @@ const Auth = (() => {
             return;
         }
 
-        const users = getUsers();
-        if (users[username]) {
-            errEl.textContent = 'Username already taken.';
-            return;
-        }
-
-        users[username] = { hash: hashPassword(password), created: Date.now() };
-        saveUsers(users);
-
+        btn.disabled = true;
+        btn.textContent = 'Creating account...';
         errEl.textContent = '';
-        setSession(username);
-        enterApp(username);
+
+        try {
+            const data = await apiPost('/api/auth/register', { username, password });
+            setSession(data.username, data.token);
+            enterApp(data.username);
+        } catch (err) {
+            errEl.textContent = err.message;
+        } finally {
+            btn.disabled = false;
+            btn.textContent = 'Create Account';
+        }
     }
 
     // ===== LOGOUT =====
@@ -120,12 +110,10 @@ const Auth = (() => {
         clearSession();
         document.getElementById('app-container').style.display = 'none';
         document.getElementById('login-screen').style.display = 'flex';
-        // Clear form fields
         document.getElementById('login-username').value = '';
         document.getElementById('login-password').value = '';
         document.getElementById('login-error').textContent = '';
         showLogin();
-        // Reload to reset App state cleanly
         location.reload();
     }
 
@@ -145,30 +133,25 @@ const Auth = (() => {
     function enterApp(username) {
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('app-container').style.display = '';
-        // Show username in sidebar
         const userEl = document.getElementById('sidebar-user');
         if (userEl) {
             userEl.innerHTML = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> ${username}`;
         }
     }
 
-    // ===== AUTO LOGIN (check session on load) =====
+    // ===== AUTO LOGIN (check saved session) =====
     function checkSession() {
         const user = getCurrentUser();
-        if (user && user.username) {
-            const users = getUsers();
-            if (users[user.username]) {
-                enterApp(user.username);
-                return true;
-            }
+        if (user && user.username && user.token) {
+            enterApp(user.username);
+            return true;
         }
-        // Show login screen
         document.getElementById('login-screen').style.display = 'flex';
         document.getElementById('app-container').style.display = 'none';
         return false;
     }
 
-    // Handle Enter key on login/register forms
+    // Handle Enter key
     document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('login-password')?.addEventListener('keydown', e => {
             if (e.key === 'Enter') login();
@@ -189,6 +172,7 @@ const Auth = (() => {
         showLogin,
         getCurrentUser,
         getUserPrefix,
+        getToken,
         checkSession,
     };
 })();
