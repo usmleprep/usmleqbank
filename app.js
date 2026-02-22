@@ -1007,6 +1007,7 @@ const App = (() => {
         const isReviewUnanswered = test.completed && !isSubmitted;
 
         let html = `
+            <div class="question-id-badge">Question ID: ${qid}</div>
             <div class="question-stem" style="font-size:${state.fontSize}px" id="question-stem">
                 ${q.stem}
             </div>
@@ -1386,56 +1387,64 @@ const App = (() => {
     }
 
     function finishTest() {
-        if (state.timerInterval) clearInterval(state.timerInterval);
+        try {
+            if (state.timerInterval) { clearInterval(state.timerInterval); state.timerInterval = null; }
 
-        const test = state.currentTest;
+            const test = state.currentTest;
+            if (!test) { navigate('dashboard'); return; }
 
-        // Track time for current question
-        if (state.questionTimerStart) {
-            const qid = test.questionIds[state.currentQuestionIdx];
-            state.questionTimers[qid] = (state.questionTimers[qid] || 0) + (Date.now() - state.questionTimerStart);
+            // Track time for current question
+            if (state.questionTimerStart) {
+                const qid = test.questionIds[state.currentQuestionIdx];
+                state.questionTimers[qid] = (state.questionTimers[qid] || 0) + (Date.now() - state.questionTimerStart);
+                state.questionTimerStart = null;
+            }
+
+            // Calculate score based on answered questions only
+            const answeredIds = test.questionIds.filter(qid => test.submitted[qid]);
+            let correct = 0;
+            answeredIds.forEach(qid => {
+                if (questionStatus[qid]?.correct) correct++;
+            });
+            test.answered = answeredIds.length;
+            test.correct = correct;
+            test.score = test.answered > 0 ? Math.round((correct / test.answered) * 100) : 0;
+            test.completed = true;
+            test.endTime = Date.now();
+            test.totalTime = state.timerSeconds;
+
+            // Save to history — replace if already exists (was suspended), otherwise push
+            const completedEntry = {
+                id: test.id,
+                date: test.date,
+                mode: test.mode,
+                tutor: test.tutor,
+                timed: test.timed,
+                score: test.score,
+                correct: test.correct,
+                answered: test.answered,
+                total: test.total,
+                questionIds: test.questionIds,
+                answers: test.answers,
+                submitted: { ...test.submitted },
+                flagged: { ...test.flagged },
+                totalTime: test.totalTime,
+                completed: true,
+                suspended: false,
+            };
+            const existingIdx = testHistory.findIndex(t => t.id === test.id);
+            if (existingIdx >= 0) {
+                testHistory[existingIdx] = completedEntry;
+            } else {
+                testHistory.push(completedEntry);
+            }
+            savePersist();
+
+            renderResults();
+        } catch (err) {
+            console.error('finishTest error:', err);
+            alert('Error finishing test: ' + err.message);
         }
-
-        // Calculate score based on answered questions only
-        const answeredIds = test.questionIds.filter(qid => test.submitted[qid]);
-        let correct = 0;
-        answeredIds.forEach(qid => {
-            if (questionStatus[qid]?.correct) correct++;
-        });
-        test.answered = answeredIds.length;
-        test.correct = correct;
-        test.score = test.answered > 0 ? Math.round((correct / test.answered) * 100) : 0;
-        test.completed = true;
-        test.endTime = Date.now();
-        test.totalTime = state.timerSeconds;
-
-        // Save to history — replace if already exists (was suspended), otherwise push
-        const completedEntry = {
-            id: test.id,
-            date: test.date,
-            mode: test.mode,
-            tutor: test.tutor,
-            timed: test.timed,
-            score: test.score,
-            correct: test.correct,
-            answered: test.answered,
-            total: test.total,
-            questionIds: test.questionIds,
-            answers: test.answers,
-            submitted: { ...test.submitted },
-            totalTime: test.totalTime,
-            completed: true,
-            suspended: false,
-        };
-        const existingIdx = testHistory.findIndex(t => t.id === test.id);
-        if (existingIdx >= 0) {
-            testHistory[existingIdx] = completedEntry;
-        } else {
-            testHistory.push(completedEntry);
-        }
-        savePersist();
-
-        renderResults();
     }
 
     // ===== RESULTS =====
