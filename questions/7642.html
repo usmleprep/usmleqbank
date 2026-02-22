@@ -1,0 +1,1786 @@
+
+<style>
+    * {
+        box-sizing: border-box !important;
+    }
+
+    body {
+        font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        line-height: 1.9 !important;
+        color: #1f1f1f !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 8px 16px 16px 16px !important;
+        background: #ffffff !important;
+        font-size: 16.5px !important;
+    }
+
+    p {
+        margin-bottom: 20px !important;
+        font-size: 16.5px !important;
+        line-height: 1.95 !important;
+        color: #1f1f1f !important;
+        font-weight: 400 !important;
+    }
+
+    strong, b {
+        color: #1a73e8 !important;
+        font-weight: 700 !important;
+        background: rgba(26, 115, 232, 0.08) !important;
+        padding: 2px 6px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Details/Summary (collapsible sections) */
+    details {
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
+        border-radius: 8px !important;
+        padding: 24px 28px !important;
+        margin: 24px 0 !important;
+        border: none;
+        box-shadow: none !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    details:hover {
+        border-color: #1a73e8 !important;
+        box-shadow: none !important;
+        transform: translateY(-2px) !important;
+    }
+
+    details[open] {
+        background: #ffffff !important;
+        border-color: #1a73e8 !important;
+        box-shadow: none !important;
+    }
+
+    summary {
+        cursor: pointer !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        font-size: 20px !important;
+        padding: 16px 24px !important;
+        border-radius: 8px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        display: flex !important;
+        align-items: center !important;
+        user-select: none !important;
+        box-shadow: none !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    summary:hover {
+        background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%) !important;
+        transform: translateX(6px) scale(1.02) !important;
+        box-shadow: none !important;
+    }
+
+    summary:active {
+        transform: translateX(4px) scale(0.99) !important;
+    }
+
+    summary::marker {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 1.3em !important;
+    }
+
+    summary strong {
+        background: rgba(255, 255, 255, 0.2) !important;
+        color: #ffffff !important;
+        padding: 4px 12px !important;
+        border-radius: 8px !important;
+        margin-left: 8px !important;
+        font-size: 19px !important;
+        letter-spacing: 1px !important;
+    }
+
+    /* Tables - Premium Design */
+    table {
+        width: 100% !important;
+        border-collapse: separate !important;
+        border-spacing: 0 !important;
+        margin: 28px 0 !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: #ffffff !important;
+    }
+
+    table.simple-table {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+    }
+
+    table tr {
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        position: relative !important;
+    }
+
+    table tr:nth-child(odd) {
+        background: rgba(248, 249, 250, 0.5) !important;
+    }
+
+    table tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    table tr:hover {
+        background: linear-gradient(90deg, #e8f0fe 0%, #f1f8ff 100%) !important;
+        transform: translateX(4px) scale(1.01) !important;
+        box-shadow: none !important;
+        z-index: 1 !important;
+    }
+
+    table td {
+        padding: 18px 24px !important;
+        border-bottom: 1px solid rgba(232, 234, 237, 0.6) !important;
+        font-size: 16.5px !important;
+        line-height: 1.7 !important;
+        color: #1f1f1f !important;
+        vertical-align: middle !important;
+    }
+
+    table tr:last-child td {
+        border-bottom: none !important;
+    }
+
+    /* First column (A, B, C, D, E) */
+    table td:first-child {
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        width: 52px !important;
+        text-align: center !important;
+        font-size: 18px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+        border-right: 3px solid #1557b0 !important;
+        position: relative !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    table tr:hover td:first-child {
+        background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%) !important;
+        box-shadow: none !important;
+    }
+
+    /* Second column (content) */
+    table td:nth-child(2) {
+        font-weight: 500 !important;
+        padding-left: 28px !important;
+    }
+
+    /* Third column (empty - hide it) */
+    table td:last-child:empty {
+        display: none !important;
+    }
+
+    /* Lists */
+    ul, ol {
+        margin: 16px 0 !important;
+        padding-left: 32px !important;
+    }
+
+    li {
+        margin: 10px 0 !important;
+        line-height: 1.8 !important;
+        color: #1f1f1f !important;
+    }
+
+    ul.bulleted-list li {
+        position: relative !important;
+        padding-left: 8px !important;
+    }
+
+    ul.toggle {
+        list-style: none !important;
+        padding-left: 0 !important;
+    }
+
+    /* Links */
+    a {
+        color: #1a73e8 !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        border-bottom: 2px solid transparent !important;
+        transition: all 0.2s !important;
+    }
+
+    a:hover {
+        border-bottom-color: #1a73e8 !important;
+        background: rgba(26,115,232,0.08) !important;
+        padding: 2px 4px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Images & Media */
+    img, video {
+        max-width: none !important;
+        height: auto !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
+        margin: 24px 0 !important;
+        display: block !important;
+        border: none !important;
+    }
+
+    img:hover, video:hover {
+        box-shadow: none !important;
+        border-color: #1a73e8 !important;
+    }
+
+    /* Code blocks (if any) */
+    code {
+        background: #f1f3f4 !important;
+        padding: 2px 8px !important;
+        border-radius: 8px !important;
+        font-family: 'Courier New', monospace !important;
+        font-size: 14px !important;
+        color: #d93025 !important;
+    }
+
+    pre {
+        background: #f8f9fa !important;
+        padding: 8px 16px 16px 16px !important;
+        border-radius: 8px !important;
+        overflow-x: auto !important;
+        border-left: 4px solid #1a73e8 !important;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+        color: #1a73e8 !important;
+        font-weight: 700 !important;
+        margin-top: 24px !important;
+        margin-bottom: 16px !important;
+        line-height: 1.4 !important;
+    }
+
+    h1 { font-size: 32px !important; }
+    h2 { font-size: 26px !important; }
+    h3 { font-size: 22px !important; }
+    h4 { font-size: 19px !important; }
+
+    /* Blockquotes */
+    blockquote {
+        border-left: 4px solid #1a73e8 !important;
+        padding-left: 20px !important;
+        margin: 20px 0 !important;
+        font-style: italic !important;
+        color: #5f6368 !important;
+        background: #f8f9fa !important;
+        padding: 16px 20px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Horizontal Rule */
+    hr {
+        border: none !important;
+        height: 2px !important;
+        background: linear-gradient(to right, transparent, #1a73e8, transparent) !important;
+        margin: 32px 0 !important;
+    }
+
+    /* Selection */
+    ::selection {
+        background: #e8f0fe !important;
+        color: #1a73e8 !important;
+    }
+
+    /* Highlighter styles */
+    .highlighted {
+        background-color: #ffeb3b !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .highlighter-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        font-size: 20px !important;
+        padding: 0 8px !important;
+        margin-left: 8px !important;
+        transition: transform 0.2s ease !important;
+        vertical-align: middle !important;
+    }
+
+    .highlighter-btn:hover {
+        transform: scale(1.2) !important;
+    }
+
+    .highlighter-btn.active {
+        transform: scale(1.1) !important;
+        filter: brightness(1.2) !important;
+    }
+
+    .highlighter-mode-active {
+        cursor: text !important;
+    }
+
+
+    /* Right padding to avoid overlap with sidebar buttons */
+    body {
+        padding-right: 50px !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 16px !important;
+        }
+    }
+
+</style>
+
+
+
+
+<details open>
+<summary><strong>7642</strong><button class="bionic-reading-btn" onclick="toggleBionicReading(event)" title="Toggle Bionic Reading (Ctrl+B)"><span id="bionicIcon">👁️</span></button><button class="highlighter-btn" onclick="toggleHighlighter(event)" title="Toggle Highlighter (Ctrl+H)"><span id="highlighterIcon">🖊️</span></button></summary>
+<p class="" id="2deeeb11-e621-4ee5-8482-9edad39ee3ec">A 32-year-old man is evaluated
+                                        due to several weeks of watery diarrhea.  He has also had intermittent, crampy
+                                        abdominal pain and has lost 7.0 kg (15.4 lb) during this period.  The patient
+                                        has a history of HIV and was hospitalized 6 months ago for <em>Pneumocystis</em>
+                                        pneumonia.  On physical examination, the patient is afebrile and the abdomen is
+                                        soft and nontender with no organomegaly.  Stool tests for leukocytes and occult
+                                        blood are negative.  Endoscopy is performed and mucosal biopsy shows an
+                                        inflammatory infiltrate in the lamina propria and pathogens lining the
+                                        epithelium, as shown in the exhibit.</p>
+<figure class="image" id="0f0cc7f9-4df3-4195-b809-bbfa824f8af6"><a href="https://lh7-us.googleusercontent.com/r8Z0WwJDPQ4QlgcESjif9hI_hbu0FKAVGXsPmoFD4-TF9Hs7bp_U04_Kje6EJnCOtIZPIL5NEh6Ibxn61_BDyvon0gsa1jsWPeo8JqbJwVEdMscmQF49TUciktd9I6vE6oIbgAZqrS8MEQbTnGVUB-w"><img loading="lazy" src="https://lh7-us.googleusercontent.com/r8Z0WwJDPQ4QlgcESjif9hI_hbu0FKAVGXsPmoFD4-TF9Hs7bp_U04_Kje6EJnCOtIZPIL5NEh6Ibxn61_BDyvon0gsa1jsWPeo8JqbJwVEdMscmQF49TUciktd9I6vE6oIbgAZqrS8MEQbTnGVUB-w" style="width:602px"/></a>
+</figure>
+<p class="" id="35d35262-6ec4-4de6-8c6d-4db32346eacb">Which of the following is the
+                                        most likely cause of this patient's condition?</p>
+<table class="simple-table" id="80869e50-e4d4-4ea8-848d-ed54c3df752c">
+<tbody>
+<tr id="8631150e-d296-4f3c-ab42-a32093bb229d">
+<td class="" id="IFm]">A.</td>
+<td class="" id=":|Fn"><em>Cryptosporidium parvum</em></td>
+<td class="" id="lEH&lt;"></td>
+</tr>
+<tr id="241c0103-93be-400a-9018-ece32896daf6">
+<td class="" id="IFm]">B.</td>
+<td class="" id=":|Fn">Cytomegalovirus</td>
+<td class="" id="lEH&lt;"></td>
+</tr>
+<tr id="406ffa20-6a0d-4549-90eb-7a5760f52f4e">
+<td class="" id="IFm]">C.</td>
+<td class="" id=":|Fn"><em>Entamoeba histolytica</em></td>
+<td class="" id="lEH&lt;"></td>
+</tr>
+<tr id="1b73d478-6e2d-4339-9a43-aac640ec1d8d">
+<td class="" id="IFm]">D.</td>
+<td class="" id=":|Fn"><em>Giardia lamblia</em></td>
+<td class="" id="lEH&lt;"></td>
+</tr>
+<tr id="54a38f06-66ac-4ef8-beba-6cb6ee082c01">
+<td class="" id="IFm]">E.</td>
+<td class="" id=":|Fn"><em>Mycobacterium avium</em> complex</td>
+<td class="" id="lEH&lt;"></td>
+</tr>
+</tbody>
+</table>
+<ul class="toggle" id="7fa800be-ebd5-4d16-aa3d-0b8a06442617">
+<li>
+<details>
+<summary>Submit</summary>
+<table class="simple-table" id="d078bfb2-5f3b-4d85-9f74-fa2ab07f3047">
+<tbody>
+<tr id="45e974c3-9922-49d9-8bf7-0d1f9ef40fd6">
+<td class="" id="drMq">A.</td>
+<td class="" id="Z\:F"><em>Cryptosporidium parvum</em> (58%)
+                                                            </td>
+<td class="" id="YAag"></td>
+</tr>
+<tr id="d00b96ba-e72f-4aae-8f58-aee3133c5759">
+<td class="" id="drMq">B.</td>
+<td class="" id="Z\:F">Cytomegalovirus (14%)</td>
+<td class="" id="YAag"></td>
+</tr>
+<tr id="9391928f-9e52-41b7-ac21-6c17718c08eb">
+<td class="" id="drMq">C.</td>
+<td class="" id="Z\:F"><em>Entamoeba histolytica</em> (7%)
+                                                            </td>
+<td class="" id="YAag"></td>
+</tr>
+<tr id="11c0bffc-1599-4073-bc13-a24604be66b9">
+<td class="" id="drMq">D.</td>
+<td class="" id="Z\:F"><em>Giardia lamblia</em> (13%)</td>
+<td class="" id="YAag"></td>
+</tr>
+<tr id="80f830e4-f9b7-41df-90c6-5b6d75b9d409">
+<td class="" id="drMq">E.</td>
+<td class="" id="Z\:F"><em>Mycobacterium avium</em> complex
+                                                                (5%)</td>
+<td class="" id="YAag"></td>
+</tr>
+</tbody>
+</table>
+<p class="" id="8ba8347d-599a-4ac3-be90-e6285aaf2c00">Correct</p>
+<p class="" id="efda5156-8d5c-4936-babd-608e596b17fd">58%Answered
+                                                    correctly</p>
+<p class="" id="ca4b5894-c505-430a-9529-602923d25a66">36 secsTime Spent
+                                                </p>
+<p class="" id="1df07bc2-35e7-41db-b30a-d97b137819f2">2024Version</p>
+<ul class="bulleted-list" id="fdf45915-4cb1-4cf4-9487-022a3acef5d8">
+<li style="list-style-type:disc">Explanation</li>
+</ul>
+<ul class="bulleted-list" id="ea37707b-6a4d-4d5f-80bc-9db343ba3d1d">
+<li style="list-style-type:disc"></li>
+</ul>
+<table class="simple-table" id="40ed8ac6-2006-4360-a54c-c7913b2101f5">
+<tbody>
+<tr id="b4a7fff5-e56d-40a3-8dc9-fd1152a6c11f">
+<td class="" id="DKp&gt;"><em>Cryptosporidiosis</em></td>
+<td class="" id="z`Jt"></td>
+</tr>
+<tr id="eac06198-4a7b-41c5-a042-22eb812220a3">
+<td class="" id="DKp&gt;">Pathogenesis</td>
+<td class="" id="z`Jt">• Fecal-oral transmission (eg,
+                                                                contaminated water, animal contact)<br/>• Oocyte
+                                                                ingestion → sporozoite attachment to intestinal
+                                                                epithelium → intraluminal meront formation → fecal
+                                                                oocyte shedding<br/></td>
+</tr>
+<tr id="f0bd62ac-1e3e-43f2-994a-1ee1ebb78bc0">
+<td class="" id="DKp&gt;">Clinical manifestations</td>
+<td class="" id="z`Jt">• Immunocompetent: self-resolving,
+                                                                watery (noninflammatory) diarrhea &lt;2 weeks<br/>•
+                                                                Immunosuppressed (eg, AIDS, transplant recipient):
+                                                                prolonged, severe diarrhea with weight
+                                                                loss/malabsorption<br/></td>
+</tr>
+<tr id="5d7f9dda-f93f-451a-a9b4-331d76a36741">
+<td class="" id="DKp&gt;">Diagnosis</td>
+<td class="" id="z`Jt">• Stool PCR testing<br/>• Stool
+                                                                microscopy: acid-fast staining oocysts or
+                                                                immunofluorescent assay<br/>• Histology: basophilic
+                                                                <br/><em>Cryptosporidium </em>organisms on intestinal
+                                                                brush border, small intestine villous blunting, lamina
+                                                                propria inflammation</td>
+</tr>
+</tbody>
+</table>
+<p class="" id="9cdfda7b-20d6-40da-a489-20a1ffcfe784">
+<em>Cryptosporidium</em> is a protozoan that causes infectious
+                                                    diarrhea.  Oocysts are ingested in contaminated water (less commonly
+                                                    in food), travel to the small intestine, and shed sporozoites that
+                                                    attach to epithelial cells.  They then mature intraluminally into
+                                                    meronts capable of invading new host intestinal cells (eg,
+                                                    auto-infection) as well as producing oocytes that are then shed in
+                                                    feces.</p>
+<p class="" id="b84847cd-e69c-4381-98aa-04e78c8ebefc">Patients who are
+                                                    otherwise healthy develop self-limited, watery diarrhea that
+                                                    typically lasts &lt;2 weeks.  However, those with impaired
+                                                    cell-mediated immunity—particularly individuals with AIDS (as is
+                                                    likely in this patient with HIV who recently had
+                                                    <em>Pneumocystis</em> pneumonia)—are at risk for life-threatening
+                                                    diarrhea with fluid loss sometimes exceeding &gt;20 L per day.</p>
+<p class="" id="4312c490-b28c-4c08-98b1-52ee6fc0298c">The diagnosis can
+                                                    be made by stool PCR testing or modified acid-fast stain, which
+                                                    usually reveals <em>Cryptosporidium</em> oocysts.  Standard ova and
+                                                    parasite stool tests cannot detect the organism, and fecal
+                                                    leukocytes/occult blood tests are often negative (ie,
+                                                    noninflammatory).  Histopathologic findings include small intestinal
+                                                    villous blunting, inflammatory infiltration within the lamina
+                                                    propria, and basophilic <em>Cryptosporidium</em> organisms on the
+                                                    mucosal brush border.</p>
+<p class="" id="67de8d95-8e2c-48ba-b276-3255fb95d9a2">(Choice B) 
+                                                    Cytomegalovirus (CMV) enterocolitis in immunosuppressed patients may
+                                                    cause profuse diarrhea, but  biopsies of CMV-infected tissues reveal
+                                                    large cells with intranuclear and intracytoplasmic inclusions (eg,
+                                                    owl's eye appearance); organisms lining the epithelium would
+                                                    not be seen.  In addition, most patients have abdominal pain and
+                                                    fever.</p>
+<p class="" id="9ece00e5-8a0d-4cc7-a723-cf773e6c6881">(Choice C) 
+                                                    <em>Entamoeba histolytica</em> is a protozoan that usually causes
+                                                    dysentery (bloody diarrhea); this patient's negative fecal
+                                                    leukocytes and blood make this diagnosis less likely.  Moreover,
+                                                    histopathology generally reveals flask-shaped colonic ulcers with
+                                                    "foamy" trophozoites that resemble macrophages.</p>
+<p class="" id="6d0769c6-a98e-49b6-a969-2f4b0c6ba4a8">(Choice D) 
+                                                    <em>Giardia lamblia</em> is a protozoan that causes foul-smelling,
+                                                    oily diarrhea (steatorrhea) from fat malabsorption, which can lead
+                                                    to weight loss.  Unlike this case, stool microscopy shows
+                                                    oval-shaped cysts and flagellated pear-shaped trophozoites with two
+                                                    large central nuclei.</p>
+<p class="" id="f665fcf1-3903-431a-9ba8-0b30bd647ff6">(Choice E) 
+                                                    <em>Mycobacterium avium</em> complex is an opportunistic infection
+                                                    in patients with advanced HIV (CD4 count &lt;50/mm3) and often
+                                                    causes watery diarrhea and weight loss.  However, the organism
+                                                    rapidly penetrates the mucosa and disseminates throughout the
+                                                    reticuloendothelial system (eg, lymphadenopathy,
+                                                    hepatosplenomegaly); it does not remain attached to the intestinal
+                                                    mucosa.</p>
+<p class="" id="080ac055-cb60-442b-a1b3-44ff716abb8c">Educational
+                                                    objective:</p>
+<p class="" id="2eec2a80-4f8b-4d24-960c-c2c6a87e5daf">
+<em>Cryptosporidium</em> may lead to severe and protracted diarrhea
+                                                    in immunocompromised patients (eg, advanced HIV).  Diagnosis is
+                                                    usually made by visualizing acid-fast staining oocysts in the
+                                                    stool.  The presence of basophilic organisms lining the brush border
+                                                    on intestinal histopathology is also diagnostic.</p>
+<p class="" id="ed7da4ac-43e9-424c-ae1b-1dbf34e3f44d">References</p>
+<ul class="bulleted-list" id="278e880c-436b-4b39-897a-1c274b5e5d78">
+<li style="list-style-type:disc"><a href="http://www.ncbi.nlm.nih.gov/pubmed/31934363">Cryptosporidium
+                                                            infection: epidemiology, pathogenesis, and differential
+                                                            diagnosis.</a></li>
+</ul>
+<p class="" id="62bccbef-4f11-43b9-9d0b-983e4ddd6384">Microbiology</p>
+<p class="" id="fe852a0d-eb07-413d-8ecf-68570494a71b">Subject</p>
+<p class="" id="b6831302-df65-4c1c-ba9f-5df6e7cca411">Gastrointestinal
+                                                    &amp; Nutrition</p>
+<p class="" id="13e706ff-1869-45f5-8258-36e6b2aea87b">System</p>
+<p class="" id="173b8cf9-2ef9-476a-a310-bcea00570f3f">Cryptosporidiosis
+                                                </p>
+<p class="" id="09463774-8d9a-44b1-b3b5-83cdf8b400eb">Topic</p>
+<p class="" id="e5db8835-f9c9-45fa-a398-395a22b7b1aa">Copyright ©
+                                                    UWorld. All rights reserved.</p>
+<p class="" id="58c369d5-a5f8-4f89-95eb-fbcb8a82f596">✨Done</p>
+<p class="" id="aa59dea7-bfaa-4362-9fdd-052c679ebccc">Exhibit Display
+                                                </p>
+<figure class="image" id="5e8b65af-e089-4980-bbb2-a330eccd06a4"><a href="https://lh7-us.googleusercontent.com/ZbuMVtFKBz6pnfPZTHv7ZoqQwC05d7V8Ywq9v_tcjY7jrqVWwl2Hg7AHGUXzJ9cxmn2mIEQRrta8m4cJHmvRaR4gTaB5iopTgPVB4q7cN8A_FQQ-9Npq1zPM8RsTH0v3wZKs3SFjHydEJa-1T6k-GTk"><img loading="lazy" src="https://lh7-us.googleusercontent.com/ZbuMVtFKBz6pnfPZTHv7ZoqQwC05d7V8Ywq9v_tcjY7jrqVWwl2Hg7AHGUXzJ9cxmn2mIEQRrta8m4cJHmvRaR4gTaB5iopTgPVB4q7cN8A_FQQ-9Npq1zPM8RsTH0v3wZKs3SFjHydEJa-1T6k-GTk" style="width:602px"/></a>
+</figure>
+<p class="" id="32e21b34-158f-48af-91af-7558f2f7d895">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="78066175-ecc0-47c5-94ff-40912b8a4aa7">ExistingMy
+                                                    Notebook</p>
+<p class="" id="63cfe0d1-da6e-4da7-a2bc-b8df2b68fbc9">Exhibit Display
+                                                </p>
+<figure class="image" id="252bf5b4-b10c-4636-a7d3-1f1bbbbc9464"><a href="https://lh7-us.googleusercontent.com/YRwy_wxHxlVKHISwbXCFLvs2Ua7OjeksXXaKkZ8hm3eiIuVSZZFHarDQ7SdF5KssjEWHInOtOqyTrMmblu5ntrX5lCRbvqEFwM5mBGz8DREpsSCvAM_JZhZ5Y8h1Qd8aBfirA4gsTRADfJr_23U7t_g"><img loading="lazy" src="https://lh7-us.googleusercontent.com/YRwy_wxHxlVKHISwbXCFLvs2Ua7OjeksXXaKkZ8hm3eiIuVSZZFHarDQ7SdF5KssjEWHInOtOqyTrMmblu5ntrX5lCRbvqEFwM5mBGz8DREpsSCvAM_JZhZ5Y8h1Qd8aBfirA4gsTRADfJr_23U7t_g" style="width:602px"/></a>
+</figure>
+<p class="" id="82d903df-9a6e-4242-939c-ebc1b7200a8b">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="afab6c45-d9e1-4a0f-9678-fad2ddd71dee">ExistingMy
+                                                    Notebook</p>
+<p class="" id="f8e353e3-95c9-422a-845b-d0a03c80ce3c">Exhibit Display
+                                                </p>
+<figure class="image" id="a4e53470-3f07-4d03-8cc4-fb4c007e63d7"><a href="https://lh7-us.googleusercontent.com/uqYUgFb3KWo_EBqjW58w1EuKygnNfg9wMCnvRjxv95k_RyTEVq7teJK23DrsRn7y1NI8rF0qKtD6MUzkhuHtJKRIrLB78AA3vUF6vQwRFa8zBBV3Q_d2n7MeqCTSc3gBznNNbruVckp7xPuDJrAW0gY"><img loading="lazy" src="https://lh7-us.googleusercontent.com/uqYUgFb3KWo_EBqjW58w1EuKygnNfg9wMCnvRjxv95k_RyTEVq7teJK23DrsRn7y1NI8rF0qKtD6MUzkhuHtJKRIrLB78AA3vUF6vQwRFa8zBBV3Q_d2n7MeqCTSc3gBznNNbruVckp7xPuDJrAW0gY" style="width:602px"/></a>
+</figure>
+<p class="" id="95521bc6-8189-4375-b038-dfd5b7afd6d2">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="9469c61c-0e4e-415e-9509-93fc1aa1c434">ExistingMy
+                                                    Notebook</p>
+<p class="" id="c7cbd6c5-a913-4878-bf04-aa51e5fb8e83">Exhibit Display
+                                                </p>
+<figure class="image" id="e37b826f-f4ff-44e7-b336-f20f4fd6e9b7"><a href="https://lh7-us.googleusercontent.com/_mRWHHFH1GEYPGGK0ZDZavEoTyNQgFcPtrtvqfZ4UwulqqdV5OzbxDiLBy27Ryjk33chgeCIbMUUEWYWITMtse-6KgnWBdRtyKRwjBCze2w0CVmuVtTTM-9rwbV6UPC5lSdRq1m3AKe1FJpXWb37Jx4"><img loading="lazy" src="https://lh7-us.googleusercontent.com/_mRWHHFH1GEYPGGK0ZDZavEoTyNQgFcPtrtvqfZ4UwulqqdV5OzbxDiLBy27Ryjk33chgeCIbMUUEWYWITMtse-6KgnWBdRtyKRwjBCze2w0CVmuVtTTM-9rwbV6UPC5lSdRq1m3AKe1FJpXWb37Jx4" style="width:602px"/></a>
+</figure>
+<p class="" id="af160f15-6e4d-47f5-850a-8e359f9ae572">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="5e5c9cb5-f587-43f8-987a-6fdc9075d327">ExistingMy
+                                                    Notebook</p>
+<p class="" id="cdee7188-a9ec-444c-a5ce-36873954c8b7">Exhibit Display
+                                                </p>
+<figure class="image" id="3b165f1e-4d62-4bae-bd46-6c627da425d0"><a href="https://lh7-us.googleusercontent.com/U4SRpFjEPN_HRhRSdrTelp25-XyjXOQz13mXDltbv-LLoqJxNanHnCZFZ1LThaAnmjXcgDXjMkbUpwPCYop6ywHOraPxcNFgCNCLFwifj-GCckDDDC41lp0H2gwpTLnAOYLJ-BH5fJVcoOR0cOLhO04"><img loading="lazy" src="https://lh7-us.googleusercontent.com/U4SRpFjEPN_HRhRSdrTelp25-XyjXOQz13mXDltbv-LLoqJxNanHnCZFZ1LThaAnmjXcgDXjMkbUpwPCYop6ywHOraPxcNFgCNCLFwifj-GCckDDDC41lp0H2gwpTLnAOYLJ-BH5fJVcoOR0cOLhO04" style="width:602px"/></a>
+</figure>
+<p class="" id="2111ab6d-536a-4fa2-affa-18d54571c0e4">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="8401eaf8-b0b3-4866-96ab-32c775e9f9a5">ExistingMy
+                                                    Notebook</p>
+<p class="" id="535668d3-75f4-4aa6-9b0d-4d75ceec5431">Exhibit Display
+                                                </p>
+<figure class="image" id="61054b00-589d-4e7f-9630-0c11db433962"><a href="https://lh7-us.googleusercontent.com/gsprHVJshTelS2hNJOwJvZ53_cvyGX17Zqltn8wl7wxCLpCTHp2_3gCGP_0d-nn0ICHyF-GcV-piaGNgi0js-UYU4v1Z4_ZzG-kCbahKDFpCtBjgWb2UpxX7Jzp7eJzWSbD6t5ad5rEnIDZKARVSu0w"><img loading="lazy" src="https://lh7-us.googleusercontent.com/gsprHVJshTelS2hNJOwJvZ53_cvyGX17Zqltn8wl7wxCLpCTHp2_3gCGP_0d-nn0ICHyF-GcV-piaGNgi0js-UYU4v1Z4_ZzG-kCbahKDFpCtBjgWb2UpxX7Jzp7eJzWSbD6t5ad5rEnIDZKARVSu0w" style="width:602px"/></a>
+</figure>
+<p class="" id="1f955e0e-8349-467a-92c5-ff6ac994dc37">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="a80ee4fa-86e5-45a5-8e8c-9479c4850bf2">ExistingMy
+                                                    Notebook</p>
+<p class="" id="9963ba80-73a3-406c-a871-a876bebdd89d">Exhibit Display
+                                                </p>
+<figure class="image" id="a59ab4e2-874c-400d-9d62-33f28854e62b"><a href="https://lh7-us.googleusercontent.com/wXAfXXuLlnPnUO71JNESbpnyZXeD2NVDngE6sHhJN2n46iawnK7GN07r6fkzJRKpb-vJVaUhJEbWdLQ0FPXbAdqGGtCTw_xJ7adw4XXpUuaNNvZYh-cTU-Fu8M_FjEOKBewpozm8EM91j0CA8tW_pYM"><img loading="lazy" src="https://lh7-us.googleusercontent.com/wXAfXXuLlnPnUO71JNESbpnyZXeD2NVDngE6sHhJN2n46iawnK7GN07r6fkzJRKpb-vJVaUhJEbWdLQ0FPXbAdqGGtCTw_xJ7adw4XXpUuaNNvZYh-cTU-Fu8M_FjEOKBewpozm8EM91j0CA8tW_pYM" style="width:602px"/></a>
+</figure>
+<p class="" id="4f710e7a-2664-44ce-9232-79c73ddbb876">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="57880ed2-1f63-4384-a2e7-26f34375d576">ExistingMy
+                                                    Notebook</p>
+</details>
+</li>
+</ul>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+.bionic-reading-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.bionic-reading-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.bionic-reading-btn.active {
+    background: rgba(52, 168, 83, 0.4);
+    border-color: rgba(52, 168, 83, 0.6);
+}
+
+.bionic-reading-btn.active:hover {
+    background: rgba(52, 168, 83, 0.5);
+}
+
+summary {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+    /* Highlighter styles */
+    .highlighted {
+        background-color: #ffeb3b !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .highlighter-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        font-size: 20px !important;
+        padding: 0 8px !important;
+        margin-left: 8px !important;
+        transition: transform 0.2s ease !important;
+        vertical-align: middle !important;
+    }
+
+    .highlighter-btn:hover {
+        transform: scale(1.2) !important;
+    }
+
+    .highlighter-btn.active {
+        transform: scale(1.1) !important;
+        filter: brightness(1.2) !important;
+    }
+
+    .highlighter-mode-active {
+        cursor: text !important;
+    }
+
+
+    /* Right padding to avoid overlap with sidebar buttons */
+    body {
+        padding-right: 50px !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 16px !important;
+        }
+    }
+
+
+    
+
+
+    
+
+    /* Adjust table padding to make room for radio button */
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+    /* Clickable Answer Choices */
+    table tr.answer-choice {
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+    }
+
+    table tr.answer-choice:hover {
+        background: #f8f9fa !important;
+    }
+
+    table tr.answer-choice td:first-child {
+        position: relative !important;
+        padding-left: 35px !important;
+    }
+
+    table tr.answer-choice td:first-child::before {
+        content: '';
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        border: 2px solid #999;
+        border-radius: 50%;
+        background: white;
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+    }
+
+    table tr.answer-choice.selected td:first-child::before {
+        border-color: #1a73e8;
+        border-width: 5px;
+    }
+
+    table tr.answer-choice.selected {
+        background: #e8f4ff !important;
+    }
+
+    table tr.answer-choice.selected td:first-child {
+        color: #1a73e8 !important;
+        font-weight: 600 !important;
+    }
+
+
+    
+
+
+    /* Answer Validation Styles */
+    tr.answer-choice.answer-correct {
+        background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%) !important;
+        border: 3px solid #28a745 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-correct td {
+        color: #155724 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-correct td:first-child::before {
+        border-color: #28a745 !important;
+        background: #28a745 !important;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    tr.answer-choice.answer-incorrect {
+        background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%) !important;
+        border: 3px solid #dc3545 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-incorrect td {
+        color: #721c24 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-incorrect td:first-child::before {
+        border-color: #dc3545 !important;
+        background: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+    }
+
+
+    /* Answer Validation Styles */
+    tr.answer-choice.answer-correct {
+        background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%) !important;
+        border: 3px solid #28a745 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-correct td {
+        color: #155724 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-correct td:first-child::before {
+        border-color: #28a745 !important;
+        background: #28a745 !important;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    tr.answer-choice.answer-incorrect {
+        background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%) !important;
+        border: 3px solid #dc3545 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-incorrect td {
+        color: #721c24 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-incorrect td:first-child::before {
+        border-color: #dc3545 !important;
+        background: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+    }
+
+</style>
+
+
+
+<script>
+let bionicEnabled = false;
+const originalContent = {};
+
+function toggleBionicReading(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    bionicEnabled = !bionicEnabled;
+    const btn = document.querySelector('.bionic-reading-btn');
+    const icon = document.getElementById('bionicIcon');
+
+    if (bionicEnabled) {
+        btn.classList.add('active');
+        icon.textContent = '✅';
+        applyBionicReading();
+    } else {
+        btn.classList.remove('active');
+        icon.textContent = '👁️';
+        restoreOriginalText();
+    }
+}
+
+function applyBionicReading() {
+    // Seleciona todos os elementos de texto, EXCETO summary e buttons
+    const textElements = document.querySelectorAll('p:not(summary p):not(button p), td:not(summary td):not(button td), li:not(summary li):not(button li)');
+
+    textElements.forEach((element, index) => {
+        // Ignora elementos que contêm outros elementos complexos
+        if (element.querySelector('p, td, li, h1, h2, h3, h4, h5, h6, button, summary')) {
+            return;
+        }
+
+        // Ignora se o elemento está dentro de um summary ou button
+        if (element.closest('summary') || element.closest('button') || element.closest('.bionic-reading-btn')) {
+            return;
+        }
+
+        // Salva o conteúdo original
+        if (!originalContent[index]) {
+            originalContent[index] = {
+                element: element,
+                html: element.innerHTML
+            };
+        }
+
+        // Aplica Bionic Reading
+        const bionicText = convertToBionic(element.textContent);
+        element.innerHTML = bionicText;
+    });
+}
+
+function restoreOriginalText() {
+    // Restaura o conteúdo original
+    Object.values(originalContent).forEach(item => {
+        item.element.innerHTML = item.html;
+    });
+}
+
+function convertToBionic(text) {
+    // Divide o texto em palavras, mantendo pontuação
+    const words = text.split(/(\s+|[.,;:!?()""''\-–—])/);
+
+    const bionicWords = words.map(word => {
+        // Ignora espaços e pontuação
+        if (word.match(/^\s+$/) || word.match(/^[.,;:!?()""''\-–—]+$/)) {
+            return word;
+        }
+
+        // Ignora palavras muito curtas (1-2 letras)
+        if (word.length <= 2) {
+            return word;
+        }
+
+        // Determina quantas letras deixar em negrito (metade da palavra, arredondado para cima)
+        const boldLength = Math.ceil(word.length / 2);
+
+        // Separa a parte em negrito da parte normal
+        const boldPart = word.substring(0, boldLength);
+        const normalPart = word.substring(boldLength);
+
+        // Retorna com a primeira parte em negrito
+        return `<strong style="font-weight: 700 !important; color: inherit !important; background: none !important; padding: 0 !important;">${boldPart}</strong>${normalPart}`;
+    });
+
+    return bionicWords.join('');
+}
+
+// Adiciona atalho de teclado (Ctrl+B ou Cmd+B)
+document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+        e.preventDefault();
+        toggleBionicReading();
+    }
+});
+</script>
+
+<script>
+    let highlighterActive = false;
+    let questionHighlights = {};
+
+    // Get question ID from the first summary strong tag
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Load highlights from localStorage
+    function loadHighlights() {
+        const questionId = getQuestionId();
+        const stored = localStorage.getItem('highlights_' + questionId);
+        if (stored) {
+            questionHighlights = JSON.parse(stored);
+            applyStoredHighlights();
+        }
+    }
+
+    // Save highlights to localStorage
+    function saveHighlights() {
+        const questionId = getQuestionId();
+        localStorage.setItem('highlights_' + questionId, JSON.stringify(questionHighlights));
+    }
+
+    // Apply stored highlights
+    function applyStoredHighlights() {
+        Object.keys(questionHighlights).forEach(key => {
+            const element = document.querySelector(`[data-highlight-id="${key}"]`);
+            if (element && questionHighlights[key]) {
+                element.classList.add('highlighted');
+            }
+        });
+    }
+
+    // Toggle highlighter mode
+    function toggleHighlighter(event) {
+        event.stopPropagation();
+        highlighterActive = !highlighterActive;
+
+        const btn = event.target.closest('.highlighter-btn');
+        const icon = btn.querySelector('#highlighterIcon');
+
+        if (highlighterActive) {
+            btn.classList.add('active');
+            icon.textContent = '🖍️';
+            document.body.classList.add('highlighter-mode-active');
+        } else {
+            btn.classList.remove('active');
+            icon.textContent = '🖊️';
+            document.body.classList.remove('highlighter-mode-active');
+        }
+    }
+
+    // Clear all highlights for this question
+    function clearHighlights() {
+        const questionId = getQuestionId();
+        questionHighlights = {};
+        localStorage.removeItem('highlights_' + questionId);
+        document.querySelectorAll('.highlighted').forEach(el => {
+            el.classList.remove('highlighted');
+        });
+    }
+
+    // Handle text selection and highlighting
+    document.addEventListener('mouseup', function(e) {
+        if (!highlighterActive) return;
+
+        const selection = window.getSelection();
+        if (!selection.toString().trim()) return;
+
+        const range = selection.getRangeAt(0);
+        const container = range.commonAncestorContainer;
+
+        // Only highlight text in paragraphs, not in buttons or other elements
+        const paragraph = container.nodeType === 3 ? container.parentElement : container;
+        if (paragraph.tagName !== 'P' && paragraph.tagName !== 'LI' && paragraph.tagName !== 'TD') {
+            return;
+        }
+
+        // Create highlight span
+        const span = document.createElement('span');
+        span.classList.add('highlighted');
+
+        // Generate unique ID for this highlight
+        const highlightId = 'hl-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+        span.setAttribute('data-highlight-id', highlightId);
+
+        try {
+            range.surroundContents(span);
+            questionHighlights[highlightId] = true;
+            saveHighlights();
+        } catch (e) {
+            console.log('Could not highlight selection');
+        }
+
+        selection.removeAllRanges();
+    });
+
+    // Load highlights when page loads
+    window.addEventListener('load', loadHighlights);
+
+    // Keyboard shortcut: Ctrl+H to toggle highlighter
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'h') {
+            e.preventDefault();
+            const btn = document.querySelector('.highlighter-btn');
+            if (btn) {
+                toggleHighlighter({target: btn, stopPropagation: () => {}});
+            }
+        }
+        // Ctrl+Shift+H to clear all highlights
+        if (e.ctrlKey && e.shiftKey && e.key === 'H') {
+            e.preventDefault();
+            if (confirm('Clear all highlights for this question?')) {
+                clearHighlights();
+            }
+        }
+    });
+</script>
+
+
+
+
+
+
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Communicate with parent window (if in iframe)
+    function notifyParent(choice) {
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'choiceSelected',
+                questionId: getQuestionId(),
+                choice: choice
+            }, '*');
+        }
+    }
+
+    // Load saved choice from parent or localStorage
+    function loadSavedChoice() {
+        const questionId = getQuestionId();
+
+        // Try to get from localStorage first
+        const saved = localStorage.getItem('choice_q' + questionId);
+        if (saved) {
+            selectChoice(saved, false);
+        }
+
+        // Ask parent for saved choice (if in iframe)
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'getChoice',
+                questionId: questionId
+            }, '*');
+        }
+    }
+
+    // Listen for messages from parent
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'setChoice' && event.data.questionId === getQuestionId()) {
+            selectChoice(event.data.choice, false);
+        }
+    });
+
+    // Select a choice
+    function selectChoice(choice, notify = true) {
+        if (!choice) return;
+
+        const questionId = getQuestionId();
+
+        // Remove previous selection
+        document.querySelectorAll('tr.answer-choice').forEach(row => {
+            row.classList.remove('selected');
+        });
+
+        // Add selection to clicked choice
+        const choiceRow = document.querySelector(`tr.answer-choice[data-choice="${choice}"]`);
+        if (choiceRow) {
+            choiceRow.classList.add('selected');
+
+            // Save to localStorage
+            localStorage.setItem('choice_q' + questionId, choice);
+
+            // Notify parent (if in iframe)
+            if (notify) {
+                notifyParent(choice);
+            }
+        }
+    }
+
+    // Initialize answer choices
+    function initializeChoices() {
+        // Find all answer choice rows (A, B, C, D, E, F, etc.)
+        const choicePattern = /^[A-Z]\.$/;
+        const tables = document.querySelectorAll('table.simple-table');
+
+        tables.forEach(table => {
+            const rows = table.querySelectorAll('tr');
+            rows.forEach(row => {
+                const firstCell = row.querySelector('td:first-child');
+                if (firstCell && choicePattern.test(firstCell.textContent.trim())) {
+                    const choice = firstCell.textContent.trim().replace('.', '');
+                    row.classList.add('answer-choice');
+                    row.setAttribute('data-choice', choice);
+                    row.style.position = 'relative';
+
+                    // Add click handler
+                    row.addEventListener('click', function(e) {
+                        // Don't trigger if clicking inside a link or button
+                        if (e.target.tagName === 'A' || e.target.closest('a')) return;
+
+                        // Toggle selection
+                        if (this.classList.contains('selected')) {
+                            this.classList.remove('selected');
+                            const questionId = getQuestionId();
+                            localStorage.removeItem('choice_q' + questionId);
+                            notifyParent('');
+                        } else {
+                            selectChoice(choice);
+                        }
+                    });
+                }
+            });
+        });
+
+        // Load saved choice after a short delay
+        setTimeout(loadSavedChoice, 100);
+    }
+
+    // Run when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeChoices);
+    } else {
+        initializeChoices();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+
+                    // Notify parent that Submit/Explanation was opened
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'submitOpened',
+                            questionId: getQuestionId()
+                        }, '*');
+                    }
+                } else {
+                    // Notify parent that Submit/Explanation was closed
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'submitClosed',
+                            questionId: getQuestionId()
+                        }, '*');
+                    }
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>

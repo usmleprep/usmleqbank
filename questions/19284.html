@@ -1,0 +1,1826 @@
+
+<style>
+    * {
+        box-sizing: border-box !important;
+    }
+
+    body {
+        font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        line-height: 1.9 !important;
+        color: #1f1f1f !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 8px 16px 16px 16px !important;
+        background: #ffffff !important;
+        font-size: 16.5px !important;
+    }
+
+    p {
+        margin-bottom: 20px !important;
+        font-size: 16.5px !important;
+        line-height: 1.95 !important;
+        color: #1f1f1f !important;
+        font-weight: 400 !important;
+    }
+
+    strong, b {
+        color: #1a73e8 !important;
+        font-weight: 700 !important;
+        background: rgba(26, 115, 232, 0.08) !important;
+        padding: 2px 6px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Details/Summary (collapsible sections) */
+    details {
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
+        border-radius: 8px !important;
+        padding: 24px 28px !important;
+        margin: 24px 0 !important;
+        border: none;
+        box-shadow: none !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    details:hover {
+        border-color: #1a73e8 !important;
+        box-shadow: none !important;
+        transform: translateY(-2px) !important;
+    }
+
+    details[open] {
+        background: #ffffff !important;
+        border-color: #1a73e8 !important;
+        box-shadow: none !important;
+    }
+
+    summary {
+        cursor: pointer !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        font-size: 20px !important;
+        padding: 16px 24px !important;
+        border-radius: 8px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        display: flex !important;
+        align-items: center !important;
+        user-select: none !important;
+        box-shadow: none !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    summary:hover {
+        background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%) !important;
+        transform: translateX(6px) scale(1.02) !important;
+        box-shadow: none !important;
+    }
+
+    summary:active {
+        transform: translateX(4px) scale(0.99) !important;
+    }
+
+    summary::marker {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 1.3em !important;
+    }
+
+    summary strong {
+        background: rgba(255, 255, 255, 0.2) !important;
+        color: #ffffff !important;
+        padding: 4px 12px !important;
+        border-radius: 8px !important;
+        margin-left: 8px !important;
+        font-size: 19px !important;
+        letter-spacing: 1px !important;
+    }
+
+    /* Tables - Premium Design */
+    table {
+        width: 100% !important;
+        border-collapse: separate !important;
+        border-spacing: 0 !important;
+        margin: 28px 0 !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: #ffffff !important;
+    }
+
+    table.simple-table {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+    }
+
+    table tr {
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        position: relative !important;
+    }
+
+    table tr:nth-child(odd) {
+        background: rgba(248, 249, 250, 0.5) !important;
+    }
+
+    table tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    table tr:hover {
+        background: linear-gradient(90deg, #e8f0fe 0%, #f1f8ff 100%) !important;
+        transform: translateX(4px) scale(1.01) !important;
+        box-shadow: none !important;
+        z-index: 1 !important;
+    }
+
+    table td {
+        padding: 18px 24px !important;
+        border-bottom: 1px solid rgba(232, 234, 237, 0.6) !important;
+        font-size: 16.5px !important;
+        line-height: 1.7 !important;
+        color: #1f1f1f !important;
+        vertical-align: middle !important;
+    }
+
+    table tr:last-child td {
+        border-bottom: none !important;
+    }
+
+    /* First column (A, B, C, D, E) */
+    table td:first-child {
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        width: 52px !important;
+        text-align: center !important;
+        font-size: 18px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+        border-right: 3px solid #1557b0 !important;
+        position: relative !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    table tr:hover td:first-child {
+        background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%) !important;
+        box-shadow: none !important;
+    }
+
+    /* Second column (content) */
+    table td:nth-child(2) {
+        font-weight: 500 !important;
+        padding-left: 28px !important;
+    }
+
+    /* Third column (empty - hide it) */
+    table td:last-child:empty {
+        display: none !important;
+    }
+
+    /* Lists */
+    ul, ol {
+        margin: 16px 0 !important;
+        padding-left: 32px !important;
+    }
+
+    li {
+        margin: 10px 0 !important;
+        line-height: 1.8 !important;
+        color: #1f1f1f !important;
+    }
+
+    ul.bulleted-list li {
+        position: relative !important;
+        padding-left: 8px !important;
+    }
+
+    ul.toggle {
+        list-style: none !important;
+        padding-left: 0 !important;
+    }
+
+    /* Links */
+    a {
+        color: #1a73e8 !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        border-bottom: 2px solid transparent !important;
+        transition: all 0.2s !important;
+    }
+
+    a:hover {
+        border-bottom-color: #1a73e8 !important;
+        background: rgba(26,115,232,0.08) !important;
+        padding: 2px 4px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Images & Media */
+    img, video {
+        max-width: none !important;
+        height: auto !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
+        margin: 24px 0 !important;
+        display: block !important;
+        border: none !important;
+    }
+
+    img:hover, video:hover {
+        box-shadow: none !important;
+        border-color: #1a73e8 !important;
+    }
+
+    /* Code blocks (if any) */
+    code {
+        background: #f1f3f4 !important;
+        padding: 2px 8px !important;
+        border-radius: 8px !important;
+        font-family: 'Courier New', monospace !important;
+        font-size: 14px !important;
+        color: #d93025 !important;
+    }
+
+    pre {
+        background: #f8f9fa !important;
+        padding: 8px 16px 16px 16px !important;
+        border-radius: 8px !important;
+        overflow-x: auto !important;
+        border-left: 4px solid #1a73e8 !important;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+        color: #1a73e8 !important;
+        font-weight: 700 !important;
+        margin-top: 24px !important;
+        margin-bottom: 16px !important;
+        line-height: 1.4 !important;
+    }
+
+    h1 { font-size: 32px !important; }
+    h2 { font-size: 26px !important; }
+    h3 { font-size: 22px !important; }
+    h4 { font-size: 19px !important; }
+
+    /* Blockquotes */
+    blockquote {
+        border-left: 4px solid #1a73e8 !important;
+        padding-left: 20px !important;
+        margin: 20px 0 !important;
+        font-style: italic !important;
+        color: #5f6368 !important;
+        background: #f8f9fa !important;
+        padding: 16px 20px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Horizontal Rule */
+    hr {
+        border: none !important;
+        height: 2px !important;
+        background: linear-gradient(to right, transparent, #1a73e8, transparent) !important;
+        margin: 32px 0 !important;
+    }
+
+    /* Selection */
+    ::selection {
+        background: #e8f0fe !important;
+        color: #1a73e8 !important;
+    }
+
+    /* Highlighter styles */
+    .highlighted {
+        background-color: #ffeb3b !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .highlighter-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        font-size: 20px !important;
+        padding: 0 8px !important;
+        margin-left: 8px !important;
+        transition: transform 0.2s ease !important;
+        vertical-align: middle !important;
+    }
+
+    .highlighter-btn:hover {
+        transform: scale(1.2) !important;
+    }
+
+    .highlighter-btn.active {
+        transform: scale(1.1) !important;
+        filter: brightness(1.2) !important;
+    }
+
+    .highlighter-mode-active {
+        cursor: text !important;
+    }
+
+
+    /* Right padding to avoid overlap with sidebar buttons */
+    body {
+        padding-right: 50px !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 16px !important;
+        }
+    }
+
+</style>
+
+
+
+
+<details open>
+<summary><strong>19284</strong><button class="bionic-reading-btn" onclick="toggleBionicReading(event)" title="Toggle Bionic Reading (Ctrl+B)"><span id="bionicIcon">👁️</span></button><button class="highlighter-btn" onclick="toggleHighlighter(event)" title="Toggle Highlighter (Ctrl+H)"><span id="highlighterIcon">🖊️</span></button></summary>
+<p class="" id="e0dd8509-7868-40b8-8032-8f09f68c85cb">A previously healthy
+                                        15-year-old girl is brought to the emergency department due to respiratory
+                                        distress and continuous cough after eating at a buffet in a local restaurant. 
+                                        Blood pressure is 80/40 mm Hg, pulse is 130/min, and respirations are 32/min. 
+                                        She is in marked respiratory distress but is able to speak.  Diffuse wheezing
+                                        and erythematous skin rash are present.  Which of the following hemodynamic
+                                        changes are most likely present in this patient?</p>
+<table class="simple-table" id="edc1605d-895a-437e-a4bb-13c3880e3639">
+<tbody>
+<tr id="41a8f015-f1f3-4221-bc3b-8f8a2b55720f">
+<td class="" id="U&gt;B_"></td>
+<td class="" id="}igN"><strong>Central Venous Pressure</strong></td>
+<td class="" id=":jbC"><strong>Pulmonary Capillary Wedge
+                                                        Pressure</strong></td>
+<td class="" id="YEu`"><strong>Systemic Vascular Resistance</strong>
+</td>
+</tr>
+<tr id="070abba0-22c8-4b44-864d-4c8de0a99af5">
+<td class="" id="U&gt;B_"><strong>A.</strong></td>
+<td class="" id="}igN">Decreased</td>
+<td class="" id=":jbC">Decreased</td>
+<td class="" id="YEu`">Decreased</td>
+</tr>
+<tr id="8b78319e-9fac-46ab-8449-5e6d6e2a7d07">
+<td class="" id="U&gt;B_"><strong>B.</strong></td>
+<td class="" id="}igN">Decreased</td>
+<td class="" id=":jbC">Decreased</td>
+<td class="" id="YEu`">Increased</td>
+</tr>
+<tr id="29728965-b607-41ad-b2dc-8a90c11e5c86">
+<td class="" id="U&gt;B_"><strong>C.</strong></td>
+<td class="" id="}igN">Increased</td>
+<td class="" id=":jbC">Decreased</td>
+<td class="" id="YEu`">Increased</td>
+</tr>
+<tr id="5f583ab1-fbb3-40b4-8414-1baccbb1af3a">
+<td class="" id="U&gt;B_"><strong>D.</strong></td>
+<td class="" id="}igN">Increased</td>
+<td class="" id=":jbC">Increased</td>
+<td class="" id="YEu`">Decreased</td>
+</tr>
+<tr id="6df9e72d-5a72-4098-b059-e6af6a8a147b">
+<td class="" id="U&gt;B_"><strong>E.</strong></td>
+<td class="" id="}igN">Increased</td>
+<td class="" id=":jbC">Increased</td>
+<td class="" id="YEu`">Increased</td>
+</tr>
+</tbody>
+</table>
+<ul class="toggle" id="1131b5ac-0561-4479-985b-8b849b3a3306">
+<li>
+<details>
+<summary>Submit</summary>
+<table class="simple-table" id="42532ba2-2e7f-483c-a7c3-228bacb66385">
+<tbody>
+<tr id="ecab379a-23da-40d4-8571-792cf2d64757">
+<td class="" id="DrFs">Central venous<br/>pressurePulmonary
+                                                                capillary<br/>wedge pressureSystemic vascular
+                                                                resistance<br/></td>
+<td class="" id="==zA"></td>
+<td class="" id="NBUP"></td>
+</tr>
+<tr id="f6da8f9a-f8b7-4c9f-ae75-dc15de32cf25">
+<td class="" id="DrFs">A.</td>
+<td class="" id="==zA">DecreasedDecreasedDecreased<br/>
+                                                                (55%)<br/></td>
+<td class="" id="NBUP"></td>
+</tr>
+<tr id="657b8701-6472-46d4-ad5c-0d6c7743f4b4">
+<td class="" id="DrFs">B.</td>
+<td class="" id="==zA">DecreasedDecreasedIncreased<br/>
+                                                                (11%)<br/></td>
+<td class="" id="NBUP"></td>
+</tr>
+<tr id="46a0dd39-ee19-46a9-9d67-0bf90b1cd6b4">
+<td class="" id="DrFs">C.</td>
+<td class="" id="==zA">IncreasedDecreasedIncreased<br/>
+                                                                (8%)<br/></td>
+<td class="" id="NBUP"></td>
+</tr>
+<tr id="ea0fe572-711f-4712-865b-81863f29690b">
+<td class="" id="DrFs">D.</td>
+<td class="" id="==zA">IncreasedIncreasedDecreased<br/>
+                                                                (18%)<br/></td>
+<td class="" id="NBUP"></td>
+</tr>
+<tr id="50f8d53c-d382-4846-8d88-9219ef8ace88">
+<td class="" id="DrFs">E.</td>
+<td class="" id="==zA">IncreasedIncreasedIncreased<br/>
+                                                                (5%)<br/></td>
+<td class="" id="NBUP"></td>
+</tr>
+</tbody>
+</table>
+<p class="" id="7175c54e-07df-4d8f-acc3-9650575415cc">Omitted</p>
+<p class="" id="a5fb0503-53b6-4e16-934d-65c5e116a30f">Correct answer A
+                                                </p>
+<p class="" id="21b4fc10-b366-4696-a073-6bdbbb294c2f">55%Answered
+                                                    correctly</p>
+<p class="" id="2235de24-afed-405f-bbb6-0f69333462af">0 secsTime Spent
+                                                </p>
+<p class="" id="3ea6be58-fa2e-4afc-bbd7-9b54b274512a">2024Version</p>
+<ul class="bulleted-list" id="5c005a12-2462-466a-9b8b-4511a4f3183c">
+<li style="list-style-type:disc">Explanation</li>
+</ul>
+<ul class="bulleted-list" id="aecd9353-1d7a-4cc8-aee5-9aafd54adc35">
+<li style="list-style-type:disc"></li>
+</ul>
+<table class="simple-table" id="a855b47a-4d04-438d-8145-47afbf8019a3">
+<tbody>
+<tr id="d165b883-5033-4ee0-8719-ca5a01f62085">
+<td class="" id="V{Zb">Hemodynamic measurements in shock
+                                                            </td>
+<td class="" id="b&gt;BG"></td>
+<td class="" id="E{A\"></td>
+<td class="" id="[=bW"></td>
+<td class="" id="s~Vz"></td>
+</tr>
+<tr id="2287c6d8-24c3-4546-ab4d-99594c25ca85">
+<td class="" id="V{Zb">Parameter</td>
+<td class="" id="b&gt;BG">Hypovolemic shock</td>
+<td class="" id="E{A\">Cardiogenic shock</td>
+<td class="" id="[=bW">Obstructive shock</td>
+<td class="" id="s~Vz">Distributive shock</td>
+</tr>
+<tr id="0a700f3e-1a5a-40cf-86e3-51be52c94f1f">
+<td class="" id="V{Zb">CVP<br/>(right-sided preload)<br/>
+</td>
+<td class="" id="b&gt;BG">↓</td>
+<td class="" id="E{A\">↑</td>
+<td class="" id="[=bW">↑</td>
+<td class="" id="s~Vz">↓</td>
+</tr>
+<tr id="eb13fd3a-9725-4147-b1de-14a51785be16">
+<td class="" id="V{Zb">PCWP<br/>(left-sided preload)<br/>
+</td>
+<td class="" id="b&gt;BG">↓</td>
+<td class="" id="E{A\">↑</td>
+<td class="" id="[=bW">↓*</td>
+<td class="" id="s~Vz">↓</td>
+</tr>
+<tr id="a8f56f1a-1d4a-4494-9001-6af20da66192">
+<td class="" id="V{Zb">Cardiac index<br/>(LV output)<br/>
+</td>
+<td class="" id="b&gt;BG">↓</td>
+<td class="" id="E{A\">↓</td>
+<td class="" id="[=bW">↓</td>
+<td class="" id="s~Vz">↑**</td>
+</tr>
+<tr id="12becd75-933b-40ba-bbd7-97f366a215f4">
+<td class="" id="V{Zb">SVR</td>
+<td class="" id="b&gt;BG">↑</td>
+<td class="" id="E{A\">↑</td>
+<td class="" id="[=bW">↑</td>
+<td class="" id="s~Vz">↓</td>
+</tr>
+<tr id="a499d4d9-11a9-426d-a459-eebd63efee55">
+<td class="" id="V{Zb">SvO2</td>
+<td class="" id="b&gt;BG">↓</td>
+<td class="" id="E{A\">↓</td>
+<td class="" id="[=bW">↓</td>
+<td class="" id="s~Vz">↑**</td>
+</tr>
+<tr id="6e74f5fe-d860-4adf-935f-64b385ac10f1">
+<td class="" id="V{Zb">*In tamponade, left-sided preload is
+                                                                decreased, but measured PCWP is paradoxically increased
+                                                                due to external compression by pericardial
+                                                                fluid.<br/>**Cardiac index &amp; SvO2 are usually
+                                                                decreased in neurogenic shock due to impaired
+                                                                sympathetic reflexes.<br/>CVP = central venous
+                                                                pressure; LV = left ventricular; PCWP = pulmonary
+                                                                capillary wedge pressure; SvO2 = mixed venous oxygen
+                                                                saturation; SVR = systemic vascular resistance.<br/>
+</td>
+<td class="" id="b&gt;BG"></td>
+<td class="" id="E{A\"></td>
+<td class="" id="[=bW"></td>
+<td class="" id="s~Vz"></td>
+</tr>
+</tbody>
+</table>
+<p class="" id="f721548f-1d93-429b-bdf7-a80122decf94">This patient with
+                                                    respiratory distress, wheezing, and erythematous skin rash following
+                                                    food exposure likely has anaphylaxis; her severe hypotension and
+                                                    tachycardia indicate anaphylactic shock.</p>
+<p class="" id="7a5f9094-8685-4370-9cf7-58296d60e8cc">The primary
+                                                    disturbance in distributive shock (eg, septic shock, anaphylactic
+                                                    shock) is profound peripheral vasodilation which, in anaphylactic
+                                                    shock, results from widespread IgE-mediated release of inflammatory
+                                                    mediators (eg, histamine).  This has the following effects:</p>
+<ul class="bulleted-list" id="060adafc-79ef-44ad-9c30-ec3ac0a8e3cd">
+<li style="list-style-type:disc">Arteriolar vasodilation causes
+                                                        decreased systemic vascular resistance (SVR) and consequent
+                                                        hypotension.</li>
+</ul>
+<ul class="bulleted-list" id="fdeddf54-2498-4deb-b12c-dd59ab8e5c57">
+<li style="list-style-type:disc">Venular vasodilation causes
+                                                        decreased central venous pressure (CVP) and reduces venous
+                                                        return to the right atrium (Choice D).</li>
+</ul>
+<ul class="bulleted-list" id="92883f05-aca6-4a7a-a573-418dd27e9013">
+<li style="list-style-type:disc">The vasculature becomes leaky,
+                                                        resulting in loss of intravascular volume that further
+                                                        contributes to both hypotension and decreased CVP.</li>
+</ul>
+<p class="" id="738ddc5e-2e26-4c45-9a52-2034a453955d">With reduced
+                                                    venous return to the right atrium, there is reduced right
+                                                    ventricular output and reduced blood delivery to the left atrium and
+                                                    left ventricle.  This leads to decreased pulmonary capillary wedge
+                                                    pressure (PCWP), a reflection of left atrial pressure.  Despite the
+                                                    reduced left ventricular preload, cardiac output is commonly normal
+                                                    or increased in early distributive shock due to both the large
+                                                    decrease in SVR and a baroreceptor reflex–mediated increase in heart
+                                                    rate (ie, tachycardia).  The increased cardiac output leads to
+                                                    increased mixed venous oxygen saturation due to rapid blood transit
+                                                    through the peripheral capillaries and incomplete oxygen uptake by
+                                                    the tissues.</p>
+<p class="" id="e535c47d-a895-403f-aafc-e159c5b2fea0">(Choice B) 
+                                                    Hypovolemic shock involves massive intravascular volume depletion,
+                                                    leading to decreased CVP and PCWP.  SVR is reflexively increased in
+                                                    response to reduced cardiac output and hypotension.</p>
+<p class="" id="32ae4f35-eede-4eba-8497-350fbb7997bb">(Choice C) 
+                                                    Obstructive shock most commonly involves an obstruction to blood
+                                                    flow between the right atrium and the pulmonary capillaries (eg,
+                                                    pulmonary embolism).  CVP is increased, PCWP is decreased, and there
+                                                    is a reflexive increase in SVR.</p>
+<p class="" id="f63f619f-0890-4311-aa57-75699d59f7b1">(Choice E) 
+                                                    Cardiogenic shock results from left ventricular failure.  PCWP and
+                                                    CVP are increased due to backward transmission of increased
+                                                    pressure, and there is a reflexive increase in SVR.</p>
+<p class="" id="47c65ec3-4f19-4c62-a415-fb75d476c669">Educational
+                                                    objective:</p>
+<p class="" id="e8d4358d-5634-4a9f-9605-dd8b47cb954b">Anaphylaxis can
+                                                    cause distributive shock due to widespread release of inflammatory
+                                                    mediators (eg, histamine) that leads to massive peripheral
+                                                    vasodilation.  Arteriolar vasodilation decreases systemic vascular
+                                                    resistance to cause hypotension, and venular vasodilation decreases
+                                                    central venous pressure and pulmonary capillary wedge pressure. 
+                                                    Cardiac output is often increased in early distributive shock due to
+                                                    reduced SVR and a baroreceptor reflex–mediated increase in heart
+                                                    rate.</p>
+<p class="" id="c029ca58-b972-474d-913e-18ed2f99838e">References</p>
+<ul class="bulleted-list" id="1f16b1c2-5ded-4371-b9de-871161941090">
+<li style="list-style-type:disc"><a href="http://www.ncbi.nlm.nih.gov/pubmed/29261964">Distributive
+                                                            shock.</a></li>
+</ul>
+<p class="" id="15678b9e-5597-4724-ae2d-2a8e429fc479">Pathophysiology
+                                                </p>
+<p class="" id="98e5a6a7-6eea-4e13-bc86-6c5ca533e7e9">Subject</p>
+<p class="" id="71cab3ff-f397-4705-9622-09cea84eb7f3">Cardiovascular
+                                                    System</p>
+<p class="" id="dc184bca-cb7c-4b9c-8e6d-db9ac5ef8556">System</p>
+<p class="" id="670cc31c-296d-4d09-82fd-5130c00b08ab">Anaphylaxis</p>
+<p class="" id="23f882b1-33cc-41f6-afb5-754eedcdd307">Topic</p>
+<p class="" id="ae76bd79-2514-4002-b72d-74fe0cd5d9dc">Copyright ©
+                                                    UWorld. All rights reserved.</p>
+<p class="" id="7c1bbe89-bfce-4f12-8c50-97d1a8e6535a">REVIEW</p>
+<p class="" id="01c862c5-8227-49b6-91cf-a451cafbfef3">My Notebook</p>
+<p class="" id="d3380367-4b7a-4050-96c4-9196cb30da95">0</p>
+<p class="" id="7e496539-21ba-4355-abc5-02665e893400">Flashcards</p>
+<p class="" id="e65db28c-0527-4c70-b269-3a7d3272b7a4">Feedback</p>
+<p class="" id="1d404e51-76e2-4446-a21b-55415a6522b1">End Block</p>
+<p class="" id="69f9c1bc-a2c2-49bf-a9f7-6b0a23f4a8e5">✨Done</p>
+<p class="" id="e1d453d3-4270-4868-88fa-4470b3ad6c0c">Exhibit Display
+                                                </p>
+<figure class="image" id="01674ed4-0df2-459e-919d-bada047ec615"><a href="https://lh7-us.googleusercontent.com/zqKSPUgFNURIRYa9AqtIJDmgZoc8KxnyoM7MpFF7GBgyVpyRe_wSa0wGigJxU3ysrjKC38b-kvgyuG2Y8shZWcNqKYYkZ7ePQeA-d6C7xFy3dlfTIKbxcZm3K1hMf1q-5yCSN8vbpt7O8bPL8Cn45RU"><img loading="lazy" src="https://lh7-us.googleusercontent.com/zqKSPUgFNURIRYa9AqtIJDmgZoc8KxnyoM7MpFF7GBgyVpyRe_wSa0wGigJxU3ysrjKC38b-kvgyuG2Y8shZWcNqKYYkZ7ePQeA-d6C7xFy3dlfTIKbxcZm3K1hMf1q-5yCSN8vbpt7O8bPL8Cn45RU" style="width:602px"/></a>
+</figure>
+<p class="" id="a9433742-bb70-4936-8801-0e5c418aab62">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="c7975853-480e-4327-975e-df863992861f">ExistingMy
+                                                    Notebook</p>
+<p class="" id="3edfe8af-3055-485e-8ef3-02c8a7e2cc08">Exhibit Display
+                                                </p>
+<figure class="image" id="a1601fbe-4b26-4737-bccb-e5f189c72e9c"><a href="https://lh7-us.googleusercontent.com/3gKS5t66Fuo51SLdhW5uW3qOidvMyBuV0_pCPT1PXdvy8psGKNEOji5LhL-F38CmpjLNjTKn04oksbxHARuAYuttwB1hB4PXPkM40EUaoHn6YjSLCFWBG7g6muSIKXH_t5ajrIud47iIxvyzuU6Xu_s"><img loading="lazy" src="https://lh7-us.googleusercontent.com/3gKS5t66Fuo51SLdhW5uW3qOidvMyBuV0_pCPT1PXdvy8psGKNEOji5LhL-F38CmpjLNjTKn04oksbxHARuAYuttwB1hB4PXPkM40EUaoHn6YjSLCFWBG7g6muSIKXH_t5ajrIud47iIxvyzuU6Xu_s" style="width:602px"/></a>
+</figure>
+<p class="" id="69d1763b-a01f-4fe8-8740-062243824a77">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="f39f29b0-6451-4710-96b6-f9237da3b020">ExistingMy
+                                                    Notebook</p>
+<p class="" id="df0f8c0e-7df6-4991-a3d6-9eeca49969ea">Exhibit Display
+                                                </p>
+<figure class="image" id="0febb6ac-22c6-4ce9-8f3a-f710fef81472"><a href="https://lh7-us.googleusercontent.com/mdzL76JVPT9BTLlYsz9z9aaW4JykYFDNQIuCX2tMjeKQdLHUChWtJvpGvbdGFNNFxOPosXCnmIc8IlbWIs1aFDSxwM7_yzcrbKbDaaOVZrt6dhn58vI-gg8yyhzQU7TNs6hMDyQjmjtB4bCVJQYqv6Y"><img loading="lazy" src="https://lh7-us.googleusercontent.com/mdzL76JVPT9BTLlYsz9z9aaW4JykYFDNQIuCX2tMjeKQdLHUChWtJvpGvbdGFNNFxOPosXCnmIc8IlbWIs1aFDSxwM7_yzcrbKbDaaOVZrt6dhn58vI-gg8yyhzQU7TNs6hMDyQjmjtB4bCVJQYqv6Y" style="width:602px"/></a>
+</figure>
+<p class="" id="0fa625cb-d10f-4d9c-9466-d146d59b1269">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="297ab32f-0fb0-4c48-9fa9-d063fd4e0286">ExistingMy
+                                                    Notebook</p>
+<p class="" id="598f9d8e-c6e4-434f-a211-ad4d34e95f8f">Exhibit Display
+                                                </p>
+<figure class="image" id="a6be01a4-c9e0-48b5-8552-f82b6d229674"><a href="https://lh7-us.googleusercontent.com/NRQcurwbcGMZ95NF6skwawBw5aPsmd5Jz0cnBZ5NTvndVb3m0gG9_id5UyRQd6Ltq4wX6b0BBoK-zHWPBWjxFidhINxSDU8o9LCrBQlIj9dAu1NzcU3QRSlgaUtuyvwPypOvK4kzouDDh_gNOUkrjcM"><img loading="lazy" src="https://lh7-us.googleusercontent.com/NRQcurwbcGMZ95NF6skwawBw5aPsmd5Jz0cnBZ5NTvndVb3m0gG9_id5UyRQd6Ltq4wX6b0BBoK-zHWPBWjxFidhINxSDU8o9LCrBQlIj9dAu1NzcU3QRSlgaUtuyvwPypOvK4kzouDDh_gNOUkrjcM" style="width:602px"/></a>
+</figure>
+<p class="" id="3e4099ff-b69d-4d2d-9a33-f46b98470e2e">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="28c1c4c7-eb38-4670-a51e-a1cd7f6fafe0">ExistingMy
+                                                    Notebook</p>
+</details>
+</li>
+</ul>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+.bionic-reading-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.bionic-reading-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.bionic-reading-btn.active {
+    background: rgba(52, 168, 83, 0.4);
+    border-color: rgba(52, 168, 83, 0.6);
+}
+
+.bionic-reading-btn.active:hover {
+    background: rgba(52, 168, 83, 0.5);
+}
+
+summary {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+    /* Highlighter styles */
+    .highlighted {
+        background-color: #ffeb3b !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .highlighter-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        font-size: 20px !important;
+        padding: 0 8px !important;
+        margin-left: 8px !important;
+        transition: transform 0.2s ease !important;
+        vertical-align: middle !important;
+    }
+
+    .highlighter-btn:hover {
+        transform: scale(1.2) !important;
+    }
+
+    .highlighter-btn.active {
+        transform: scale(1.1) !important;
+        filter: brightness(1.2) !important;
+    }
+
+    .highlighter-mode-active {
+        cursor: text !important;
+    }
+
+
+    /* Right padding to avoid overlap with sidebar buttons */
+    body {
+        padding-right: 50px !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 16px !important;
+        }
+    }
+
+
+    
+
+
+    
+
+    /* Adjust table padding to make room for radio button */
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+    /* Clickable Answer Choices */
+    table tr.answer-choice {
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+    }
+
+    table tr.answer-choice:hover {
+        background: #f8f9fa !important;
+    }
+
+    table tr.answer-choice td:first-child {
+        position: relative !important;
+        padding-left: 35px !important;
+    }
+
+    table tr.answer-choice td:first-child::before {
+        content: '';
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        border: 2px solid #999;
+        border-radius: 50%;
+        background: white;
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+    }
+
+    table tr.answer-choice.selected td:first-child::before {
+        border-color: #1a73e8;
+        border-width: 5px;
+    }
+
+    table tr.answer-choice.selected {
+        background: #e8f4ff !important;
+    }
+
+    table tr.answer-choice.selected td:first-child {
+        color: #1a73e8 !important;
+        font-weight: 600 !important;
+    }
+
+
+    
+
+
+    /* Answer Validation Styles */
+    tr.answer-choice.answer-correct {
+        background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%) !important;
+        border: 3px solid #28a745 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-correct td {
+        color: #155724 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-correct td:first-child::before {
+        border-color: #28a745 !important;
+        background: #28a745 !important;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    tr.answer-choice.answer-incorrect {
+        background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%) !important;
+        border: 3px solid #dc3545 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-incorrect td {
+        color: #721c24 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-incorrect td:first-child::before {
+        border-color: #dc3545 !important;
+        background: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+    }
+
+
+    /* Answer Validation Styles */
+    tr.answer-choice.answer-correct {
+        background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%) !important;
+        border: 3px solid #28a745 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-correct td {
+        color: #155724 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-correct td:first-child::before {
+        border-color: #28a745 !important;
+        background: #28a745 !important;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    tr.answer-choice.answer-incorrect {
+        background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%) !important;
+        border: 3px solid #dc3545 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-incorrect td {
+        color: #721c24 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-incorrect td:first-child::before {
+        border-color: #dc3545 !important;
+        background: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+    }
+
+</style>
+
+
+
+<script>
+let bionicEnabled = false;
+const originalContent = {};
+
+function toggleBionicReading(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    bionicEnabled = !bionicEnabled;
+    const btn = document.querySelector('.bionic-reading-btn');
+    const icon = document.getElementById('bionicIcon');
+
+    if (bionicEnabled) {
+        btn.classList.add('active');
+        icon.textContent = '✅';
+        applyBionicReading();
+    } else {
+        btn.classList.remove('active');
+        icon.textContent = '👁️';
+        restoreOriginalText();
+    }
+}
+
+function applyBionicReading() {
+    // Seleciona todos os elementos de texto, EXCETO summary e buttons
+    const textElements = document.querySelectorAll('p:not(summary p):not(button p), td:not(summary td):not(button td), li:not(summary li):not(button li)');
+
+    textElements.forEach((element, index) => {
+        // Ignora elementos que contêm outros elementos complexos
+        if (element.querySelector('p, td, li, h1, h2, h3, h4, h5, h6, button, summary')) {
+            return;
+        }
+
+        // Ignora se o elemento está dentro de um summary ou button
+        if (element.closest('summary') || element.closest('button') || element.closest('.bionic-reading-btn')) {
+            return;
+        }
+
+        // Salva o conteúdo original
+        if (!originalContent[index]) {
+            originalContent[index] = {
+                element: element,
+                html: element.innerHTML
+            };
+        }
+
+        // Aplica Bionic Reading
+        const bionicText = convertToBionic(element.textContent);
+        element.innerHTML = bionicText;
+    });
+}
+
+function restoreOriginalText() {
+    // Restaura o conteúdo original
+    Object.values(originalContent).forEach(item => {
+        item.element.innerHTML = item.html;
+    });
+}
+
+function convertToBionic(text) {
+    // Divide o texto em palavras, mantendo pontuação
+    const words = text.split(/(\s+|[.,;:!?()""''\-–—])/);
+
+    const bionicWords = words.map(word => {
+        // Ignora espaços e pontuação
+        if (word.match(/^\s+$/) || word.match(/^[.,;:!?()""''\-–—]+$/)) {
+            return word;
+        }
+
+        // Ignora palavras muito curtas (1-2 letras)
+        if (word.length <= 2) {
+            return word;
+        }
+
+        // Determina quantas letras deixar em negrito (metade da palavra, arredondado para cima)
+        const boldLength = Math.ceil(word.length / 2);
+
+        // Separa a parte em negrito da parte normal
+        const boldPart = word.substring(0, boldLength);
+        const normalPart = word.substring(boldLength);
+
+        // Retorna com a primeira parte em negrito
+        return `<strong style="font-weight: 700 !important; color: inherit !important; background: none !important; padding: 0 !important;">${boldPart}</strong>${normalPart}`;
+    });
+
+    return bionicWords.join('');
+}
+
+// Adiciona atalho de teclado (Ctrl+B ou Cmd+B)
+document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+        e.preventDefault();
+        toggleBionicReading();
+    }
+});
+</script>
+
+<script>
+    let highlighterActive = false;
+    let questionHighlights = {};
+
+    // Get question ID from the first summary strong tag
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Load highlights from localStorage
+    function loadHighlights() {
+        const questionId = getQuestionId();
+        const stored = localStorage.getItem('highlights_' + questionId);
+        if (stored) {
+            questionHighlights = JSON.parse(stored);
+            applyStoredHighlights();
+        }
+    }
+
+    // Save highlights to localStorage
+    function saveHighlights() {
+        const questionId = getQuestionId();
+        localStorage.setItem('highlights_' + questionId, JSON.stringify(questionHighlights));
+    }
+
+    // Apply stored highlights
+    function applyStoredHighlights() {
+        Object.keys(questionHighlights).forEach(key => {
+            const element = document.querySelector(`[data-highlight-id="${key}"]`);
+            if (element && questionHighlights[key]) {
+                element.classList.add('highlighted');
+            }
+        });
+    }
+
+    // Toggle highlighter mode
+    function toggleHighlighter(event) {
+        event.stopPropagation();
+        highlighterActive = !highlighterActive;
+
+        const btn = event.target.closest('.highlighter-btn');
+        const icon = btn.querySelector('#highlighterIcon');
+
+        if (highlighterActive) {
+            btn.classList.add('active');
+            icon.textContent = '🖍️';
+            document.body.classList.add('highlighter-mode-active');
+        } else {
+            btn.classList.remove('active');
+            icon.textContent = '🖊️';
+            document.body.classList.remove('highlighter-mode-active');
+        }
+    }
+
+    // Clear all highlights for this question
+    function clearHighlights() {
+        const questionId = getQuestionId();
+        questionHighlights = {};
+        localStorage.removeItem('highlights_' + questionId);
+        document.querySelectorAll('.highlighted').forEach(el => {
+            el.classList.remove('highlighted');
+        });
+    }
+
+    // Handle text selection and highlighting
+    document.addEventListener('mouseup', function(e) {
+        if (!highlighterActive) return;
+
+        const selection = window.getSelection();
+        if (!selection.toString().trim()) return;
+
+        const range = selection.getRangeAt(0);
+        const container = range.commonAncestorContainer;
+
+        // Only highlight text in paragraphs, not in buttons or other elements
+        const paragraph = container.nodeType === 3 ? container.parentElement : container;
+        if (paragraph.tagName !== 'P' && paragraph.tagName !== 'LI' && paragraph.tagName !== 'TD') {
+            return;
+        }
+
+        // Create highlight span
+        const span = document.createElement('span');
+        span.classList.add('highlighted');
+
+        // Generate unique ID for this highlight
+        const highlightId = 'hl-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+        span.setAttribute('data-highlight-id', highlightId);
+
+        try {
+            range.surroundContents(span);
+            questionHighlights[highlightId] = true;
+            saveHighlights();
+        } catch (e) {
+            console.log('Could not highlight selection');
+        }
+
+        selection.removeAllRanges();
+    });
+
+    // Load highlights when page loads
+    window.addEventListener('load', loadHighlights);
+
+    // Keyboard shortcut: Ctrl+H to toggle highlighter
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'h') {
+            e.preventDefault();
+            const btn = document.querySelector('.highlighter-btn');
+            if (btn) {
+                toggleHighlighter({target: btn, stopPropagation: () => {}});
+            }
+        }
+        // Ctrl+Shift+H to clear all highlights
+        if (e.ctrlKey && e.shiftKey && e.key === 'H') {
+            e.preventDefault();
+            if (confirm('Clear all highlights for this question?')) {
+                clearHighlights();
+            }
+        }
+    });
+</script>
+
+
+
+
+
+
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Communicate with parent window (if in iframe)
+    function notifyParent(choice) {
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'choiceSelected',
+                questionId: getQuestionId(),
+                choice: choice
+            }, '*');
+        }
+    }
+
+    // Load saved choice from parent or localStorage
+    function loadSavedChoice() {
+        const questionId = getQuestionId();
+
+        // Try to get from localStorage first
+        const saved = localStorage.getItem('choice_q' + questionId);
+        if (saved) {
+            selectChoice(saved, false);
+        }
+
+        // Ask parent for saved choice (if in iframe)
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'getChoice',
+                questionId: questionId
+            }, '*');
+        }
+    }
+
+    // Listen for messages from parent
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'setChoice' && event.data.questionId === getQuestionId()) {
+            selectChoice(event.data.choice, false);
+        }
+    });
+
+    // Select a choice
+    function selectChoice(choice, notify = true) {
+        if (!choice) return;
+
+        const questionId = getQuestionId();
+
+        // Remove previous selection
+        document.querySelectorAll('tr.answer-choice').forEach(row => {
+            row.classList.remove('selected');
+        });
+
+        // Add selection to clicked choice
+        const choiceRow = document.querySelector(`tr.answer-choice[data-choice="${choice}"]`);
+        if (choiceRow) {
+            choiceRow.classList.add('selected');
+
+            // Save to localStorage
+            localStorage.setItem('choice_q' + questionId, choice);
+
+            // Notify parent (if in iframe)
+            if (notify) {
+                notifyParent(choice);
+            }
+        }
+    }
+
+    // Initialize answer choices
+    function initializeChoices() {
+        // Find all answer choice rows (A, B, C, D, E, F, etc.)
+        const choicePattern = /^[A-Z]\.$/;
+        const tables = document.querySelectorAll('table.simple-table');
+
+        tables.forEach(table => {
+            const rows = table.querySelectorAll('tr');
+            rows.forEach(row => {
+                const firstCell = row.querySelector('td:first-child');
+                if (firstCell && choicePattern.test(firstCell.textContent.trim())) {
+                    const choice = firstCell.textContent.trim().replace('.', '');
+                    row.classList.add('answer-choice');
+                    row.setAttribute('data-choice', choice);
+                    row.style.position = 'relative';
+
+                    // Add click handler
+                    row.addEventListener('click', function(e) {
+                        // Don't trigger if clicking inside a link or button
+                        if (e.target.tagName === 'A' || e.target.closest('a')) return;
+
+                        // Toggle selection
+                        if (this.classList.contains('selected')) {
+                            this.classList.remove('selected');
+                            const questionId = getQuestionId();
+                            localStorage.removeItem('choice_q' + questionId);
+                            notifyParent('');
+                        } else {
+                            selectChoice(choice);
+                        }
+                    });
+                }
+            });
+        });
+
+        // Load saved choice after a short delay
+        setTimeout(loadSavedChoice, 100);
+    }
+
+    // Run when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeChoices);
+    } else {
+        initializeChoices();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+
+                    // Notify parent that Submit/Explanation was opened
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'submitOpened',
+                            questionId: getQuestionId()
+                        }, '*');
+                    }
+                } else {
+                    // Notify parent that Submit/Explanation was closed
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'submitClosed',
+                            questionId: getQuestionId()
+                        }, '*');
+                    }
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>

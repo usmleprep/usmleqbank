@@ -1,0 +1,1792 @@
+
+<style>
+    * {
+        box-sizing: border-box !important;
+    }
+
+    body {
+        font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        line-height: 1.9 !important;
+        color: #1f1f1f !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 8px 16px 16px 16px !important;
+        background: #ffffff !important;
+        font-size: 16.5px !important;
+    }
+
+    p {
+        margin-bottom: 20px !important;
+        font-size: 16.5px !important;
+        line-height: 1.95 !important;
+        color: #1f1f1f !important;
+        font-weight: 400 !important;
+    }
+
+    strong, b {
+        color: #1a73e8 !important;
+        font-weight: 700 !important;
+        background: rgba(26, 115, 232, 0.08) !important;
+        padding: 2px 6px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Details/Summary (collapsible sections) */
+    details {
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
+        border-radius: 8px !important;
+        padding: 24px 28px !important;
+        margin: 24px 0 !important;
+        border: none;
+        box-shadow: none !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    details:hover {
+        border-color: #1a73e8 !important;
+        box-shadow: none !important;
+        transform: translateY(-2px) !important;
+    }
+
+    details[open] {
+        background: #ffffff !important;
+        border-color: #1a73e8 !important;
+        box-shadow: none !important;
+    }
+
+    summary {
+        cursor: pointer !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        font-size: 20px !important;
+        padding: 16px 24px !important;
+        border-radius: 8px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        display: flex !important;
+        align-items: center !important;
+        user-select: none !important;
+        box-shadow: none !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    summary:hover {
+        background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%) !important;
+        transform: translateX(6px) scale(1.02) !important;
+        box-shadow: none !important;
+    }
+
+    summary:active {
+        transform: translateX(4px) scale(0.99) !important;
+    }
+
+    summary::marker {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 1.3em !important;
+    }
+
+    summary strong {
+        background: rgba(255, 255, 255, 0.2) !important;
+        color: #ffffff !important;
+        padding: 4px 12px !important;
+        border-radius: 8px !important;
+        margin-left: 8px !important;
+        font-size: 19px !important;
+        letter-spacing: 1px !important;
+    }
+
+    /* Tables - Premium Design */
+    table {
+        width: 100% !important;
+        border-collapse: separate !important;
+        border-spacing: 0 !important;
+        margin: 28px 0 !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: #ffffff !important;
+    }
+
+    table.simple-table {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+    }
+
+    table tr {
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        position: relative !important;
+    }
+
+    table tr:nth-child(odd) {
+        background: rgba(248, 249, 250, 0.5) !important;
+    }
+
+    table tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    table tr:hover {
+        background: linear-gradient(90deg, #e8f0fe 0%, #f1f8ff 100%) !important;
+        transform: translateX(4px) scale(1.01) !important;
+        box-shadow: none !important;
+        z-index: 1 !important;
+    }
+
+    table td {
+        padding: 18px 24px !important;
+        border-bottom: 1px solid rgba(232, 234, 237, 0.6) !important;
+        font-size: 16.5px !important;
+        line-height: 1.7 !important;
+        color: #1f1f1f !important;
+        vertical-align: middle !important;
+    }
+
+    table tr:last-child td {
+        border-bottom: none !important;
+    }
+
+    /* First column (A, B, C, D, E) */
+    table td:first-child {
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        width: 52px !important;
+        text-align: center !important;
+        font-size: 18px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+        border-right: 3px solid #1557b0 !important;
+        position: relative !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    table tr:hover td:first-child {
+        background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%) !important;
+        box-shadow: none !important;
+    }
+
+    /* Second column (content) */
+    table td:nth-child(2) {
+        font-weight: 500 !important;
+        padding-left: 28px !important;
+    }
+
+    /* Third column (empty - hide it) */
+    table td:last-child:empty {
+        display: none !important;
+    }
+
+    /* Lists */
+    ul, ol {
+        margin: 16px 0 !important;
+        padding-left: 32px !important;
+    }
+
+    li {
+        margin: 10px 0 !important;
+        line-height: 1.8 !important;
+        color: #1f1f1f !important;
+    }
+
+    ul.bulleted-list li {
+        position: relative !important;
+        padding-left: 8px !important;
+    }
+
+    ul.toggle {
+        list-style: none !important;
+        padding-left: 0 !important;
+    }
+
+    /* Links */
+    a {
+        color: #1a73e8 !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        border-bottom: 2px solid transparent !important;
+        transition: all 0.2s !important;
+    }
+
+    a:hover {
+        border-bottom-color: #1a73e8 !important;
+        background: rgba(26,115,232,0.08) !important;
+        padding: 2px 4px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Images & Media */
+    img, video {
+        max-width: none !important;
+        height: auto !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
+        margin: 24px 0 !important;
+        display: block !important;
+        border: none !important;
+    }
+
+    img:hover, video:hover {
+        box-shadow: none !important;
+        border-color: #1a73e8 !important;
+    }
+
+    /* Code blocks (if any) */
+    code {
+        background: #f1f3f4 !important;
+        padding: 2px 8px !important;
+        border-radius: 8px !important;
+        font-family: 'Courier New', monospace !important;
+        font-size: 14px !important;
+        color: #d93025 !important;
+    }
+
+    pre {
+        background: #f8f9fa !important;
+        padding: 8px 16px 16px 16px !important;
+        border-radius: 8px !important;
+        overflow-x: auto !important;
+        border-left: 4px solid #1a73e8 !important;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+        color: #1a73e8 !important;
+        font-weight: 700 !important;
+        margin-top: 24px !important;
+        margin-bottom: 16px !important;
+        line-height: 1.4 !important;
+    }
+
+    h1 { font-size: 32px !important; }
+    h2 { font-size: 26px !important; }
+    h3 { font-size: 22px !important; }
+    h4 { font-size: 19px !important; }
+
+    /* Blockquotes */
+    blockquote {
+        border-left: 4px solid #1a73e8 !important;
+        padding-left: 20px !important;
+        margin: 20px 0 !important;
+        font-style: italic !important;
+        color: #5f6368 !important;
+        background: #f8f9fa !important;
+        padding: 16px 20px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Horizontal Rule */
+    hr {
+        border: none !important;
+        height: 2px !important;
+        background: linear-gradient(to right, transparent, #1a73e8, transparent) !important;
+        margin: 32px 0 !important;
+    }
+
+    /* Selection */
+    ::selection {
+        background: #e8f0fe !important;
+        color: #1a73e8 !important;
+    }
+
+    /* Highlighter styles */
+    .highlighted {
+        background-color: #ffeb3b !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .highlighter-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        font-size: 20px !important;
+        padding: 0 8px !important;
+        margin-left: 8px !important;
+        transition: transform 0.2s ease !important;
+        vertical-align: middle !important;
+    }
+
+    .highlighter-btn:hover {
+        transform: scale(1.2) !important;
+    }
+
+    .highlighter-btn.active {
+        transform: scale(1.1) !important;
+        filter: brightness(1.2) !important;
+    }
+
+    .highlighter-mode-active {
+        cursor: text !important;
+    }
+
+
+    /* Right padding to avoid overlap with sidebar buttons */
+    body {
+        padding-right: 50px !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 16px !important;
+        }
+    }
+
+</style>
+
+
+
+
+<details open>
+<summary><strong>9</strong><button class="bionic-reading-btn" onclick="toggleBionicReading(event)" title="Toggle Bionic Reading (Ctrl+B)"><span id="bionicIcon">👁️</span></button><button class="highlighter-btn" onclick="toggleHighlighter(event)" title="Toggle Highlighter (Ctrl+H)"><span id="highlighterIcon">🖊️</span></button></summary>
+<p class="" id="688cc72e-9d32-4827-96e4-a7125d3d8f9c">A 43-year-old man comes to the
+                                        office due to shortness of breath and fatigue.  Over the last 2 weeks, his
+                                        fatigue has been so profound that he has "little energy, even to get out of
+                                        bed."  The patient has no chills but has experienced recent weight gain and
+                                        ankle swelling.  He has no prior medical conditions and takes no medications. 
+                                        Blood pressure is 168/94 mm Hg, and pulse is 95/min and regular.  The patient
+                                        has bilateral lower extremity pitting edema limited to the ankles.  Urinalysis
+                                        reveals 2+ protein, a white blood cell count of 5-7/hpf, and a red blood cell
+                                        count of 75-100/hpf.  The patient undergoes a kidney biopsy; immunofluorescent
+                                        microscopy findings are shown in the image below.</p>
+<figure class="image" id="e4c3a2af-7d50-4a73-947a-1d5a8c428f26"><a href="https://lh7-us.googleusercontent.com/Buhvjp3DZzfvn2scAdgXQu5B__DvHHxG-xBN6RQNvJRIf9PT4gvYVvMOQPnkhvACuSzIrGCB7KKuxKTuPtRstTfMyA4xv4TZtc3K8CTyyMDf7q42uKQB61MPvJXe_DBKO3AWl8YiJS7ePyfZBQ_S1yM"><img loading="lazy" src="https://lh7-us.googleusercontent.com/Buhvjp3DZzfvn2scAdgXQu5B__DvHHxG-xBN6RQNvJRIf9PT4gvYVvMOQPnkhvACuSzIrGCB7KKuxKTuPtRstTfMyA4xv4TZtc3K8CTyyMDf7q42uKQB61MPvJXe_DBKO3AWl8YiJS7ePyfZBQ_S1yM" style="width:602px"/></a>
+</figure>
+<p class="" id="6fb4f931-b4d9-49bd-83ca-7d2fb50f9754">Which of the following would
+                                        most likely be seen on light microscopy in this patient?</p>
+<table class="simple-table" id="2b793f21-4c9a-4d7a-bfbc-4d2590b22f18">
+<tbody>
+<tr id="0ab13414-87f9-40ff-a9d9-e4dc488a9907">
+<td class="" id="x^kx">A.</td>
+<td class="" id="uecV">Amyloid deposition</td>
+<td class="" id="a@^x"></td>
+</tr>
+<tr id="a94e069a-13b9-406e-8673-59b3dcb8cb3f">
+<td class="" id="x^kx">B.</td>
+<td class="" id="uecV">Crescent formation</td>
+<td class="" id="a@^x"></td>
+</tr>
+<tr id="7f5dc7e6-c39e-4002-9035-beabcefce922">
+<td class="" id="x^kx">C.</td>
+<td class="" id="uecV">Diffuse capillary wall thickening</td>
+<td class="" id="a@^x"></td>
+</tr>
+<tr id="e3c543e6-0781-4001-b34b-f1f0ecad2a6f">
+<td class="" id="x^kx">D.</td>
+<td class="" id="uecV">Nodular glomerulosclerosis</td>
+<td class="" id="a@^x"></td>
+</tr>
+<tr id="5d86bab7-d64c-4976-bb05-5a6e3cccdb0e">
+<td class="" id="x^kx">E.</td>
+<td class="" id="uecV">Normal glomeruli</td>
+<td class="" id="a@^x"></td>
+</tr>
+</tbody>
+</table>
+<ul class="toggle" id="5c974192-0d51-44ca-b350-60d9d229a034">
+<li>
+<details>
+<summary>Submit</summary>
+<table class="simple-table" id="620a91e1-8e46-418f-a5d3-180f9fbd1e9b">
+<tbody>
+<tr id="7eca0c97-8081-4ee6-83b3-b7999357fb9f">
+<td class="" id="RL}T">A.</td>
+<td class="" id="j;Km">Amyloid deposition (15%)</td>
+<td class="" id="D&gt;Ld"></td>
+</tr>
+<tr id="8d2b4cbe-f80b-4d14-a8d5-ebf3b440a5ff">
+<td class="" id="RL}T">B.</td>
+<td class="" id="j;Km">Crescent formation (43%)</td>
+<td class="" id="D&gt;Ld"></td>
+</tr>
+<tr id="5bdc5434-253b-46cb-ac4f-ace8d05e3b77">
+<td class="" id="RL}T">C.</td>
+<td class="" id="j;Km">Diffuse capillary wall thickening
+                                                                (25%)</td>
+<td class="" id="D&gt;Ld"></td>
+</tr>
+<tr id="71c2a7ee-ddfe-4685-b42d-dcd90f74decf">
+<td class="" id="RL}T">D.</td>
+<td class="" id="j;Km">Nodular glomerulosclerosis (12%)</td>
+<td class="" id="D&gt;Ld"></td>
+</tr>
+<tr id="37a2ddd4-f666-44c2-90cf-0e4f0e24bed0">
+<td class="" id="RL}T">E.</td>
+<td class="" id="j;Km">Normal glomeruli (2%)</td>
+<td class="" id="D&gt;Ld"></td>
+</tr>
+</tbody>
+</table>
+<p class="" id="11764bf7-d313-4a61-aea4-224f23f5638d">Incorrect</p>
+<p class="" id="3e796c3b-81bc-4610-b0d5-90061c1a5d95">Correct answer B
+                                                </p>
+<p class="" id="e6894599-4a8d-4a91-b330-aed4bad5d0a6">43%Answered
+                                                    correctly</p>
+<p class="" id="f4f6e7a1-be27-432a-b186-4537259da837">17 secsTime Spent
+                                                </p>
+<p class="" id="3970de2c-a3ff-45dc-b6e4-4f68161740ed">2024Version</p>
+<ul class="bulleted-list" id="bc2dcb2d-576b-4520-9782-50fc53023d19">
+<li style="list-style-type:disc">Explanation</li>
+</ul>
+<ul class="bulleted-list" id="18ee96dc-dd79-494b-af15-a8ed5c9e312f">
+<li style="list-style-type:disc"></li>
+</ul>
+<figure class="image" id="eed9801d-64de-460a-9676-102fc8648e2e"><a href="https://lh7-us.googleusercontent.com/bmTfVkGysXwde8GZbe63_rTBh7p90i08OzXXkJ_s9hWqdTF1QeCtplclMQCyJ_n2b9OZv2gFUhFC3vf7__tFEpK9CDT8o6irxz4XM8W15jAEdAKjPGKLG7CEkTfKJ_HvK2DgMFDnsOImmlUju0yYkU4"><img loading="lazy" src="https://lh7-us.googleusercontent.com/bmTfVkGysXwde8GZbe63_rTBh7p90i08OzXXkJ_s9hWqdTF1QeCtplclMQCyJ_n2b9OZv2gFUhFC3vf7__tFEpK9CDT8o6irxz4XM8W15jAEdAKjPGKLG7CEkTfKJ_HvK2DgMFDnsOImmlUju0yYkU4" style="width:602px"/></a>
+</figure>
+<p class="" id="ce666177-c560-4b92-8180-cedcef7a3077">This
+                                                    patient's hypertension, hematuria (with mild pyuria), and
+                                                    moderate proteinuria are indicative of nephritic syndrome. 
+                                                    Immunofluorescence microscopy further demonstrates linear deposits
+                                                    (ie, ribbon-like) along the glomerular basement membrane (GBM), a
+                                                    finding characteristic of anti-GBM disease.  In this condition,
+                                                    anti-GBM autoantibodies (usually IgG) develop against the alpha-3
+                                                    chain of type IV collagen (a subunit found in high concentration in
+                                                    the GBM).  Subsequent complement deposition (eg, C3) and leukocyte
+                                                    infiltration lead to rapidly progressive (crescentic)
+                                                    glomerulonephritis (RPGN).</p>
+<p class="" id="637e3a0f-bcc5-41eb-aca2-f0ef6f747a4e">RPGN is a syndrome
+                                                    of severe renal injury that manifests with acute-onset hematuria and
+                                                    decreased glomerular filtration (weight gain, edema).  It can occur
+                                                    due to multiple diseases (eg, granulomatosis with polyangiitis,
+                                                    microscopic polyangiitis).  The presence of glomerular
+                                                    crescents—composed of proliferating parietal cells, lymphocytes,
+                                                    macrophages, and fibrin—on light microscopy is diagnostic.</p>
+<p class="" id="4079eefe-08a9-4ea7-af44-0a2636a13497">Anti-GBM
+                                                    antibodies also cross-react with pulmonary alveolar basement
+                                                    membranes, which are also enriched in the alpha-3 subchain, causing
+                                                    diffuse alveolar damage and hemorrhage.  The combination of
+                                                    glomerulonephritis and pulmonary hemorrhage in patients with
+                                                    anti-GBM antibodies is known as Goodpasture syndrome.</p>
+<p class="" id="c03778e1-91c5-46f2-bbad-f95c4c16e8b1">(Choice A)  Renal
+                                                    amyloidosis causes a nephrotic syndrome (ie, heavy proteinuria,
+                                                    hypoalbuminemia, hyperlipidemia, edema); significant hematuria is
+                                                    unexpected.  Immunofluorescence microscopy is nonspecific and may
+                                                    show diffuse mesangial staining (rather than distinct, linear immune
+                                                    deposits on the GBM).  On Congo red staining, amyloid deposits
+                                                    appear red-pink under light microscopy and have an apple-green
+                                                    birefringence under polarized light.</p>
+<p class="" id="509ec914-4989-417c-802f-d3768725a225">(Choice C)  In
+                                                    membranous nephropathy, which causes a nephrotic syndrome,
+                                                    immunofluorescence demonstrates <em>granular deposits</em> of IgG
+                                                    and C3 along the GBM.  Uniform, diffuse capillary wall thickening is
+                                                    seen on light microscopy.</p>
+<p class="" id="7544971c-3187-4058-9832-375531c2b2be">(Choice D) 
+                                                    Nodular glomerulosclerosis (Kimmelstiel-Wilson lesion) and mesangial
+                                                    expansion are seen on light microscopy in diabetic nephropathy,
+                                                    which presents as a nephrotic syndrome.  There are no immune
+                                                    deposits on immunofluorescence.</p>
+<p class="" id="774965e8-e9a0-4111-9d3e-c7b3b71a90c3">(Choice E)  Normal
+                                                    glomeruli are found on light microscopy in minimal change disease, a
+                                                    condition that primarily affects children and presents as a
+                                                    nephrotic syndrome.  There are no immune deposits on
+                                                    immunofluorescence.</p>
+<p class="" id="b02a840f-0c4e-4e5b-98fc-9416adc01425">Educational
+                                                    objective:</p>
+<p class="" id="1e823142-3889-4d68-9c80-025ea3826729">Anti-glomerular
+                                                    basement membrane (GBM) antibodies react with collagen type IV,
+                                                    causing rapidly progressive glomerulonephritis with glomerular
+                                                    crescent formation on light microscopy.  Immunofluorescence
+                                                    demonstrating linear (ribbon-like) deposits of IgG and C3 along the
+                                                    GBM is characteristic.</p>
+<p class="" id="1386ffd3-2617-4d8e-afc1-135a2a2e3e01">Histology</p>
+<p class="" id="a6a4cf78-adab-45f0-bcda-07bc58b6bf79">Subject</p>
+<p class="" id="e077f8f5-e221-44ec-b888-1f0f24eed9f9">Renal, Urinary
+                                                    Systems &amp; Electrolytes</p>
+<p class="" id="07bb06b8-870e-46b7-ab5d-615a4c07519b">System</p>
+<p class="" id="370dd205-c1eb-421f-977b-be6bf317f8c9">Anti GBM disease
+                                                </p>
+<p class="" id="a914b8c9-4002-42f9-9b01-459842b04b80">Topic</p>
+<p class="" id="64ea1229-a938-4080-8fee-a89b712e8db7">Copyright ©
+                                                    UWorld. All rights reserved.</p>
+<p class="" id="5aa6039a-6f0d-4389-a25a-c065bd9decc2">My Notebook</p>
+<p class="" id="bd60e0d5-01dc-4d9a-899a-ad10012c57c4">0</p>
+<p class="" id="a5076925-6b4a-4d4e-98aa-9772f15396e9">Flashcards</p>
+<p class="" id="5b6e8c4a-20f6-4b70-b6fb-8dbcd8a65186">Feedback</p>
+<p class="" id="1768d5b6-b459-4ad1-8cc3-217df508c47b">Suspend</p>
+<p class="" id="9a9cf08f-89e5-47ad-a0ae-c394cbe9c9ac">End Block</p>
+<p class="" id="bff32f52-6cc7-463a-9cea-49b382bad986">✨Done</p>
+<p class="" id="0489607d-9c6a-42e0-96f7-c0fdff56f767">Exhibit Display
+                                                </p>
+<figure class="image" id="c6862d2a-8798-454e-abfd-8c9576e4a404"><a href="https://lh7-us.googleusercontent.com/sco47iZSeKyx1f6Lj3bPJC-3kx53GZS889euX6IGV554fXaAC8e2yvdjkuj2sZmdsIMwUIt4oktjJeTnmWjxpbQa_R39V1x63FrDPtBZt4CD5-WQPoNPTCwzXedMQTCgHJzSfnsq38DbDHbFo0M7muM"><img loading="lazy" src="https://lh7-us.googleusercontent.com/sco47iZSeKyx1f6Lj3bPJC-3kx53GZS889euX6IGV554fXaAC8e2yvdjkuj2sZmdsIMwUIt4oktjJeTnmWjxpbQa_R39V1x63FrDPtBZt4CD5-WQPoNPTCwzXedMQTCgHJzSfnsq38DbDHbFo0M7muM" style="width:602px"/></a>
+</figure>
+<p class="" id="2daaa93b-095f-4676-9b0a-121ac1bfde35">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="f487db13-a30c-4228-aab3-9fe44c9b2f26">ExistingMy
+                                                    Notebook</p>
+<p class="" id="f498cd81-dc2e-421b-a2c1-833d542ba3e9">Exhibit Display
+                                                </p>
+<figure class="image" id="3fc9833f-6be7-495c-adc1-fe257bbb95bb"><a href="https://lh7-us.googleusercontent.com/hhZ-z47r2eBQOkjNHHt2Gqkjh4LzAK7x_1ZTU5JYiji0AbRgxbYIYFT_jJxqiPsuz9XhPI0hH0VUPjcN3WWtCt78558ohES-wQYEGwDi9SOE-ziQJ4kuBaijKB53Czbm5v4ifnm7iRS_R1OUt49vcHg"><img loading="lazy" src="https://lh7-us.googleusercontent.com/hhZ-z47r2eBQOkjNHHt2Gqkjh4LzAK7x_1ZTU5JYiji0AbRgxbYIYFT_jJxqiPsuz9XhPI0hH0VUPjcN3WWtCt78558ohES-wQYEGwDi9SOE-ziQJ4kuBaijKB53Czbm5v4ifnm7iRS_R1OUt49vcHg" style="width:602px"/></a>
+</figure>
+<p class="" id="d849023c-d9c6-4102-96d0-cbf35db0c29f">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="fcc65f0c-ebab-42aa-8935-547fcd3ff966">ExistingMy
+                                                    Notebook</p>
+<p class="" id="3e4c3ae4-1aeb-4b75-85ee-2e47f5dee5f9">Exhibit Display
+                                                </p>
+<figure class="image" id="b9f0901d-d367-4bcd-a43f-d940a1df6c0e"><a href="https://lh7-us.googleusercontent.com/7pQpggeSwAwY4_Rso2Dy19RNzYh5qinehSNdjQ0fSgHMb2pKDaQGFO32VdaIlNbSMbxVooyCbiz4Sd2yoruiZAchio7wvpL9xk6gebzCYzKe0jXWFfGhp5uSzxdBZGAWEP7M4sAVVfLrtQSp27JHh5w"><img loading="lazy" src="https://lh7-us.googleusercontent.com/7pQpggeSwAwY4_Rso2Dy19RNzYh5qinehSNdjQ0fSgHMb2pKDaQGFO32VdaIlNbSMbxVooyCbiz4Sd2yoruiZAchio7wvpL9xk6gebzCYzKe0jXWFfGhp5uSzxdBZGAWEP7M4sAVVfLrtQSp27JHh5w" style="width:602px"/></a>
+</figure>
+<p class="" id="7a0210bb-142b-4dc4-8443-b867399f5865">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="af4e3e33-ae5c-4061-a623-90ee340542a5">ExistingMy
+                                                    Notebook</p>
+<p class="" id="b120da0a-afb1-4bba-bf29-55e7f0a2f595">Exhibit Display
+                                                </p>
+<figure class="image" id="d3ee46c3-3fe7-4a5a-8979-f2a5b3357228"><a href="https://lh7-us.googleusercontent.com/ygWvLY8BYTyCO1nURG5Q_QtqaWDOP7JAbUj-ex5yVY1D9yHEWW4x9lgPx55Y2XaL-vkP765AHCK5bv4fWMPcPhGbzyfXVLOvJvJwXvIZynVqSjZMQHQuKY4a7_oI9Kkknal09WugcIjPgl3divd-_7k"><img loading="lazy" src="https://lh7-us.googleusercontent.com/ygWvLY8BYTyCO1nURG5Q_QtqaWDOP7JAbUj-ex5yVY1D9yHEWW4x9lgPx55Y2XaL-vkP765AHCK5bv4fWMPcPhGbzyfXVLOvJvJwXvIZynVqSjZMQHQuKY4a7_oI9Kkknal09WugcIjPgl3divd-_7k" style="width:602px"/></a>
+</figure>
+<p class="" id="7bb52e9e-41c3-44d0-babf-c5b710bdc2a4">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="4e88194f-9f14-41a9-9b27-8356e219ecb1">ExistingMy
+                                                    Notebook</p>
+<p class="" id="7d68de2b-03ea-40a3-b5a1-9b4a951dbd3e">Exhibit Display
+                                                </p>
+<table class="simple-table" id="66e5f7d1-44d2-48af-8bd9-3b730fce76df">
+<tbody>
+<tr id="145e0f23-afe9-45dd-95f7-6bb66388c402">
+<td class="" id="Dj{:">Pathologic findings in nephritic
+                                                                syndrome</td>
+<td class="" id="qmVL"></td>
+<td class="" id="qmcB"></td>
+</tr>
+<tr id="7bdcd601-7ac5-4fa7-806d-00346d386ea1">
+<td class="" id="Dj{:"></td>
+<td class="" id="qmVL">Cause of glomerular injury</td>
+<td class="" id="qmcB">Characteristic biopsy features</td>
+</tr>
+<tr id="b3912b72-efb3-406f-85a6-1c71b4ba5dbe">
+<td class="" id="Dj{:">Poststreptococcal glomerulonephritis
+                                                            </td>
+<td class="" id="qmVL">Antibodies against streptococcal
+                                                                antigens that deposit in GBM</td>
+<td class="" id="qmcB">• IF: C3 granular staining along
+                                                                GBM<br/>• EM: subepithelial humps<br/></td>
+</tr>
+<tr id="0c77fe51-affb-42a4-a4d7-738817c5c316">
+<td class="" id="Dj{:">Anti-GBM disease</td>
+<td class="" id="qmVL">Antibodies against type IV collagen
+                                                                in GBM</td>
+<td class="" id="qmcB">• LM: glomerular crescents<br/>• IF:
+                                                                linear staining (IgG) along GBM<br/></td>
+</tr>
+<tr id="863aba65-eed9-4311-ab33-9ba769b50d07">
+<td class="" id="Dj{:">Rapidly progressive
+                                                                glomerulonephritis</td>
+<td class="" id="qmVL">Severe immunologic injury (eg,
+                                                                anti-GBM antibodies, immune complex deposition)</td>
+<td class="" id="qmcB">• LM: glomerular crescents<br/>• IF:
+                                                                fibrin in crescents<br/></td>
+</tr>
+<tr id="8165569d-ebd1-4d14-93bc-72cbb8b74755">
+<td class="" id="Dj{:">IgA nephropathy</td>
+<td class="" id="qmVL">Deposition of IgA-containing
+                                                                complexes</td>
+<td class="" id="qmcB">• LM: mesangial
+                                                                hypercellularity<br/>• IF: IgA in mesangium<br/></td>
+</tr>
+<tr id="fb66d649-f5a9-4da1-9f35-0e88f685d0ea">
+<td class="" id="Dj{:">Alport syndrome</td>
+<td class="" id="qmVL">Defective type IV collagen in GBM
+                                                            </td>
+<td class="" id="qmcB">• EM: lamellated appearance of GBM
+                                                            </td>
+</tr>
+<tr id="72eff03b-df3e-475c-9a12-8f2219e8970d">
+<td class="" id="Dj{:">EM = electron microscopy; GBM =
+                                                                glomerular basement membrane; IF = immunofluorescence;
+                                                                LM = light microscopy.</td>
+<td class="" id="qmVL"></td>
+<td class="" id="qmcB"></td>
+</tr>
+</tbody>
+</table>
+<p class="" id="d1b71008-c686-49d4-813b-92dcfcdf0100">New</p>
+<p class="" id="a38022a5-bc9a-4b56-8699-53ddda46807c">ExistingMy
+                                                    Notebook</p>
+</details>
+</li>
+</ul>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+.bionic-reading-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.bionic-reading-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.bionic-reading-btn.active {
+    background: rgba(52, 168, 83, 0.4);
+    border-color: rgba(52, 168, 83, 0.6);
+}
+
+.bionic-reading-btn.active:hover {
+    background: rgba(52, 168, 83, 0.5);
+}
+
+summary {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+    /* Highlighter styles */
+    .highlighted {
+        background-color: #ffeb3b !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .highlighter-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        font-size: 20px !important;
+        padding: 0 8px !important;
+        margin-left: 8px !important;
+        transition: transform 0.2s ease !important;
+        vertical-align: middle !important;
+    }
+
+    .highlighter-btn:hover {
+        transform: scale(1.2) !important;
+    }
+
+    .highlighter-btn.active {
+        transform: scale(1.1) !important;
+        filter: brightness(1.2) !important;
+    }
+
+    .highlighter-mode-active {
+        cursor: text !important;
+    }
+
+
+    /* Right padding to avoid overlap with sidebar buttons */
+    body {
+        padding-right: 50px !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 16px !important;
+        }
+    }
+
+
+    
+
+
+    
+
+    /* Adjust table padding to make room for radio button */
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+    /* Clickable Answer Choices */
+    table tr.answer-choice {
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+    }
+
+    table tr.answer-choice:hover {
+        background: #f8f9fa !important;
+    }
+
+    table tr.answer-choice td:first-child {
+        position: relative !important;
+        padding-left: 35px !important;
+    }
+
+    table tr.answer-choice td:first-child::before {
+        content: '';
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        border: 2px solid #999;
+        border-radius: 50%;
+        background: white;
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+    }
+
+    table tr.answer-choice.selected td:first-child::before {
+        border-color: #1a73e8;
+        border-width: 5px;
+    }
+
+    table tr.answer-choice.selected {
+        background: #e8f4ff !important;
+    }
+
+    table tr.answer-choice.selected td:first-child {
+        color: #1a73e8 !important;
+        font-weight: 600 !important;
+    }
+
+
+    
+
+
+    /* Answer Validation Styles */
+    tr.answer-choice.answer-correct {
+        background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%) !important;
+        border: 3px solid #28a745 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-correct td {
+        color: #155724 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-correct td:first-child::before {
+        border-color: #28a745 !important;
+        background: #28a745 !important;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    tr.answer-choice.answer-incorrect {
+        background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%) !important;
+        border: 3px solid #dc3545 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-incorrect td {
+        color: #721c24 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-incorrect td:first-child::before {
+        border-color: #dc3545 !important;
+        background: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+    }
+
+
+    /* Answer Validation Styles */
+    tr.answer-choice.answer-correct {
+        background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%) !important;
+        border: 3px solid #28a745 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-correct td {
+        color: #155724 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-correct td:first-child::before {
+        border-color: #28a745 !important;
+        background: #28a745 !important;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    tr.answer-choice.answer-incorrect {
+        background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%) !important;
+        border: 3px solid #dc3545 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-incorrect td {
+        color: #721c24 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-incorrect td:first-child::before {
+        border-color: #dc3545 !important;
+        background: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+    }
+
+</style>
+
+
+
+<script>
+let bionicEnabled = false;
+const originalContent = {};
+
+function toggleBionicReading(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    bionicEnabled = !bionicEnabled;
+    const btn = document.querySelector('.bionic-reading-btn');
+    const icon = document.getElementById('bionicIcon');
+
+    if (bionicEnabled) {
+        btn.classList.add('active');
+        icon.textContent = '✅';
+        applyBionicReading();
+    } else {
+        btn.classList.remove('active');
+        icon.textContent = '👁️';
+        restoreOriginalText();
+    }
+}
+
+function applyBionicReading() {
+    // Seleciona todos os elementos de texto, EXCETO summary e buttons
+    const textElements = document.querySelectorAll('p:not(summary p):not(button p), td:not(summary td):not(button td), li:not(summary li):not(button li)');
+
+    textElements.forEach((element, index) => {
+        // Ignora elementos que contêm outros elementos complexos
+        if (element.querySelector('p, td, li, h1, h2, h3, h4, h5, h6, button, summary')) {
+            return;
+        }
+
+        // Ignora se o elemento está dentro de um summary ou button
+        if (element.closest('summary') || element.closest('button') || element.closest('.bionic-reading-btn')) {
+            return;
+        }
+
+        // Salva o conteúdo original
+        if (!originalContent[index]) {
+            originalContent[index] = {
+                element: element,
+                html: element.innerHTML
+            };
+        }
+
+        // Aplica Bionic Reading
+        const bionicText = convertToBionic(element.textContent);
+        element.innerHTML = bionicText;
+    });
+}
+
+function restoreOriginalText() {
+    // Restaura o conteúdo original
+    Object.values(originalContent).forEach(item => {
+        item.element.innerHTML = item.html;
+    });
+}
+
+function convertToBionic(text) {
+    // Divide o texto em palavras, mantendo pontuação
+    const words = text.split(/(\s+|[.,;:!?()""''\-–—])/);
+
+    const bionicWords = words.map(word => {
+        // Ignora espaços e pontuação
+        if (word.match(/^\s+$/) || word.match(/^[.,;:!?()""''\-–—]+$/)) {
+            return word;
+        }
+
+        // Ignora palavras muito curtas (1-2 letras)
+        if (word.length <= 2) {
+            return word;
+        }
+
+        // Determina quantas letras deixar em negrito (metade da palavra, arredondado para cima)
+        const boldLength = Math.ceil(word.length / 2);
+
+        // Separa a parte em negrito da parte normal
+        const boldPart = word.substring(0, boldLength);
+        const normalPart = word.substring(boldLength);
+
+        // Retorna com a primeira parte em negrito
+        return `<strong style="font-weight: 700 !important; color: inherit !important; background: none !important; padding: 0 !important;">${boldPart}</strong>${normalPart}`;
+    });
+
+    return bionicWords.join('');
+}
+
+// Adiciona atalho de teclado (Ctrl+B ou Cmd+B)
+document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+        e.preventDefault();
+        toggleBionicReading();
+    }
+});
+</script>
+
+<script>
+    let highlighterActive = false;
+    let questionHighlights = {};
+
+    // Get question ID from the first summary strong tag
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Load highlights from localStorage
+    function loadHighlights() {
+        const questionId = getQuestionId();
+        const stored = localStorage.getItem('highlights_' + questionId);
+        if (stored) {
+            questionHighlights = JSON.parse(stored);
+            applyStoredHighlights();
+        }
+    }
+
+    // Save highlights to localStorage
+    function saveHighlights() {
+        const questionId = getQuestionId();
+        localStorage.setItem('highlights_' + questionId, JSON.stringify(questionHighlights));
+    }
+
+    // Apply stored highlights
+    function applyStoredHighlights() {
+        Object.keys(questionHighlights).forEach(key => {
+            const element = document.querySelector(`[data-highlight-id="${key}"]`);
+            if (element && questionHighlights[key]) {
+                element.classList.add('highlighted');
+            }
+        });
+    }
+
+    // Toggle highlighter mode
+    function toggleHighlighter(event) {
+        event.stopPropagation();
+        highlighterActive = !highlighterActive;
+
+        const btn = event.target.closest('.highlighter-btn');
+        const icon = btn.querySelector('#highlighterIcon');
+
+        if (highlighterActive) {
+            btn.classList.add('active');
+            icon.textContent = '🖍️';
+            document.body.classList.add('highlighter-mode-active');
+        } else {
+            btn.classList.remove('active');
+            icon.textContent = '🖊️';
+            document.body.classList.remove('highlighter-mode-active');
+        }
+    }
+
+    // Clear all highlights for this question
+    function clearHighlights() {
+        const questionId = getQuestionId();
+        questionHighlights = {};
+        localStorage.removeItem('highlights_' + questionId);
+        document.querySelectorAll('.highlighted').forEach(el => {
+            el.classList.remove('highlighted');
+        });
+    }
+
+    // Handle text selection and highlighting
+    document.addEventListener('mouseup', function(e) {
+        if (!highlighterActive) return;
+
+        const selection = window.getSelection();
+        if (!selection.toString().trim()) return;
+
+        const range = selection.getRangeAt(0);
+        const container = range.commonAncestorContainer;
+
+        // Only highlight text in paragraphs, not in buttons or other elements
+        const paragraph = container.nodeType === 3 ? container.parentElement : container;
+        if (paragraph.tagName !== 'P' && paragraph.tagName !== 'LI' && paragraph.tagName !== 'TD') {
+            return;
+        }
+
+        // Create highlight span
+        const span = document.createElement('span');
+        span.classList.add('highlighted');
+
+        // Generate unique ID for this highlight
+        const highlightId = 'hl-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+        span.setAttribute('data-highlight-id', highlightId);
+
+        try {
+            range.surroundContents(span);
+            questionHighlights[highlightId] = true;
+            saveHighlights();
+        } catch (e) {
+            console.log('Could not highlight selection');
+        }
+
+        selection.removeAllRanges();
+    });
+
+    // Load highlights when page loads
+    window.addEventListener('load', loadHighlights);
+
+    // Keyboard shortcut: Ctrl+H to toggle highlighter
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'h') {
+            e.preventDefault();
+            const btn = document.querySelector('.highlighter-btn');
+            if (btn) {
+                toggleHighlighter({target: btn, stopPropagation: () => {}});
+            }
+        }
+        // Ctrl+Shift+H to clear all highlights
+        if (e.ctrlKey && e.shiftKey && e.key === 'H') {
+            e.preventDefault();
+            if (confirm('Clear all highlights for this question?')) {
+                clearHighlights();
+            }
+        }
+    });
+</script>
+
+
+
+
+
+
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Communicate with parent window (if in iframe)
+    function notifyParent(choice) {
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'choiceSelected',
+                questionId: getQuestionId(),
+                choice: choice
+            }, '*');
+        }
+    }
+
+    // Load saved choice from parent or localStorage
+    function loadSavedChoice() {
+        const questionId = getQuestionId();
+
+        // Try to get from localStorage first
+        const saved = localStorage.getItem('choice_q' + questionId);
+        if (saved) {
+            selectChoice(saved, false);
+        }
+
+        // Ask parent for saved choice (if in iframe)
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'getChoice',
+                questionId: questionId
+            }, '*');
+        }
+    }
+
+    // Listen for messages from parent
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'setChoice' && event.data.questionId === getQuestionId()) {
+            selectChoice(event.data.choice, false);
+        }
+    });
+
+    // Select a choice
+    function selectChoice(choice, notify = true) {
+        if (!choice) return;
+
+        const questionId = getQuestionId();
+
+        // Remove previous selection
+        document.querySelectorAll('tr.answer-choice').forEach(row => {
+            row.classList.remove('selected');
+        });
+
+        // Add selection to clicked choice
+        const choiceRow = document.querySelector(`tr.answer-choice[data-choice="${choice}"]`);
+        if (choiceRow) {
+            choiceRow.classList.add('selected');
+
+            // Save to localStorage
+            localStorage.setItem('choice_q' + questionId, choice);
+
+            // Notify parent (if in iframe)
+            if (notify) {
+                notifyParent(choice);
+            }
+        }
+    }
+
+    // Initialize answer choices
+    function initializeChoices() {
+        // Find all answer choice rows (A, B, C, D, E, F, etc.)
+        const choicePattern = /^[A-Z]\.$/;
+        const tables = document.querySelectorAll('table.simple-table');
+
+        tables.forEach(table => {
+            const rows = table.querySelectorAll('tr');
+            rows.forEach(row => {
+                const firstCell = row.querySelector('td:first-child');
+                if (firstCell && choicePattern.test(firstCell.textContent.trim())) {
+                    const choice = firstCell.textContent.trim().replace('.', '');
+                    row.classList.add('answer-choice');
+                    row.setAttribute('data-choice', choice);
+                    row.style.position = 'relative';
+
+                    // Add click handler
+                    row.addEventListener('click', function(e) {
+                        // Don't trigger if clicking inside a link or button
+                        if (e.target.tagName === 'A' || e.target.closest('a')) return;
+
+                        // Toggle selection
+                        if (this.classList.contains('selected')) {
+                            this.classList.remove('selected');
+                            const questionId = getQuestionId();
+                            localStorage.removeItem('choice_q' + questionId);
+                            notifyParent('');
+                        } else {
+                            selectChoice(choice);
+                        }
+                    });
+                }
+            });
+        });
+
+        // Load saved choice after a short delay
+        setTimeout(loadSavedChoice, 100);
+    }
+
+    // Run when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeChoices);
+    } else {
+        initializeChoices();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+
+                    // Notify parent that Submit/Explanation was opened
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'submitOpened',
+                            questionId: getQuestionId()
+                        }, '*');
+                    }
+                } else {
+                    // Notify parent that Submit/Explanation was closed
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'submitClosed',
+                            questionId: getQuestionId()
+                        }, '*');
+                    }
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>

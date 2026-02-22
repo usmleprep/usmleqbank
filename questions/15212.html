@@ -1,0 +1,1786 @@
+
+<style>
+    * {
+        box-sizing: border-box !important;
+    }
+
+    body {
+        font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        line-height: 1.9 !important;
+        color: #1f1f1f !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 8px 16px 16px 16px !important;
+        background: #ffffff !important;
+        font-size: 16.5px !important;
+    }
+
+    p {
+        margin-bottom: 20px !important;
+        font-size: 16.5px !important;
+        line-height: 1.95 !important;
+        color: #1f1f1f !important;
+        font-weight: 400 !important;
+    }
+
+    strong, b {
+        color: #1a73e8 !important;
+        font-weight: 700 !important;
+        background: rgba(26, 115, 232, 0.08) !important;
+        padding: 2px 6px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Details/Summary (collapsible sections) */
+    details {
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
+        border-radius: 8px !important;
+        padding: 24px 28px !important;
+        margin: 24px 0 !important;
+        border: none;
+        box-shadow: none !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    details:hover {
+        border-color: #1a73e8 !important;
+        box-shadow: none !important;
+        transform: translateY(-2px) !important;
+    }
+
+    details[open] {
+        background: #ffffff !important;
+        border-color: #1a73e8 !important;
+        box-shadow: none !important;
+    }
+
+    summary {
+        cursor: pointer !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        font-size: 20px !important;
+        padding: 16px 24px !important;
+        border-radius: 8px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        display: flex !important;
+        align-items: center !important;
+        user-select: none !important;
+        box-shadow: none !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    summary:hover {
+        background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%) !important;
+        transform: translateX(6px) scale(1.02) !important;
+        box-shadow: none !important;
+    }
+
+    summary:active {
+        transform: translateX(4px) scale(0.99) !important;
+    }
+
+    summary::marker {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 1.3em !important;
+    }
+
+    summary strong {
+        background: rgba(255, 255, 255, 0.2) !important;
+        color: #ffffff !important;
+        padding: 4px 12px !important;
+        border-radius: 8px !important;
+        margin-left: 8px !important;
+        font-size: 19px !important;
+        letter-spacing: 1px !important;
+    }
+
+    /* Tables - Premium Design */
+    table {
+        width: 100% !important;
+        border-collapse: separate !important;
+        border-spacing: 0 !important;
+        margin: 28px 0 !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: #ffffff !important;
+    }
+
+    table.simple-table {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+    }
+
+    table tr {
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        position: relative !important;
+    }
+
+    table tr:nth-child(odd) {
+        background: rgba(248, 249, 250, 0.5) !important;
+    }
+
+    table tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    table tr:hover {
+        background: linear-gradient(90deg, #e8f0fe 0%, #f1f8ff 100%) !important;
+        transform: translateX(4px) scale(1.01) !important;
+        box-shadow: none !important;
+        z-index: 1 !important;
+    }
+
+    table td {
+        padding: 18px 24px !important;
+        border-bottom: 1px solid rgba(232, 234, 237, 0.6) !important;
+        font-size: 16.5px !important;
+        line-height: 1.7 !important;
+        color: #1f1f1f !important;
+        vertical-align: middle !important;
+    }
+
+    table tr:last-child td {
+        border-bottom: none !important;
+    }
+
+    /* First column (A, B, C, D, E) */
+    table td:first-child {
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        width: 52px !important;
+        text-align: center !important;
+        font-size: 18px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+        border-right: 3px solid #1557b0 !important;
+        position: relative !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    table tr:hover td:first-child {
+        background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%) !important;
+        box-shadow: none !important;
+    }
+
+    /* Second column (content) */
+    table td:nth-child(2) {
+        font-weight: 500 !important;
+        padding-left: 28px !important;
+    }
+
+    /* Third column (empty - hide it) */
+    table td:last-child:empty {
+        display: none !important;
+    }
+
+    /* Lists */
+    ul, ol {
+        margin: 16px 0 !important;
+        padding-left: 32px !important;
+    }
+
+    li {
+        margin: 10px 0 !important;
+        line-height: 1.8 !important;
+        color: #1f1f1f !important;
+    }
+
+    ul.bulleted-list li {
+        position: relative !important;
+        padding-left: 8px !important;
+    }
+
+    ul.toggle {
+        list-style: none !important;
+        padding-left: 0 !important;
+    }
+
+    /* Links */
+    a {
+        color: #1a73e8 !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        border-bottom: 2px solid transparent !important;
+        transition: all 0.2s !important;
+    }
+
+    a:hover {
+        border-bottom-color: #1a73e8 !important;
+        background: rgba(26,115,232,0.08) !important;
+        padding: 2px 4px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Images & Media */
+    img, video {
+        max-width: none !important;
+        height: auto !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
+        margin: 24px 0 !important;
+        display: block !important;
+        border: none !important;
+    }
+
+    img:hover, video:hover {
+        box-shadow: none !important;
+        border-color: #1a73e8 !important;
+    }
+
+    /* Code blocks (if any) */
+    code {
+        background: #f1f3f4 !important;
+        padding: 2px 8px !important;
+        border-radius: 8px !important;
+        font-family: 'Courier New', monospace !important;
+        font-size: 14px !important;
+        color: #d93025 !important;
+    }
+
+    pre {
+        background: #f8f9fa !important;
+        padding: 8px 16px 16px 16px !important;
+        border-radius: 8px !important;
+        overflow-x: auto !important;
+        border-left: 4px solid #1a73e8 !important;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+        color: #1a73e8 !important;
+        font-weight: 700 !important;
+        margin-top: 24px !important;
+        margin-bottom: 16px !important;
+        line-height: 1.4 !important;
+    }
+
+    h1 { font-size: 32px !important; }
+    h2 { font-size: 26px !important; }
+    h3 { font-size: 22px !important; }
+    h4 { font-size: 19px !important; }
+
+    /* Blockquotes */
+    blockquote {
+        border-left: 4px solid #1a73e8 !important;
+        padding-left: 20px !important;
+        margin: 20px 0 !important;
+        font-style: italic !important;
+        color: #5f6368 !important;
+        background: #f8f9fa !important;
+        padding: 16px 20px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Horizontal Rule */
+    hr {
+        border: none !important;
+        height: 2px !important;
+        background: linear-gradient(to right, transparent, #1a73e8, transparent) !important;
+        margin: 32px 0 !important;
+    }
+
+    /* Selection */
+    ::selection {
+        background: #e8f0fe !important;
+        color: #1a73e8 !important;
+    }
+
+    /* Highlighter styles */
+    .highlighted {
+        background-color: #ffeb3b !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .highlighter-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        font-size: 20px !important;
+        padding: 0 8px !important;
+        margin-left: 8px !important;
+        transition: transform 0.2s ease !important;
+        vertical-align: middle !important;
+    }
+
+    .highlighter-btn:hover {
+        transform: scale(1.2) !important;
+    }
+
+    .highlighter-btn.active {
+        transform: scale(1.1) !important;
+        filter: brightness(1.2) !important;
+    }
+
+    .highlighter-mode-active {
+        cursor: text !important;
+    }
+
+
+    /* Right padding to avoid overlap with sidebar buttons */
+    body {
+        padding-right: 50px !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 16px !important;
+        }
+    }
+
+</style>
+
+
+
+
+<details open>
+<summary><strong>15212</strong><button class="bionic-reading-btn" onclick="toggleBionicReading(event)" title="Toggle Bionic Reading (Ctrl+B)"><span id="bionicIcon">👁️</span></button><button class="highlighter-btn" onclick="toggleHighlighter(event)" title="Toggle Highlighter (Ctrl+H)"><span id="highlighterIcon">🖊️</span></button></summary>
+<p class="" id="f02d6c11-742c-4830-922f-f3dcf05a87be">A 67-year-old man abruptly
+                                        develops severe chest pain and respiratory distress before collapsing.  The
+                                        emergency medical team finds him unresponsive with no pulse, and he cannot be
+                                        revived despite appropriate resuscitation efforts.  A photograph of the
+                                        patient's lung as seen at autopsy is shown below.</p>
+<figure class="image" id="4a51e208-a79c-4b67-a910-14fa539ce752"><a href="https://lh7-us.googleusercontent.com/EzmcuWGrCgoTn7pte6JyOX_AO8m5R60_YhrnvRwXMtCCetyWoiND976aB2KTbai2UHFgm1SsP9ZLRKmMTGrcbdt0X9canfzYNWZAsNBpN4AVuZkectn21ix3z91-FjLGc5mICWfUg-c1DRi1aypjmmI"><img loading="lazy" src="https://lh7-us.googleusercontent.com/EzmcuWGrCgoTn7pte6JyOX_AO8m5R60_YhrnvRwXMtCCetyWoiND976aB2KTbai2UHFgm1SsP9ZLRKmMTGrcbdt0X9canfzYNWZAsNBpN4AVuZkectn21ix3z91-FjLGc5mICWfUg-c1DRi1aypjmmI" style="width:509px"/></a>
+</figure>
+<p class="" id="a1f3206d-0805-42bc-8dc8-fb54727a4837">Which of the following
+                                        underlying histopathologic changes are most likely to be present on microscopy?
+                                    </p>
+<table class="simple-table" id="68bb36c7-3fc5-4c5e-909e-f0675d54dca3">
+<tbody>
+<tr id="62df4cc6-de30-4683-92fb-aff87607b98d">
+<td class="" id="nDil">A.</td>
+<td class="" id="oz[e">Ferruginous bodies embedded within interstitial
+                                                    fibrous tissue</td>
+<td class="" id="R|_k"></td>
+</tr>
+<tr id="2bf36847-58c6-45cf-9d44-bdbb8e2e3896">
+<td class="" id="nDil">B.</td>
+<td class="" id="oz[e">Hemosiderin-laden macrophages within congested
+                                                    airspaces</td>
+<td class="" id="R|_k"></td>
+</tr>
+<tr id="66ba40c3-bb5d-49b2-884e-9557a43e27ad">
+<td class="" id="nDil">C.</td>
+<td class="" id="oz[e">Interalveolar septal destruction with airspace
+                                                    enlargement</td>
+<td class="" id="R|_k"></td>
+</tr>
+<tr id="711d18a8-2b52-4021-b831-fa732d1d487d">
+<td class="" id="nDil">D.</td>
+<td class="" id="oz[e">Multinucleated giant cells surrounding caseating
+                                                    granulomas</td>
+<td class="" id="R|_k"></td>
+</tr>
+<tr id="e601c0ad-fd49-4620-a231-a5011437e748">
+<td class="" id="nDil">E.</td>
+<td class="" id="oz[e">Patchy interstitial fibrosis with the presence of
+                                                    fibroblastic foci</td>
+<td class="" id="R|_k"></td>
+</tr>
+</tbody>
+</table>
+<ul class="toggle" id="b62afb98-0695-4b40-8842-fd5986a5d977">
+<li>
+<details>
+<summary>Submit</summary>
+<table class="simple-table" id="75718ea7-248d-47ec-8479-de041b0771b5">
+<tbody>
+<tr id="818095a1-4e99-4f86-9f40-f6b3ec2e8611">
+<td class="" id="AFWb">A.</td>
+<td class="" id="L^dE">Ferruginous bodies embedded within
+                                                                interstitial fibrous tissue (7%)</td>
+<td class="" id="Ce&gt;d"></td>
+</tr>
+<tr id="2a16d223-d3ab-4a22-a2fe-68cfd8727e44">
+<td class="" id="AFWb">B.</td>
+<td class="" id="L^dE">Hemosiderin-laden macrophages within
+                                                                congested airspaces (19%)</td>
+<td class="" id="Ce&gt;d"></td>
+</tr>
+<tr id="1cfdda4d-feff-4be9-9494-a7fe4a9393e8">
+<td class="" id="AFWb">C.</td>
+<td class="" id="L^dE">Interalveolar septal destruction with
+                                                                airspace enlargement (55%)</td>
+<td class="" id="Ce&gt;d"></td>
+</tr>
+<tr id="3aef48a9-ffe0-4d1a-a629-6445eda98057">
+<td class="" id="AFWb">D.</td>
+<td class="" id="L^dE">Multinucleated giant cells
+                                                                surrounding caseating granulomas (6%)</td>
+<td class="" id="Ce&gt;d"></td>
+</tr>
+<tr id="a8827aa9-ae5f-46a8-8ed8-9199ee59079c">
+<td class="" id="AFWb">E.</td>
+<td class="" id="L^dE">Patchy interstitial fibrosis with the
+                                                                presence of fibroblastic foci (11%)</td>
+<td class="" id="Ce&gt;d"></td>
+</tr>
+</tbody>
+</table>
+<p class="" id="7a46435b-a0e7-49dc-8d0d-6f0a33eca918">Correct</p>
+<p class="" id="4b3d8de5-0b54-438e-ba3b-d19d1879d197">55%Answered
+                                                    correctly</p>
+<p class="" id="6ae05c10-c6dc-47f5-9149-2ddfb8b2c1c2">15 secsTime Spent
+                                                </p>
+<p class="" id="ae7fa10e-fe91-4475-b517-b2a7c2e1e95f">2024Version</p>
+<ul class="bulleted-list" id="e1609a05-6471-47c0-b57c-06ae64ce092f">
+<li style="list-style-type:disc">Explanation</li>
+</ul>
+<ul class="bulleted-list" id="0c0cfbc9-5f82-4dce-843e-6b7b04c88164">
+<li style="list-style-type:disc"></li>
+</ul>
+<figure class="image" id="0784ac96-67e6-40a2-b823-8c94ea7b1732"><a href="https://lh7-us.googleusercontent.com/uyWqthdWB3b1nFPVG9uHY9nH4wdEIm0H_diF1ltM8mZ1eFFgOzLurExKYn9qxCe3b7m_jzV09s5pi7FLyZvN2X0gEFH-oY609w-t2FV4fq9svMHQR1Ptl-m0R3E4KM9SBZFF3MCF-AdlRuKwAi0X5e4"><img loading="lazy" src="https://lh7-us.googleusercontent.com/uyWqthdWB3b1nFPVG9uHY9nH4wdEIm0H_diF1ltM8mZ1eFFgOzLurExKYn9qxCe3b7m_jzV09s5pi7FLyZvN2X0gEFH-oY609w-t2FV4fq9svMHQR1Ptl-m0R3E4KM9SBZFF3MCF-AdlRuKwAi0X5e4" style="width:602px"/></a>
+</figure>
+<p class="" id="9486db90-8d82-4512-b573-37139fa143e0">Gross examination
+                                                    of this patient's lung shows multiple large subpleural blebs
+                                                    consistent with severe emphysema.  Emphysema most commonly develops
+                                                    due to chronic exposure to cigarette smoke via the following
+                                                    mechanisms:</p>
+<ul class="bulleted-list" id="3ee07402-dda4-443e-9bc1-2cdb88da87b3">
+<li style="list-style-type:disc">Inflammation and leukocyte
+                                                        infiltration: Tobacco exposure stimulates an inflammatory
+                                                        response in which immune cells (eg, alveolar macrophages)
+                                                        release inflammatory cytokines (eg, tumor necrosis factor) and
+                                                        recruit neutrophils and CD8+ T lymphocytes to the alveolar
+                                                        tissue.</li>
+</ul>
+<ul class="bulleted-list" id="53dd6dad-039a-4d51-8bfb-02397ca1e8b7">
+<li style="list-style-type:disc">Protease-antiprotease imbalance:
+                                                        Infiltrating inflammatory cells produce tissue-destructive
+                                                        proteases (eg, elastase, matrix metalloproteinases). Tobacco
+                                                        smoke also inactivates alpha-1 antitrypsin, causing insufficient
+                                                        antiprotease activity.</li>
+</ul>
+<ul class="bulleted-list" id="8f088803-fccc-4633-8bcf-c61f41567420">
+<li style="list-style-type:disc">Oxidative stress: Cigarette smoke
+                                                        and chronic inflammation increase exposure to reactive oxygen
+                                                        species, which impart further tissue damage.</li>
+</ul>
+<p class="" id="c8328ff0-67dd-413b-bada-94b5c40a6295">The ongoing tissue
+                                                    damage leads to destruction of the alveolar septa, producing
+                                                    enlarged alveolar airspaces.  The lung apices are most heavily
+                                                    affected ("smoke rises").  As the emphysema progresses,
+                                                    the enlarged airspaces merge into subpleural blebs concentrated at
+                                                    the apices.  Blebs can further expand to form massive bullae.  These
+                                                    bullae and blebs can sometimes rupture, leading to spontaneous
+                                                    pneumothorax (ipsilateral pleuritic chest pain, reduced breath
+                                                    sounds, respiratory distress).</p>
+<p class="" id="499777c4-537d-4b45-9e72-281a8ca1d6c0">(Choice A) 
+                                                    Ferruginous bodies embedded within interstitial fibrous tissue are
+                                                    characteristic of pulmonary asbestosis.  These bodies represent
+                                                    asbestos fibers enclosed in iron-rich material; histologically, they
+                                                    appear as golden-brown, barbell-shaped structures.  Gross pathology
+                                                    typically shows shrunken, fibrotic lungs with calcified pleural
+                                                    plaques.</p>
+<p class="" id="d0b6d2ad-1646-4fb3-9ac3-f57fdef46902">(Choice B) 
+                                                    Hemosiderin-laden macrophages with congested airspaces are
+                                                    consistent with cardiogenic pulmonary edema.  Gross pathology
+                                                    typically shows wet, heavy, congested lungs with a red-brown hue due
+                                                    to increased blood volume.</p>
+<p class="" id="b0c1b4a1-97bf-4d51-a072-269c3a0b429e">(Choice D) 
+                                                    Multinucleated giant cells surrounding caseating granulomas
+                                                    characterize tuberculosis.  Occasionally, tuberculosis produces
+                                                    cavitary lung lesions that can mimic the appearance of emphysematous
+                                                    blebs, but on gross pathology the cavities typically contain caseous
+                                                    necrotic debris.</p>
+<p class="" id="42e63f40-bf5e-4be3-89d7-4c4d783c45c3">(Choice E)  Patchy
+                                                    interstitial fibrosis with the presence of fibroblastic foci is
+                                                    consistent with idiopathic pulmonary fibrosis.  Gross pathology
+                                                    shows hardened, shrunken lungs (fibrotic retraction) and subpleural
+                                                    honeycombing.  These changes are often most severe in the lower
+                                                    lobes.</p>
+<p class="" id="d77bc82e-e053-48fa-a290-dfe23a198503">Educational
+                                                    objective:</p>
+<p class="" id="46f135b6-89ef-4cb1-bb03-58950cef68cc">Emphysema involves
+                                                    inflammatory and proteolytic destruction of the alveolar septa.  In
+                                                    severe disease, dilated alveolar pockets progressively merge into
+                                                    subpleural blebs.  These are prone to rupture, leading to
+                                                    pneumothorax</p>
+<p class="" id="c814b05a-0651-49d4-9f61-4ba9ad9d3c5b">References</p>
+<ul class="bulleted-list" id="c5097c31-c068-40b2-8a05-e036304d81da">
+<li style="list-style-type:disc"><a href="http://www.ncbi.nlm.nih.gov/pubmed/18453358">Pathogenesis
+                                                            of emphysema: from the bench to the bedside.</a></li>
+</ul>
+<p class="" id="9a1e4a59-3f20-4684-8613-541e0ff29d4e">Pathology</p>
+<p class="" id="c18c1d9b-0fc0-4e83-99e2-0fc7bdf91430">Subject</p>
+<p class="" id="bbbf55f4-ecc3-4cc2-b75d-f38b3ba3b506">Pulmonary &amp;
+                                                    Critical Care</p>
+<p class="" id="df722261-d8f2-45dc-bb60-9a6f4eecddc8">System</p>
+<p class="" id="27cc2107-7a96-43b2-9b5f-3dfc152ccaaa">COPD</p>
+<p class="" id="4fd6e471-fab3-433a-87fd-ae7235ef6fa8">Topic</p>
+<p class="" id="c2499f22-f009-43a7-8e18-e2589e3f55e1">Copyright ©
+                                                    UWorld. All rights reserved.</p>
+<p class="" id="3db5c76c-6cbf-4c5b-b6e2-c0411bdbcfca">My Notebook</p>
+<p class="" id="008b722c-cbf0-43e6-894a-1195b4f74741">0</p>
+<p class="" id="698b1d82-4be5-4e3f-86d8-e7b53af5c4d1">Flashcards</p>
+<p class="" id="2c4df43c-d818-4511-80bf-26254ebfbbc4">Feedback</p>
+<p class="" id="19f9f235-71ab-4f61-ba32-6bbbd8c4581a">Suspend</p>
+<p class="" id="5a213498-eaed-4e4e-8ec6-5c4db285a5cb">End Block</p>
+<p class="" id="ccda67ba-e043-43cd-9d15-555c54dfc391">✨🅱️2🅰️1🕒1e-10
+                                                    sec</p>
+<p class="" id="cf111dc2-0166-4a7e-a7c2-9784e9e604c9">Exhibit Display
+                                                </p>
+<figure class="image" id="6e407466-0f2a-4a19-a6e2-17a9099c9c0d"><a href="https://lh7-us.googleusercontent.com/T8i8rFZIVFZf5ZknAocwMzxJPiEiRrH2pNR4gfCAcoWxYlhfGZ80WAdBB_vkbq3AlOtsy2C4iNjruB1Xlx7bOG6iSGZwEbv4LMo0XUQOdSnwp-_3wimGpBIguYEVvWjeJrgM0BVlem3LuhSEldG06aQ"><img loading="lazy" src="https://lh7-us.googleusercontent.com/T8i8rFZIVFZf5ZknAocwMzxJPiEiRrH2pNR4gfCAcoWxYlhfGZ80WAdBB_vkbq3AlOtsy2C4iNjruB1Xlx7bOG6iSGZwEbv4LMo0XUQOdSnwp-_3wimGpBIguYEVvWjeJrgM0BVlem3LuhSEldG06aQ" style="width:602px"/></a>
+</figure>
+<p class="" id="475df468-62c4-4e40-a4ef-bbfd72475881">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="e035a93a-6e67-47f1-be1f-841c23da7848">ExistingMy
+                                                    Notebook</p>
+<p class="" id="1c0be7b1-4220-42e7-8f4b-7e4ca655432d">Exhibit Display
+                                                </p>
+<figure class="image" id="8e61ec62-54ec-4b6f-8702-1447a5efd003"><a href="https://lh7-us.googleusercontent.com/ojQ1YLZiYMlLoHYWY48umv2cqiQOKbiiqWIdyNFuRZ_nhMRVFK5rrcwPyhBLhR9coX5m5wu7SsV_ETgi5vFYB99aecgzUeI2_X7Z8oNJBXhRR1RaN-5nI-A3DrDT9BYnHjJNnfm6u018HFbSyB5vmYQ"><img loading="lazy" src="https://lh7-us.googleusercontent.com/ojQ1YLZiYMlLoHYWY48umv2cqiQOKbiiqWIdyNFuRZ_nhMRVFK5rrcwPyhBLhR9coX5m5wu7SsV_ETgi5vFYB99aecgzUeI2_X7Z8oNJBXhRR1RaN-5nI-A3DrDT9BYnHjJNnfm6u018HFbSyB5vmYQ" style="width:602px"/></a>
+</figure>
+<p class="" id="89fb89a1-fa53-4edb-a758-4e6f61247669">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="6f4d1d4d-94a4-47f6-a08c-8bf695cc9335">ExistingMy
+                                                    Notebook</p>
+<p class="" id="0d0383ed-e36e-43d6-b6f2-ae1ba7c8cea0">Exhibit Display
+                                                </p>
+<figure class="image" id="389627d1-3ae6-444b-8f73-3ce5a59432f3"><a href="https://lh7-us.googleusercontent.com/I9tPjI03jRE4Bb38w__-icFy-_FH5QraATHLouaIjXGZ10qbpo9jS5pLi2HTZ57tG-43RKV4e39Reii-3OrNEsUH02P1F_LnqSn4HqZRQEZxwJemTEODVhoph3a4lah0PslJX_aLToI3liBy4nhbGBc"><img loading="lazy" src="https://lh7-us.googleusercontent.com/I9tPjI03jRE4Bb38w__-icFy-_FH5QraATHLouaIjXGZ10qbpo9jS5pLi2HTZ57tG-43RKV4e39Reii-3OrNEsUH02P1F_LnqSn4HqZRQEZxwJemTEODVhoph3a4lah0PslJX_aLToI3liBy4nhbGBc" style="width:602px"/></a>
+</figure>
+<p class="" id="d37c6d26-04d5-4296-9b46-c734ddf57d14">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="ae780cbb-1d0b-4475-8124-1b818491a600">ExistingMy
+                                                    Notebook</p>
+<p class="" id="996d9450-729e-4c16-b8db-fb7f403d5e12">Exhibit Display
+                                                </p>
+<figure class="image" id="f7ccb807-50cc-42a4-b930-d2baba8f5bd7"><a href="https://lh7-us.googleusercontent.com/V9fM9LUH0TzYstz0rs3qyv8BK5wyLdLwiUfaM3SeXppCOwz5Jkb99VLEcRAShlXTurH4NVTN9yKbhxsH5Xb-ahH3P60nBRkOxzfdHd1QlKr9cROIKzkkqfPievMd0zo9kjlcqUKIDAFgz3eerdMtpKk"><img loading="lazy" src="https://lh7-us.googleusercontent.com/V9fM9LUH0TzYstz0rs3qyv8BK5wyLdLwiUfaM3SeXppCOwz5Jkb99VLEcRAShlXTurH4NVTN9yKbhxsH5Xb-ahH3P60nBRkOxzfdHd1QlKr9cROIKzkkqfPievMd0zo9kjlcqUKIDAFgz3eerdMtpKk" style="width:602px"/></a>
+</figure>
+<p class="" id="4738f3c1-3f83-43b8-aac0-3c0a89a5421d">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="4fa5f27e-f7e1-4f1f-99fa-930499142548">ExistingMy
+                                                    Notebook</p>
+<p class="" id="5db7af6d-03d8-43b0-b839-82e9e8bbdada">Exhibit Display
+                                                </p>
+<figure class="image" id="75df1452-a06c-4348-97bb-0d8c99b33803"><a href="https://lh7-us.googleusercontent.com/GbkD0PRriIxOX_HZbxD6bDtpEzM-2aLO1wntuOELpYzzwOwBd79rrmION_4N93y2w1k2GTy2ngRAv7pvKmFveQzovXCdkIgiqdYDWJ9tePbpzBJaaxq_Mmml-ihaL_M8UW2iRkbNU-UUl_p2szNLY2k"><img loading="lazy" src="https://lh7-us.googleusercontent.com/GbkD0PRriIxOX_HZbxD6bDtpEzM-2aLO1wntuOELpYzzwOwBd79rrmION_4N93y2w1k2GTy2ngRAv7pvKmFveQzovXCdkIgiqdYDWJ9tePbpzBJaaxq_Mmml-ihaL_M8UW2iRkbNU-UUl_p2szNLY2k" style="width:602px"/></a>
+</figure>
+<p class="" id="73d818a5-bc71-4de6-987b-8444358b7053">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="0f8faead-af41-4900-b20d-8f81291ba8ae">ExistingMy
+                                                    Notebook</p>
+<p class="" id="e08b1074-c9a6-466a-9b2d-c2e5e569608d">Exhibit Display
+                                                </p>
+<figure class="image" id="de0280d7-a232-4624-9868-665af75a98ea"><a href="https://lh7-us.googleusercontent.com/xigUgqWriINUsYct4QkQmDoft2kq96_UdI49J9X80Yl11n56K5KMg1fvRHI2rmK1UjIrF-Cf-DlG2umFG87JE8O_ByS_757nZLABCHsxN2vHyUKwXRUTRJOVxm0wlEgMuzeN1NpPR2Vt6d1N9mxcGpU"><img loading="lazy" src="https://lh7-us.googleusercontent.com/xigUgqWriINUsYct4QkQmDoft2kq96_UdI49J9X80Yl11n56K5KMg1fvRHI2rmK1UjIrF-Cf-DlG2umFG87JE8O_ByS_757nZLABCHsxN2vHyUKwXRUTRJOVxm0wlEgMuzeN1NpPR2Vt6d1N9mxcGpU" style="width:481px"/></a>
+</figure>
+<p class="" id="9b086f05-c84d-4d85-93c9-773a29c15058">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="35b27acc-77ea-46f1-97a8-92ab6afcfec5">ExistingMy
+                                                    Notebook</p>
+<p class="" id="361d30de-bf72-49bf-a4d3-9de44a823801">Exhibit Display
+                                                </p>
+<figure class="image" id="2d3b26a9-c56c-49e7-a588-612a1ddbcc39"><a href="https://lh7-us.googleusercontent.com/AOBCgVM9y-I3Aln_dzg2teOYdZvvkJdNUaETgsUfIBRS4i54NsMRsYJVp6jHZxJT5GaAOjdFa7eb0oeGKBqQhcK6hEc-Den6kOpMHEFaNXGffns2QxsvWF0Fsl_gGuRwgUWxTbs9c4pdz0OEnLHv-n4"><img loading="lazy" src="https://lh7-us.googleusercontent.com/AOBCgVM9y-I3Aln_dzg2teOYdZvvkJdNUaETgsUfIBRS4i54NsMRsYJVp6jHZxJT5GaAOjdFa7eb0oeGKBqQhcK6hEc-Den6kOpMHEFaNXGffns2QxsvWF0Fsl_gGuRwgUWxTbs9c4pdz0OEnLHv-n4" style="width:602px"/></a>
+</figure>
+<p class="" id="cce36db6-0acc-4b96-a95b-b46e5c683294">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="367507b0-29fe-4b8a-a1d9-8d9ef6ec70ff">ExistingMy
+                                                    Notebook</p>
+<p class="" id="5fdad249-b422-4b28-8a62-8121265f0531">Exhibit Display
+                                                </p>
+<figure class="image" id="5f29a8c8-7526-4d9c-8882-458d9e5ab7ad"><a href="https://lh7-us.googleusercontent.com/5tSz4xMUW1Mo7Cdl4ys9LwOAyG6dQdXayQHYq6KqjixlivCLogPoVdpuw6ZjBlTaPl1P4Ab-XqHvntr2nXjJMr9Xde7_QxlY0wBK0xA_D2jNWyz2qYiVrQuSLlVcdG7WNSq117v4m2vyuLyVsKe9X8k"><img loading="lazy" src="https://lh7-us.googleusercontent.com/5tSz4xMUW1Mo7Cdl4ys9LwOAyG6dQdXayQHYq6KqjixlivCLogPoVdpuw6ZjBlTaPl1P4Ab-XqHvntr2nXjJMr9Xde7_QxlY0wBK0xA_D2jNWyz2qYiVrQuSLlVcdG7WNSq117v4m2vyuLyVsKe9X8k" style="width:602px"/></a>
+</figure>
+<p class="" id="d3b779a1-54a7-48c2-a497-37313449f00d">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="2c879da3-5d23-4bf9-adf1-7ff16fecd071">ExistingMy
+                                                    Notebook</p>
+<p class="" id="313de9ad-76e5-4a51-a981-5a0f420e2527">Exhibit Display
+                                                </p>
+<figure class="image" id="99d01f33-3b50-417c-9946-1cf64a4c7724"><a href="https://lh7-us.googleusercontent.com/Iv96pXw4__nqJFwvRMkxOWFn4HMmHQx-etd9urMiVHs_HorP8Flpspy65_WY9V9CezWkurUSLoeg-1KfegZO-8zzS-L53_C1S-bZTaEwn3zaCvnxR5OL9Y-dnWgCdW6tqp5Jnmw3LQxRYZVFwqQIOr4"><img loading="lazy" src="https://lh7-us.googleusercontent.com/Iv96pXw4__nqJFwvRMkxOWFn4HMmHQx-etd9urMiVHs_HorP8Flpspy65_WY9V9CezWkurUSLoeg-1KfegZO-8zzS-L53_C1S-bZTaEwn3zaCvnxR5OL9Y-dnWgCdW6tqp5Jnmw3LQxRYZVFwqQIOr4" style="width:602px"/></a>
+</figure>
+<p class="" id="237c6d8b-0aa0-46b1-b228-ad899d7c9026">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="e160ade8-1997-4e53-8d44-c223e12615c6">ExistingMy
+                                                    Notebook</p>
+</details>
+</li>
+</ul>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+.bionic-reading-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.bionic-reading-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.bionic-reading-btn.active {
+    background: rgba(52, 168, 83, 0.4);
+    border-color: rgba(52, 168, 83, 0.6);
+}
+
+.bionic-reading-btn.active:hover {
+    background: rgba(52, 168, 83, 0.5);
+}
+
+summary {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+    /* Highlighter styles */
+    .highlighted {
+        background-color: #ffeb3b !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .highlighter-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        font-size: 20px !important;
+        padding: 0 8px !important;
+        margin-left: 8px !important;
+        transition: transform 0.2s ease !important;
+        vertical-align: middle !important;
+    }
+
+    .highlighter-btn:hover {
+        transform: scale(1.2) !important;
+    }
+
+    .highlighter-btn.active {
+        transform: scale(1.1) !important;
+        filter: brightness(1.2) !important;
+    }
+
+    .highlighter-mode-active {
+        cursor: text !important;
+    }
+
+
+    /* Right padding to avoid overlap with sidebar buttons */
+    body {
+        padding-right: 50px !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 16px !important;
+        }
+    }
+
+
+    
+
+
+    
+
+    /* Adjust table padding to make room for radio button */
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+    /* Clickable Answer Choices */
+    table tr.answer-choice {
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+    }
+
+    table tr.answer-choice:hover {
+        background: #f8f9fa !important;
+    }
+
+    table tr.answer-choice td:first-child {
+        position: relative !important;
+        padding-left: 35px !important;
+    }
+
+    table tr.answer-choice td:first-child::before {
+        content: '';
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        border: 2px solid #999;
+        border-radius: 50%;
+        background: white;
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+    }
+
+    table tr.answer-choice.selected td:first-child::before {
+        border-color: #1a73e8;
+        border-width: 5px;
+    }
+
+    table tr.answer-choice.selected {
+        background: #e8f4ff !important;
+    }
+
+    table tr.answer-choice.selected td:first-child {
+        color: #1a73e8 !important;
+        font-weight: 600 !important;
+    }
+
+
+    
+
+
+    /* Answer Validation Styles */
+    tr.answer-choice.answer-correct {
+        background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%) !important;
+        border: 3px solid #28a745 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-correct td {
+        color: #155724 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-correct td:first-child::before {
+        border-color: #28a745 !important;
+        background: #28a745 !important;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    tr.answer-choice.answer-incorrect {
+        background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%) !important;
+        border: 3px solid #dc3545 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-incorrect td {
+        color: #721c24 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-incorrect td:first-child::before {
+        border-color: #dc3545 !important;
+        background: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+    }
+
+
+    /* Answer Validation Styles */
+    tr.answer-choice.answer-correct {
+        background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%) !important;
+        border: 3px solid #28a745 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-correct td {
+        color: #155724 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-correct td:first-child::before {
+        border-color: #28a745 !important;
+        background: #28a745 !important;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    tr.answer-choice.answer-incorrect {
+        background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%) !important;
+        border: 3px solid #dc3545 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-incorrect td {
+        color: #721c24 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-incorrect td:first-child::before {
+        border-color: #dc3545 !important;
+        background: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+    }
+
+</style>
+
+
+
+<script>
+let bionicEnabled = false;
+const originalContent = {};
+
+function toggleBionicReading(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    bionicEnabled = !bionicEnabled;
+    const btn = document.querySelector('.bionic-reading-btn');
+    const icon = document.getElementById('bionicIcon');
+
+    if (bionicEnabled) {
+        btn.classList.add('active');
+        icon.textContent = '✅';
+        applyBionicReading();
+    } else {
+        btn.classList.remove('active');
+        icon.textContent = '👁️';
+        restoreOriginalText();
+    }
+}
+
+function applyBionicReading() {
+    // Seleciona todos os elementos de texto, EXCETO summary e buttons
+    const textElements = document.querySelectorAll('p:not(summary p):not(button p), td:not(summary td):not(button td), li:not(summary li):not(button li)');
+
+    textElements.forEach((element, index) => {
+        // Ignora elementos que contêm outros elementos complexos
+        if (element.querySelector('p, td, li, h1, h2, h3, h4, h5, h6, button, summary')) {
+            return;
+        }
+
+        // Ignora se o elemento está dentro de um summary ou button
+        if (element.closest('summary') || element.closest('button') || element.closest('.bionic-reading-btn')) {
+            return;
+        }
+
+        // Salva o conteúdo original
+        if (!originalContent[index]) {
+            originalContent[index] = {
+                element: element,
+                html: element.innerHTML
+            };
+        }
+
+        // Aplica Bionic Reading
+        const bionicText = convertToBionic(element.textContent);
+        element.innerHTML = bionicText;
+    });
+}
+
+function restoreOriginalText() {
+    // Restaura o conteúdo original
+    Object.values(originalContent).forEach(item => {
+        item.element.innerHTML = item.html;
+    });
+}
+
+function convertToBionic(text) {
+    // Divide o texto em palavras, mantendo pontuação
+    const words = text.split(/(\s+|[.,;:!?()""''\-–—])/);
+
+    const bionicWords = words.map(word => {
+        // Ignora espaços e pontuação
+        if (word.match(/^\s+$/) || word.match(/^[.,;:!?()""''\-–—]+$/)) {
+            return word;
+        }
+
+        // Ignora palavras muito curtas (1-2 letras)
+        if (word.length <= 2) {
+            return word;
+        }
+
+        // Determina quantas letras deixar em negrito (metade da palavra, arredondado para cima)
+        const boldLength = Math.ceil(word.length / 2);
+
+        // Separa a parte em negrito da parte normal
+        const boldPart = word.substring(0, boldLength);
+        const normalPart = word.substring(boldLength);
+
+        // Retorna com a primeira parte em negrito
+        return `<strong style="font-weight: 700 !important; color: inherit !important; background: none !important; padding: 0 !important;">${boldPart}</strong>${normalPart}`;
+    });
+
+    return bionicWords.join('');
+}
+
+// Adiciona atalho de teclado (Ctrl+B ou Cmd+B)
+document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+        e.preventDefault();
+        toggleBionicReading();
+    }
+});
+</script>
+
+<script>
+    let highlighterActive = false;
+    let questionHighlights = {};
+
+    // Get question ID from the first summary strong tag
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Load highlights from localStorage
+    function loadHighlights() {
+        const questionId = getQuestionId();
+        const stored = localStorage.getItem('highlights_' + questionId);
+        if (stored) {
+            questionHighlights = JSON.parse(stored);
+            applyStoredHighlights();
+        }
+    }
+
+    // Save highlights to localStorage
+    function saveHighlights() {
+        const questionId = getQuestionId();
+        localStorage.setItem('highlights_' + questionId, JSON.stringify(questionHighlights));
+    }
+
+    // Apply stored highlights
+    function applyStoredHighlights() {
+        Object.keys(questionHighlights).forEach(key => {
+            const element = document.querySelector(`[data-highlight-id="${key}"]`);
+            if (element && questionHighlights[key]) {
+                element.classList.add('highlighted');
+            }
+        });
+    }
+
+    // Toggle highlighter mode
+    function toggleHighlighter(event) {
+        event.stopPropagation();
+        highlighterActive = !highlighterActive;
+
+        const btn = event.target.closest('.highlighter-btn');
+        const icon = btn.querySelector('#highlighterIcon');
+
+        if (highlighterActive) {
+            btn.classList.add('active');
+            icon.textContent = '🖍️';
+            document.body.classList.add('highlighter-mode-active');
+        } else {
+            btn.classList.remove('active');
+            icon.textContent = '🖊️';
+            document.body.classList.remove('highlighter-mode-active');
+        }
+    }
+
+    // Clear all highlights for this question
+    function clearHighlights() {
+        const questionId = getQuestionId();
+        questionHighlights = {};
+        localStorage.removeItem('highlights_' + questionId);
+        document.querySelectorAll('.highlighted').forEach(el => {
+            el.classList.remove('highlighted');
+        });
+    }
+
+    // Handle text selection and highlighting
+    document.addEventListener('mouseup', function(e) {
+        if (!highlighterActive) return;
+
+        const selection = window.getSelection();
+        if (!selection.toString().trim()) return;
+
+        const range = selection.getRangeAt(0);
+        const container = range.commonAncestorContainer;
+
+        // Only highlight text in paragraphs, not in buttons or other elements
+        const paragraph = container.nodeType === 3 ? container.parentElement : container;
+        if (paragraph.tagName !== 'P' && paragraph.tagName !== 'LI' && paragraph.tagName !== 'TD') {
+            return;
+        }
+
+        // Create highlight span
+        const span = document.createElement('span');
+        span.classList.add('highlighted');
+
+        // Generate unique ID for this highlight
+        const highlightId = 'hl-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+        span.setAttribute('data-highlight-id', highlightId);
+
+        try {
+            range.surroundContents(span);
+            questionHighlights[highlightId] = true;
+            saveHighlights();
+        } catch (e) {
+            console.log('Could not highlight selection');
+        }
+
+        selection.removeAllRanges();
+    });
+
+    // Load highlights when page loads
+    window.addEventListener('load', loadHighlights);
+
+    // Keyboard shortcut: Ctrl+H to toggle highlighter
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'h') {
+            e.preventDefault();
+            const btn = document.querySelector('.highlighter-btn');
+            if (btn) {
+                toggleHighlighter({target: btn, stopPropagation: () => {}});
+            }
+        }
+        // Ctrl+Shift+H to clear all highlights
+        if (e.ctrlKey && e.shiftKey && e.key === 'H') {
+            e.preventDefault();
+            if (confirm('Clear all highlights for this question?')) {
+                clearHighlights();
+            }
+        }
+    });
+</script>
+
+
+
+
+
+
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Communicate with parent window (if in iframe)
+    function notifyParent(choice) {
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'choiceSelected',
+                questionId: getQuestionId(),
+                choice: choice
+            }, '*');
+        }
+    }
+
+    // Load saved choice from parent or localStorage
+    function loadSavedChoice() {
+        const questionId = getQuestionId();
+
+        // Try to get from localStorage first
+        const saved = localStorage.getItem('choice_q' + questionId);
+        if (saved) {
+            selectChoice(saved, false);
+        }
+
+        // Ask parent for saved choice (if in iframe)
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'getChoice',
+                questionId: questionId
+            }, '*');
+        }
+    }
+
+    // Listen for messages from parent
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'setChoice' && event.data.questionId === getQuestionId()) {
+            selectChoice(event.data.choice, false);
+        }
+    });
+
+    // Select a choice
+    function selectChoice(choice, notify = true) {
+        if (!choice) return;
+
+        const questionId = getQuestionId();
+
+        // Remove previous selection
+        document.querySelectorAll('tr.answer-choice').forEach(row => {
+            row.classList.remove('selected');
+        });
+
+        // Add selection to clicked choice
+        const choiceRow = document.querySelector(`tr.answer-choice[data-choice="${choice}"]`);
+        if (choiceRow) {
+            choiceRow.classList.add('selected');
+
+            // Save to localStorage
+            localStorage.setItem('choice_q' + questionId, choice);
+
+            // Notify parent (if in iframe)
+            if (notify) {
+                notifyParent(choice);
+            }
+        }
+    }
+
+    // Initialize answer choices
+    function initializeChoices() {
+        // Find all answer choice rows (A, B, C, D, E, F, etc.)
+        const choicePattern = /^[A-Z]\.$/;
+        const tables = document.querySelectorAll('table.simple-table');
+
+        tables.forEach(table => {
+            const rows = table.querySelectorAll('tr');
+            rows.forEach(row => {
+                const firstCell = row.querySelector('td:first-child');
+                if (firstCell && choicePattern.test(firstCell.textContent.trim())) {
+                    const choice = firstCell.textContent.trim().replace('.', '');
+                    row.classList.add('answer-choice');
+                    row.setAttribute('data-choice', choice);
+                    row.style.position = 'relative';
+
+                    // Add click handler
+                    row.addEventListener('click', function(e) {
+                        // Don't trigger if clicking inside a link or button
+                        if (e.target.tagName === 'A' || e.target.closest('a')) return;
+
+                        // Toggle selection
+                        if (this.classList.contains('selected')) {
+                            this.classList.remove('selected');
+                            const questionId = getQuestionId();
+                            localStorage.removeItem('choice_q' + questionId);
+                            notifyParent('');
+                        } else {
+                            selectChoice(choice);
+                        }
+                    });
+                }
+            });
+        });
+
+        // Load saved choice after a short delay
+        setTimeout(loadSavedChoice, 100);
+    }
+
+    // Run when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeChoices);
+    } else {
+        initializeChoices();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+
+                    // Notify parent that Submit/Explanation was opened
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'submitOpened',
+                            questionId: getQuestionId()
+                        }, '*');
+                    }
+                } else {
+                    // Notify parent that Submit/Explanation was closed
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'submitClosed',
+                            questionId: getQuestionId()
+                        }, '*');
+                    }
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>

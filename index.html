@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USMLE Step 1 — QBank</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav id="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-icon">U</div>
+            <div class="logo-text">
+                <span class="logo-title">USMLE</span>
+                <span class="logo-subtitle">Step 1 QBank</span>
+            </div>
+        </div>
+        <div class="sidebar-menu">
+            <a class="menu-item active" data-screen="dashboard" onclick="App.navigate('dashboard')">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+                <span>Dashboard</span>
+            </a>
+            <a class="menu-item" data-screen="create" onclick="App.navigate('create')">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+                <span>Create Test</span>
+            </a>
+            <a class="menu-item" data-screen="previous" onclick="App.navigate('previous')">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+                <span>Previous Tests</span>
+            </a>
+            <a class="menu-item" data-screen="performance" onclick="App.navigate('performance')">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                <span>Performance</span>
+            </a>
+            <a class="menu-item" data-screen="search" onclick="App.navigate('search')">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <span>Search</span>
+            </a>
+            <a class="menu-item" data-screen="notebook" onclick="App.navigate('notebook')">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+                <span>Notebook</span>
+            </a>
+        </div>
+        <div class="sidebar-footer">
+            <div class="sidebar-stats">
+                <div class="stat-mini"><span id="sidebar-total">0</span> Questions</div>
+                <div class="stat-mini"><span id="sidebar-used">0</span> Used</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+        <!-- ======================== DASHBOARD ======================== -->
+        <div id="screen-dashboard" class="screen active"></div>
+
+        <!-- ======================== CREATE TEST ======================== -->
+        <div id="screen-create" class="screen"></div>
+
+        <!-- ======================== TEST / QUESTION ======================== -->
+        <div id="screen-test" class="screen"></div>
+
+        <!-- ======================== RESULTS ======================== -->
+        <div id="screen-results" class="screen"></div>
+
+        <!-- ======================== PERFORMANCE ======================== -->
+        <div id="screen-performance" class="screen"></div>
+
+        <!-- ======================== SEARCH ======================== -->
+        <div id="screen-search" class="screen"></div>
+
+        <!-- ======================== PREVIOUS TESTS ======================== -->
+        <div id="screen-previous" class="screen"></div>
+
+        <!-- ======================== NOTEBOOK ======================== -->
+        <div id="screen-notebook" class="screen"></div>
+    </main>
+
+    <!-- Lab Values Modal -->
+    <div id="lab-modal" class="modal-overlay" style="display:none" onclick="if(event.target===this)App.closeLab()">
+        <div class="modal-content lab-modal-content">
+            <div class="modal-header">
+                <h2>Laboratory Reference Values</h2>
+                <button class="modal-close" onclick="App.closeLab()">&times;</button>
+            </div>
+            <div class="lab-body" id="lab-body"></div>
+        </div>
+    </div>
+
+    <!-- Calculator Modal -->
+    <div id="calc-modal" class="modal-overlay" style="display:none" onclick="if(event.target===this)App.closeCalc()">
+        <div class="modal-content calc-modal-content">
+            <div class="modal-header">
+                <h2>Calculator</h2>
+                <button class="modal-close" onclick="App.closeCalc()">&times;</button>
+            </div>
+            <div class="calc-body">
+                <input type="text" id="calc-display" readonly>
+                <div class="calc-grid">
+                    <button onclick="App.calcInput('7')">7</button>
+                    <button onclick="App.calcInput('8')">8</button>
+                    <button onclick="App.calcInput('9')">9</button>
+                    <button class="calc-op" onclick="App.calcInput('/')">/</button>
+                    <button onclick="App.calcInput('4')">4</button>
+                    <button onclick="App.calcInput('5')">5</button>
+                    <button onclick="App.calcInput('6')">6</button>
+                    <button class="calc-op" onclick="App.calcInput('*')">×</button>
+                    <button onclick="App.calcInput('1')">1</button>
+                    <button onclick="App.calcInput('2')">2</button>
+                    <button onclick="App.calcInput('3')">3</button>
+                    <button class="calc-op" onclick="App.calcInput('-')">−</button>
+                    <button onclick="App.calcInput('0')">0</button>
+                    <button onclick="App.calcInput('.')">.</button>
+                    <button class="calc-eq" onclick="App.calcEval()">=</button>
+                    <button class="calc-op" onclick="App.calcInput('+')">+</button>
+                    <button class="calc-clear" onclick="App.calcClear()" style="grid-column:span 4">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notes Modal -->
+    <div id="notes-modal" class="modal-overlay" style="display:none" onclick="if(event.target===this)App.closeNotes()">
+        <div class="modal-content notes-modal-content">
+            <div class="modal-header">
+                <h2>Notes — Question <span id="notes-qid"></span></h2>
+                <button class="modal-close" onclick="App.closeNotes()">&times;</button>
+            </div>
+            <div class="notes-body">
+                <textarea id="notes-textarea" placeholder="Write your notes here..."></textarea>
+                <button class="btn btn-primary" onclick="App.saveNote()" style="margin-top:12px">Save Note</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="topics.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

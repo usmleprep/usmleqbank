@@ -1,0 +1,1784 @@
+
+<style>
+    * {
+        box-sizing: border-box !important;
+    }
+
+    body {
+        font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        line-height: 1.9 !important;
+        color: #1f1f1f !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 8px 16px 16px 16px !important;
+        background: #ffffff !important;
+        font-size: 16.5px !important;
+    }
+
+    p {
+        margin-bottom: 20px !important;
+        font-size: 16.5px !important;
+        line-height: 1.95 !important;
+        color: #1f1f1f !important;
+        font-weight: 400 !important;
+    }
+
+    strong, b {
+        color: #1a73e8 !important;
+        font-weight: 700 !important;
+        background: rgba(26, 115, 232, 0.08) !important;
+        padding: 2px 6px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Details/Summary (collapsible sections) */
+    details {
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
+        border-radius: 8px !important;
+        padding: 24px 28px !important;
+        margin: 24px 0 !important;
+        border: none;
+        box-shadow: none !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    details:hover {
+        border-color: #1a73e8 !important;
+        box-shadow: none !important;
+        transform: translateY(-2px) !important;
+    }
+
+    details[open] {
+        background: #ffffff !important;
+        border-color: #1a73e8 !important;
+        box-shadow: none !important;
+    }
+
+    summary {
+        cursor: pointer !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        font-size: 20px !important;
+        padding: 16px 24px !important;
+        border-radius: 8px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        display: flex !important;
+        align-items: center !important;
+        user-select: none !important;
+        box-shadow: none !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    summary:hover {
+        background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%) !important;
+        transform: translateX(6px) scale(1.02) !important;
+        box-shadow: none !important;
+    }
+
+    summary:active {
+        transform: translateX(4px) scale(0.99) !important;
+    }
+
+    summary::marker {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 1.3em !important;
+    }
+
+    summary strong {
+        background: rgba(255, 255, 255, 0.2) !important;
+        color: #ffffff !important;
+        padding: 4px 12px !important;
+        border-radius: 8px !important;
+        margin-left: 8px !important;
+        font-size: 19px !important;
+        letter-spacing: 1px !important;
+    }
+
+    /* Tables - Premium Design */
+    table {
+        width: 100% !important;
+        border-collapse: separate !important;
+        border-spacing: 0 !important;
+        margin: 28px 0 !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: #ffffff !important;
+    }
+
+    table.simple-table {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+    }
+
+    table tr {
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        position: relative !important;
+    }
+
+    table tr:nth-child(odd) {
+        background: rgba(248, 249, 250, 0.5) !important;
+    }
+
+    table tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    table tr:hover {
+        background: linear-gradient(90deg, #e8f0fe 0%, #f1f8ff 100%) !important;
+        transform: translateX(4px) scale(1.01) !important;
+        box-shadow: none !important;
+        z-index: 1 !important;
+    }
+
+    table td {
+        padding: 18px 24px !important;
+        border-bottom: 1px solid rgba(232, 234, 237, 0.6) !important;
+        font-size: 16.5px !important;
+        line-height: 1.7 !important;
+        color: #1f1f1f !important;
+        vertical-align: middle !important;
+    }
+
+    table tr:last-child td {
+        border-bottom: none !important;
+    }
+
+    /* First column (A, B, C, D, E) */
+    table td:first-child {
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        width: 52px !important;
+        text-align: center !important;
+        font-size: 18px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+        border-right: 3px solid #1557b0 !important;
+        position: relative !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    table tr:hover td:first-child {
+        background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%) !important;
+        box-shadow: none !important;
+    }
+
+    /* Second column (content) */
+    table td:nth-child(2) {
+        font-weight: 500 !important;
+        padding-left: 28px !important;
+    }
+
+    /* Third column (empty - hide it) */
+    table td:last-child:empty {
+        display: none !important;
+    }
+
+    /* Lists */
+    ul, ol {
+        margin: 16px 0 !important;
+        padding-left: 32px !important;
+    }
+
+    li {
+        margin: 10px 0 !important;
+        line-height: 1.8 !important;
+        color: #1f1f1f !important;
+    }
+
+    ul.bulleted-list li {
+        position: relative !important;
+        padding-left: 8px !important;
+    }
+
+    ul.toggle {
+        list-style: none !important;
+        padding-left: 0 !important;
+    }
+
+    /* Links */
+    a {
+        color: #1a73e8 !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        border-bottom: 2px solid transparent !important;
+        transition: all 0.2s !important;
+    }
+
+    a:hover {
+        border-bottom-color: #1a73e8 !important;
+        background: rgba(26,115,232,0.08) !important;
+        padding: 2px 4px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Images & Media */
+    img, video {
+        max-width: none !important;
+        height: auto !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
+        margin: 24px 0 !important;
+        display: block !important;
+        border: none !important;
+    }
+
+    img:hover, video:hover {
+        box-shadow: none !important;
+        border-color: #1a73e8 !important;
+    }
+
+    /* Code blocks (if any) */
+    code {
+        background: #f1f3f4 !important;
+        padding: 2px 8px !important;
+        border-radius: 8px !important;
+        font-family: 'Courier New', monospace !important;
+        font-size: 14px !important;
+        color: #d93025 !important;
+    }
+
+    pre {
+        background: #f8f9fa !important;
+        padding: 8px 16px 16px 16px !important;
+        border-radius: 8px !important;
+        overflow-x: auto !important;
+        border-left: 4px solid #1a73e8 !important;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+        color: #1a73e8 !important;
+        font-weight: 700 !important;
+        margin-top: 24px !important;
+        margin-bottom: 16px !important;
+        line-height: 1.4 !important;
+    }
+
+    h1 { font-size: 32px !important; }
+    h2 { font-size: 26px !important; }
+    h3 { font-size: 22px !important; }
+    h4 { font-size: 19px !important; }
+
+    /* Blockquotes */
+    blockquote {
+        border-left: 4px solid #1a73e8 !important;
+        padding-left: 20px !important;
+        margin: 20px 0 !important;
+        font-style: italic !important;
+        color: #5f6368 !important;
+        background: #f8f9fa !important;
+        padding: 16px 20px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Horizontal Rule */
+    hr {
+        border: none !important;
+        height: 2px !important;
+        background: linear-gradient(to right, transparent, #1a73e8, transparent) !important;
+        margin: 32px 0 !important;
+    }
+
+    /* Selection */
+    ::selection {
+        background: #e8f0fe !important;
+        color: #1a73e8 !important;
+    }
+
+    /* Highlighter styles */
+    .highlighted {
+        background-color: #ffeb3b !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .highlighter-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        font-size: 20px !important;
+        padding: 0 8px !important;
+        margin-left: 8px !important;
+        transition: transform 0.2s ease !important;
+        vertical-align: middle !important;
+    }
+
+    .highlighter-btn:hover {
+        transform: scale(1.2) !important;
+    }
+
+    .highlighter-btn.active {
+        transform: scale(1.1) !important;
+        filter: brightness(1.2) !important;
+    }
+
+    .highlighter-mode-active {
+        cursor: text !important;
+    }
+
+
+    /* Right padding to avoid overlap with sidebar buttons */
+    body {
+        padding-right: 50px !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 16px !important;
+        }
+    }
+
+</style>
+
+
+
+
+<details open>
+<summary><strong>53</strong><button class="bionic-reading-btn" onclick="toggleBionicReading(event)" title="Toggle Bionic Reading (Ctrl+B)"><span id="bionicIcon">👁️</span></button><button class="highlighter-btn" onclick="toggleHighlighter(event)" title="Toggle Highlighter (Ctrl+H)"><span id="highlighterIcon">🖊️</span></button></summary>
+<p class="" id="1970de40-ad33-4358-aead-db96732fb56d">A 32-year-old woman comes to
+                                        the office due to a 2-month history of dull pain in the right upper quadrant. 
+                                        The pain is worse with deep inspiration.  The patient has no fever or weight
+                                        loss.  She drinks alcohol socially but does not use tobacco or recreational
+                                        drugs.  The patient has no significant family history of cancer.  Temperature is
+                                        37.1 C (98.8 F), blood pressure is 130/78 mm Hg, pulse is 82/min, and
+                                        respirations are 16/min.  BMI is 36 kg/m2.  There is no jaundice.  On
+                                        examination, mild hepatomegaly is noted; no ascites is present.  Abdominal
+                                        ultrasonography reveals a solitary 4.5-cm mass in the right lobe of the liver. 
+                                        The patient undergoes surgical resection.  On gross examination, the mass is
+                                        soft and smooth with a tan appearance.  On cut surface, areas of hemorrhage and
+                                        necrosis are noted.  Microscopic examination shows cells that are larger than
+                                        normal hepatocytes and have small, regular nuclei without mitoses.  There are
+                                        scattered prominent arteries; no portal tracts or interlobular bile ducts are
+                                        present.  Which of the following is the most likely diagnosis?</p>
+<table class="simple-table" id="f09f428f-22d9-49c9-83a8-1335a25c69f8">
+<tbody>
+<tr id="dff02f8b-67f8-451e-bd37-0dcc498c0d85">
+<td class="" id="LOQ}">A.</td>
+<td class="" id="BKzF">Focal nodular hyperplasia</td>
+<td class="" id="oSK="></td>
+</tr>
+<tr id="3491a08a-5d5a-4e4c-ae60-5ff28bc48f84">
+<td class="" id="LOQ}">B.</td>
+<td class="" id="BKzF">Hepatocellular adenoma</td>
+<td class="" id="oSK="></td>
+</tr>
+<tr id="0d8ccb38-7cc2-47d3-9129-bb2d2874cdf5">
+<td class="" id="LOQ}">C.</td>
+<td class="" id="BKzF">Hepatocellular carcinoma</td>
+<td class="" id="oSK="></td>
+</tr>
+<tr id="116d905f-5c61-4137-8621-98c3fd9b19ee">
+<td class="" id="LOQ}">D.</td>
+<td class="" id="BKzF">Pyogenic abscess</td>
+<td class="" id="oSK="></td>
+</tr>
+<tr id="69fd63b7-a91e-4f7b-9431-c81628b5ea19">
+<td class="" id="LOQ}">E.</td>
+<td class="" id="BKzF">Solitary liver metastasis</td>
+<td class="" id="oSK="></td>
+</tr>
+</tbody>
+</table>
+<ul class="toggle" id="c5a2d642-73c3-43d7-a7ed-2fe9b2198766">
+<li>
+<details>
+<summary>Submit</summary>
+<table class="simple-table" id="9f5d007f-1641-40bf-96df-a79e1958a4d9">
+<tbody>
+<tr id="0fc99dd7-4271-4565-8773-eb518d5f75a5">
+<td class="" id="eAME">A.</td>
+<td class="" id="fTCL">Focal nodular hyperplasia (35%)</td>
+<td class="" id="V[I~"></td>
+</tr>
+<tr id="a3b0f0e3-c87a-4bbe-8fcf-43549fde1a0d">
+<td class="" id="eAME">B.</td>
+<td class="" id="fTCL">Hepatocellular adenoma (46%)</td>
+<td class="" id="V[I~"></td>
+</tr>
+<tr id="d07414be-9735-40cd-81c0-5aca37c9070c">
+<td class="" id="eAME">C.</td>
+<td class="" id="fTCL">Hepatocellular carcinoma (8%)</td>
+<td class="" id="V[I~"></td>
+</tr>
+<tr id="e5622c9c-8ca1-4627-af6d-d4f798e17953">
+<td class="" id="eAME">D.</td>
+<td class="" id="fTCL">Pyogenic abscess (4%)</td>
+<td class="" id="V[I~"></td>
+</tr>
+<tr id="06b0b528-32b6-4081-aa74-c3d2d4f88654">
+<td class="" id="eAME">E.</td>
+<td class="" id="fTCL">Solitary liver metastasis (4%)</td>
+<td class="" id="V[I~"></td>
+</tr>
+</tbody>
+</table>
+<p class="" id="179ebfe2-f999-4c15-8b24-4ffef3732a46">Omitted</p>
+<p class="" id="44210201-aa6a-4ee8-845a-02e64c03f1a9">Correct answer B
+                                                </p>
+<p class="" id="45bf3f9f-9cff-461e-b883-ff9b13f33199">46%Answered
+                                                    correctly</p>
+<p class="" id="08784983-08b5-4212-8812-8fa05d88b767">03 secsTime Spent
+                                                </p>
+<p class="" id="ce42a435-5a89-4246-93b1-f37aea7a6481">2024Version</p>
+<ul class="bulleted-list" id="48d76a88-ec49-4049-836b-7acc574dceba">
+<li style="list-style-type:disc">Explanation</li>
+</ul>
+<ul class="bulleted-list" id="5734784d-f79c-48ce-9a23-2cbd8c6c4963">
+<li style="list-style-type:disc"></li>
+</ul>
+<table class="simple-table" id="faa98489-c34e-4efe-86fe-2e1f28a0750e">
+<tbody>
+<tr id="2b398f8f-1c6c-4d41-8b88-6f2a5f9a3d89">
+<td class="" id="I[hk">Hepatocellular adenoma</td>
+<td class="" id="VRGd"></td>
+</tr>
+<tr id="205ea830-4124-441d-bf1f-3037df5e4731">
+<td class="" id="I[hk">Epidemiology</td>
+<td class="" id="VRGd">• Uncommon, benign liver tumor<br/>•
+                                                                Young women<br/>• Associated with estrogen exposure
+                                                                (eg, OCPs) &amp; anabolic steroid use<br/></td>
+</tr>
+<tr id="67251ee9-0b35-4d3d-bdb8-b68727e04440">
+<td class="" id="I[hk">Clinical</td>
+<td class="" id="VRGd">• Often asymptomatic<br/>• Abdominal
+                                                                pain (due to hepatomegaly, bleeding, or necrosis)<br/>•
+                                                                Life-threatening intraabdominal bleeding (due to tumor
+                                                                rupture)<br/></td>
+</tr>
+<tr id="a12157b8-7c8f-4ed5-b968-8ee1eb83e936">
+<td class="" id="I[hk">Pathology</td>
+<td class="" id="VRGd">• Solitary, well-circumscribed,
+                                                                unencapsulated liver mass<br/>• Sheets or plates of
+                                                                benign hepatocytes<br/>• Prominent arteries without
+                                                                portal tracts or interlobular bile ducts<br/>•
+                                                                Hemorrhage &amp; necrosis<br/></td>
+</tr>
+<tr id="c7303290-f1f6-4b78-a99d-55a54cdd96f6">
+<td class="" id="I[hk">OCPs = oral contraceptive pills.</td>
+<td class="" id="VRGd"></td>
+</tr>
+</tbody>
+</table>
+<p class="" id="08d25702-7a56-4586-9eb4-2cdf943617c2">This
+                                                    patient's pathologic features are consistent with
+                                                    hepatocellular adenoma (HCA), an uncommon benign liver tumor found
+                                                    predominantly in young women.  It is associated with estrogen
+                                                    exposure (eg, oral contraceptive pills), anabolic steroid use, and
+                                                    obesity.  Pathogenesis is thought to be hormonally mediated but is
+                                                    not fully understood.</p>
+<p class="" id="6e5248bd-2f90-4600-92a0-fdf406023483">Macroscopically,
+                                                    HCA is typically a well-circumscribed, solid, solitary,
+                                                    unencapsulated mass arising in the right lobe.  The cut surface is
+                                                    often soft and tan with areas of hemorrhage and necrosis. 
+                                                    Histologically, HCA is composed of sheets or plates of benign
+                                                    hepatocytes.  Cells may be larger than normal hepatocytes but have
+                                                    small, uniform nuclei (ie, no cytologic atypia) and rare mitoses. 
+                                                    Normal hepatic architecture is absent; instead, there are prominent
+                                                    arteries without normal portal tracts or interlobular bile ducts. 
+                                                    The uninvolved liver is usually noncirrhotic.</p>
+<p class="" id="019c2594-ffd8-42e6-b56b-dbd7441c8010">Patients may be
+                                                    asymptomatic (ie, diagnosed incidentally by imaging) or have
+                                                    epigastric or right upper quadrant pain (due to hepatomegaly or
+                                                    intralesional bleeding or necrosis).  Because HCA is an
+                                                    unencapsulated and vascular lesion, there is risk for rupture with
+                                                    life-threatening intraabdominal bleeding (eg, severe abdominal pain,
+                                                    hypotension).  For this reason, large or symptomatic HCAs are
+                                                    usually surgically resected.</p>
+<p class="" id="198916b6-917c-4a0b-82d5-d3ff095d6693">(Choice A)  Focal
+                                                    nodular hyperplasia, a nonneoplastic liver lesion, occurs primarily
+                                                    in young women.  Although typically a well-circumscribed, solitary
+                                                    mass, it characteristically has a central stellate scar.</p>
+<p class="" id="925e45d1-c765-4640-89f6-c5418ae2fc72">(Choice C) 
+                                                    Hepatocellular carcinoma (HCC) typically arises in older patients
+                                                    with underlying liver disease and cirrhosis.  The macroscopic
+                                                    appearance can vary, but histopathology often shows atypical
+                                                    hepatocytes with increased mitoses.  Although malignant
+                                                    transformation of HCA occasionally occurs, this patient's
+                                                    histopathology is not suggestive of HCC.</p>
+<p class="" id="588096e8-6440-4d6c-8e7b-ea94f39c4cf7">(Choice D) 
+                                                    Pyogenic hepatic abscess commonly results from biliary tract
+                                                    infection or portal vein pyemia (eg, bowel leakage).  Although it
+                                                    causes abdominal pain, patients are typically febrile.  Pathologic
+                                                    examination often shows a soft, yellow-green, necrotic lesion
+                                                    composed of neutrophils and debris.</p>
+<p class="" id="b0f65450-feaf-43c0-beae-f6bdf059573a">(Choice E)  The
+                                                    liver is a common site of metastasis in patients with a history of
+                                                    malignancy (eg, colorectal).  Histopathology of metastases may
+                                                    resemble that of the primary tumor (eg, atypical epithelial cells
+                                                    forming infiltrative glands); mitoses are common.</p>
+<p class="" id="e13e4249-7bcf-4ed1-8297-1a76fe1d4383">Educational
+                                                    objective:</p>
+<p class="" id="d0df9a25-4080-4744-a0c8-3763ef09762e">Hepatocellular
+                                                    adenomas are benign liver tumors found predominantly in young women
+                                                    with a history of oral contraceptive use.  They are typically
+                                                    solitary, unencapsulated masses composed of benign hepatocytes and
+                                                    prominent arteries without normal portal tracts.  Patients may be
+                                                    asymptomatic, have abdominal pain, or have intraabdominal bleeding
+                                                    due to tumor rupture.</p>
+<p class="" id="4f443347-81a4-4877-9730-5017d22f2063">Pathology</p>
+<p class="" id="5b6320fe-da29-4d6b-8ddd-b89ec83cfa55">Subject</p>
+<p class="" id="92e320c5-2162-439e-b2d0-d436585f86c7">Gastrointestinal
+                                                    &amp; Nutrition</p>
+<p class="" id="82935efa-c3b8-4839-b1d5-3ae279b73ace">System</p>
+<p class="" id="b542c989-be2c-4241-936c-e0b23919219a">Hepatic adenomas
+                                                </p>
+<p class="" id="1fff2265-9a9c-4562-8313-3096af16b5e9">Topic</p>
+<p class="" id="11b9b002-6e4d-493a-b65a-40cbf52c09bc">Copyright ©
+                                                    UWorld. All rights reserved.</p>
+<p class="" id="8d471a07-c0db-4b78-8507-32fdfd52c629">My Notebook</p>
+<p class="" id="fb41b89e-3f4b-466e-a7d4-4846dbdc62d7">0</p>
+<p class="" id="66f63d50-dcad-4e0b-a29b-b55c41b352a1">Flashcards</p>
+<p class="" id="79fb9ba6-d021-48c9-a906-8265301d6d2d">Feedback</p>
+<p class="" id="81be6125-ba4d-463d-a79d-e394df66255d">Suspend</p>
+<p class="" id="71c1e716-41b1-49df-8b5f-66e5ef8343da">End Block</p>
+<p class="" id="89a9cbfb-76b3-4dd3-8c49-9542fd930195">✨Done</p>
+<p class="" id="8f1ed86e-5d2b-4b1d-81dc-66565d78ebaf">Exhibit Display
+                                                </p>
+<figure class="image" id="44a4285f-db55-483f-b96e-fb1f4c7a239e"><a href="https://lh7-us.googleusercontent.com/SqkfK8DzaD0WP4tIgE_sKH4R2VeSXCg-Gm0o1nGYBQeeME7VzTvFbv1akzhfsIgKOVAHgBRXNUTZ0oAqD4ZihKP6bLPpgovLvKg7Jw3dRU4V57BZ2nXmhH7ry9t6egUF4FaByIIj6CQG-AZrq0M8p0k"><img loading="lazy" src="https://lh7-us.googleusercontent.com/SqkfK8DzaD0WP4tIgE_sKH4R2VeSXCg-Gm0o1nGYBQeeME7VzTvFbv1akzhfsIgKOVAHgBRXNUTZ0oAqD4ZihKP6bLPpgovLvKg7Jw3dRU4V57BZ2nXmhH7ry9t6egUF4FaByIIj6CQG-AZrq0M8p0k" style="width:602px"/></a>
+</figure>
+<p class="" id="7955fb2c-7848-4bf1-9ef9-0fac2effba5a">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="dfe508bd-0d2b-495d-a908-766e984d0a16">ExistingMy
+                                                    Notebook</p>
+<p class="" id="9f501be6-56ec-4763-a9b3-cff50e78e401">Exhibit Display
+                                                </p>
+<figure class="image" id="76bbad2a-5348-4e5c-9c8b-f3b5320f5fc0"><a href="https://lh7-us.googleusercontent.com/bn62h9TAEmEe3Lv3W934RxxADeQmLgzCda_r9cXq2eGAeFZ9WHfmT5HNpe4NL1OAD8LCaaj_2hh0NnlcBOirVzPVf74EY_qlcBP9TBGJY1VUq6Mk4xQAvUAbNI6-kB23poCAbevS2Ey3Ltl0GELdi8U"><img loading="lazy" src="https://lh7-us.googleusercontent.com/bn62h9TAEmEe3Lv3W934RxxADeQmLgzCda_r9cXq2eGAeFZ9WHfmT5HNpe4NL1OAD8LCaaj_2hh0NnlcBOirVzPVf74EY_qlcBP9TBGJY1VUq6Mk4xQAvUAbNI6-kB23poCAbevS2Ey3Ltl0GELdi8U" style="width:602px"/></a>
+</figure>
+<p class="" id="aeef43fe-9525-4b1d-bc20-942a315baaaf">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="26527ef4-72c6-4837-92ec-2fd878998faa">ExistingMy
+                                                    Notebook</p>
+<p class="" id="dfb7941c-3d25-4b0a-8cd7-99806234f966">Exhibit Display
+                                                </p>
+<figure class="image" id="29ee34c3-5b20-410e-a229-8887fca85e9c"><a href="https://lh7-us.googleusercontent.com/42E7qWa1wVcXPgAMNv8tlBK8wzV8XKr6N6mUB4VCfEw1OgWNdDwaX4YFWXLh2aBKwPbAMxQvjYjjMZWxBKAzmJNnc1K2Fw00ExD_OcT6xVSj3d_5V04vhxxcMtsnRj_bVccJIHnknBGUsSUHj8GHglc"><img loading="lazy" src="https://lh7-us.googleusercontent.com/42E7qWa1wVcXPgAMNv8tlBK8wzV8XKr6N6mUB4VCfEw1OgWNdDwaX4YFWXLh2aBKwPbAMxQvjYjjMZWxBKAzmJNnc1K2Fw00ExD_OcT6xVSj3d_5V04vhxxcMtsnRj_bVccJIHnknBGUsSUHj8GHglc" style="width:602px"/></a>
+</figure>
+<p class="" id="67c14777-96dd-4278-bf71-19ba9703194b">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="5cdbc50f-85ad-47c0-a7cc-52c758d805c7">ExistingMy
+                                                    Notebook</p>
+<p class="" id="e1427c64-d480-4f4b-a541-0e17558d58fa">Exhibit Display
+                                                </p>
+<figure class="image" id="db1edaf5-5d8f-4e84-ab3c-7915dec1a451"><a href="https://lh7-us.googleusercontent.com/YMmfYksb2w_mVEQeUGsbdbrvkcAUSKoLjCvUHr8jrd6xi4VDOOdAhodNohHlaYKZBFNUGkc8FiybwJYOjvgJUJb-J61zx8fbAHcIURK31yhj_M9obgXPJfpacb4dZ4WxQIoKxK8Se2rUnZaZngI11aY"><img loading="lazy" src="https://lh7-us.googleusercontent.com/YMmfYksb2w_mVEQeUGsbdbrvkcAUSKoLjCvUHr8jrd6xi4VDOOdAhodNohHlaYKZBFNUGkc8FiybwJYOjvgJUJb-J61zx8fbAHcIURK31yhj_M9obgXPJfpacb4dZ4WxQIoKxK8Se2rUnZaZngI11aY" style="width:602px"/></a>
+</figure>
+<p class="" id="9078cc5d-1a3e-4ef8-93ad-0d433b17f968">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="bdf5a379-ff4a-45b3-9cf4-5904b2cdefe6">ExistingMy
+                                                    Notebook</p>
+<p class="" id="2520bb7b-3b65-4a86-915e-ff53e77be7e7">Exhibit Display
+                                                </p>
+<figure class="image" id="d4c93678-3c16-4cd8-be9d-44ed2343a2f6"><a href="https://lh7-us.googleusercontent.com/ka5dT81d5qETJKQbgLaXDg4PqpbDxxJMGgBg71mLrKmErFdRIQBZAzCtLjDQIRiqkt7BQu34KiKo_aTzuB7LTmYrsTVXeC6GiuIihM-XeZ3qNDHmiFHdkPhyk5M7xGoTRHqmqUaJPyVjUxsch7E-QYY"><img loading="lazy" src="https://lh7-us.googleusercontent.com/ka5dT81d5qETJKQbgLaXDg4PqpbDxxJMGgBg71mLrKmErFdRIQBZAzCtLjDQIRiqkt7BQu34KiKo_aTzuB7LTmYrsTVXeC6GiuIihM-XeZ3qNDHmiFHdkPhyk5M7xGoTRHqmqUaJPyVjUxsch7E-QYY" style="width:602px"/></a>
+</figure>
+<p class="" id="3118645b-bebf-45d2-a7ec-00a338eaaed0">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="c2b03fd7-8465-4452-be79-3abbd3302ad7">ExistingMy
+                                                    Notebook</p>
+<p class="" id="66809fa3-1f45-4311-b95a-284f073e1270">Exhibit Display
+                                                </p>
+<figure class="image" id="94951546-57f5-463e-b405-c4c1620dea14"><a href="https://lh7-us.googleusercontent.com/kjoFEjgo3pPrAKYFHQMCbho_ozGLDFplkkZAkD1IQa8Oy6836DoxpuMK3rjnqNdYcK-bNAoVVns2k9UmpWCrzwd2Cjyf0V6tf2-AY-kPGG_BwnPgK37-g0oeVMzBj7ai9kIfC2IYMXksoEPfYAXyX9s"><img loading="lazy" src="https://lh7-us.googleusercontent.com/kjoFEjgo3pPrAKYFHQMCbho_ozGLDFplkkZAkD1IQa8Oy6836DoxpuMK3rjnqNdYcK-bNAoVVns2k9UmpWCrzwd2Cjyf0V6tf2-AY-kPGG_BwnPgK37-g0oeVMzBj7ai9kIfC2IYMXksoEPfYAXyX9s" style="width:602px"/></a>
+</figure>
+<p class="" id="b0c5b9f7-9d4c-410b-a2da-37d26cb66e9f">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="9e31eeff-817c-465e-b779-6a1c6558bd5f">ExistingMy
+                                                    Notebook</p>
+<p class="" id="b81d8c70-c469-4ce9-a5c4-83d9863cb55d">Exhibit Display
+                                                </p>
+<figure class="image" id="2087b28a-6bd9-4437-bd07-beb4f9642b3e"><a href="https://lh7-us.googleusercontent.com/JE18OKEB-fdxUB8v6AkkUDdvkEH5HZKQVC_gvOAjOR1lxgxXGKkCC6hJsSEWCcGY6_AucI51_8dN46jAHy1MLFAtBv53T_33Jrdyq4_o1TFzORyOUerkYvTW-Bz5cnuqVbsCYczcfqnARSi6LUk1NeE"><img loading="lazy" src="https://lh7-us.googleusercontent.com/JE18OKEB-fdxUB8v6AkkUDdvkEH5HZKQVC_gvOAjOR1lxgxXGKkCC6hJsSEWCcGY6_AucI51_8dN46jAHy1MLFAtBv53T_33Jrdyq4_o1TFzORyOUerkYvTW-Bz5cnuqVbsCYczcfqnARSi6LUk1NeE" style="width:602px"/></a>
+</figure>
+<p class="" id="377414d0-4a41-4caa-9e19-89a2ae43dbe6">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="12d3c03b-ffa3-46c5-91a9-ecf09beb3da3">ExistingMy
+                                                    Notebook</p>
+</details>
+</li>
+</ul>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+.bionic-reading-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.bionic-reading-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.bionic-reading-btn.active {
+    background: rgba(52, 168, 83, 0.4);
+    border-color: rgba(52, 168, 83, 0.6);
+}
+
+.bionic-reading-btn.active:hover {
+    background: rgba(52, 168, 83, 0.5);
+}
+
+summary {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+    /* Highlighter styles */
+    .highlighted {
+        background-color: #ffeb3b !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .highlighter-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        font-size: 20px !important;
+        padding: 0 8px !important;
+        margin-left: 8px !important;
+        transition: transform 0.2s ease !important;
+        vertical-align: middle !important;
+    }
+
+    .highlighter-btn:hover {
+        transform: scale(1.2) !important;
+    }
+
+    .highlighter-btn.active {
+        transform: scale(1.1) !important;
+        filter: brightness(1.2) !important;
+    }
+
+    .highlighter-mode-active {
+        cursor: text !important;
+    }
+
+
+    /* Right padding to avoid overlap with sidebar buttons */
+    body {
+        padding-right: 50px !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 16px !important;
+        }
+    }
+
+
+    
+
+
+    
+
+    /* Adjust table padding to make room for radio button */
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+    /* Clickable Answer Choices */
+    table tr.answer-choice {
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+    }
+
+    table tr.answer-choice:hover {
+        background: #f8f9fa !important;
+    }
+
+    table tr.answer-choice td:first-child {
+        position: relative !important;
+        padding-left: 35px !important;
+    }
+
+    table tr.answer-choice td:first-child::before {
+        content: '';
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        border: 2px solid #999;
+        border-radius: 50%;
+        background: white;
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+    }
+
+    table tr.answer-choice.selected td:first-child::before {
+        border-color: #1a73e8;
+        border-width: 5px;
+    }
+
+    table tr.answer-choice.selected {
+        background: #e8f4ff !important;
+    }
+
+    table tr.answer-choice.selected td:first-child {
+        color: #1a73e8 !important;
+        font-weight: 600 !important;
+    }
+
+
+    
+
+
+    /* Answer Validation Styles */
+    tr.answer-choice.answer-correct {
+        background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%) !important;
+        border: 3px solid #28a745 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-correct td {
+        color: #155724 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-correct td:first-child::before {
+        border-color: #28a745 !important;
+        background: #28a745 !important;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    tr.answer-choice.answer-incorrect {
+        background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%) !important;
+        border: 3px solid #dc3545 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-incorrect td {
+        color: #721c24 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-incorrect td:first-child::before {
+        border-color: #dc3545 !important;
+        background: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+    }
+
+
+    /* Answer Validation Styles */
+    tr.answer-choice.answer-correct {
+        background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%) !important;
+        border: 3px solid #28a745 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-correct td {
+        color: #155724 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-correct td:first-child::before {
+        border-color: #28a745 !important;
+        background: #28a745 !important;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    tr.answer-choice.answer-incorrect {
+        background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%) !important;
+        border: 3px solid #dc3545 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-incorrect td {
+        color: #721c24 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-incorrect td:first-child::before {
+        border-color: #dc3545 !important;
+        background: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+    }
+
+</style>
+
+
+
+<script>
+let bionicEnabled = false;
+const originalContent = {};
+
+function toggleBionicReading(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    bionicEnabled = !bionicEnabled;
+    const btn = document.querySelector('.bionic-reading-btn');
+    const icon = document.getElementById('bionicIcon');
+
+    if (bionicEnabled) {
+        btn.classList.add('active');
+        icon.textContent = '✅';
+        applyBionicReading();
+    } else {
+        btn.classList.remove('active');
+        icon.textContent = '👁️';
+        restoreOriginalText();
+    }
+}
+
+function applyBionicReading() {
+    // Seleciona todos os elementos de texto, EXCETO summary e buttons
+    const textElements = document.querySelectorAll('p:not(summary p):not(button p), td:not(summary td):not(button td), li:not(summary li):not(button li)');
+
+    textElements.forEach((element, index) => {
+        // Ignora elementos que contêm outros elementos complexos
+        if (element.querySelector('p, td, li, h1, h2, h3, h4, h5, h6, button, summary')) {
+            return;
+        }
+
+        // Ignora se o elemento está dentro de um summary ou button
+        if (element.closest('summary') || element.closest('button') || element.closest('.bionic-reading-btn')) {
+            return;
+        }
+
+        // Salva o conteúdo original
+        if (!originalContent[index]) {
+            originalContent[index] = {
+                element: element,
+                html: element.innerHTML
+            };
+        }
+
+        // Aplica Bionic Reading
+        const bionicText = convertToBionic(element.textContent);
+        element.innerHTML = bionicText;
+    });
+}
+
+function restoreOriginalText() {
+    // Restaura o conteúdo original
+    Object.values(originalContent).forEach(item => {
+        item.element.innerHTML = item.html;
+    });
+}
+
+function convertToBionic(text) {
+    // Divide o texto em palavras, mantendo pontuação
+    const words = text.split(/(\s+|[.,;:!?()""''\-–—])/);
+
+    const bionicWords = words.map(word => {
+        // Ignora espaços e pontuação
+        if (word.match(/^\s+$/) || word.match(/^[.,;:!?()""''\-–—]+$/)) {
+            return word;
+        }
+
+        // Ignora palavras muito curtas (1-2 letras)
+        if (word.length <= 2) {
+            return word;
+        }
+
+        // Determina quantas letras deixar em negrito (metade da palavra, arredondado para cima)
+        const boldLength = Math.ceil(word.length / 2);
+
+        // Separa a parte em negrito da parte normal
+        const boldPart = word.substring(0, boldLength);
+        const normalPart = word.substring(boldLength);
+
+        // Retorna com a primeira parte em negrito
+        return `<strong style="font-weight: 700 !important; color: inherit !important; background: none !important; padding: 0 !important;">${boldPart}</strong>${normalPart}`;
+    });
+
+    return bionicWords.join('');
+}
+
+// Adiciona atalho de teclado (Ctrl+B ou Cmd+B)
+document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+        e.preventDefault();
+        toggleBionicReading();
+    }
+});
+</script>
+
+<script>
+    let highlighterActive = false;
+    let questionHighlights = {};
+
+    // Get question ID from the first summary strong tag
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Load highlights from localStorage
+    function loadHighlights() {
+        const questionId = getQuestionId();
+        const stored = localStorage.getItem('highlights_' + questionId);
+        if (stored) {
+            questionHighlights = JSON.parse(stored);
+            applyStoredHighlights();
+        }
+    }
+
+    // Save highlights to localStorage
+    function saveHighlights() {
+        const questionId = getQuestionId();
+        localStorage.setItem('highlights_' + questionId, JSON.stringify(questionHighlights));
+    }
+
+    // Apply stored highlights
+    function applyStoredHighlights() {
+        Object.keys(questionHighlights).forEach(key => {
+            const element = document.querySelector(`[data-highlight-id="${key}"]`);
+            if (element && questionHighlights[key]) {
+                element.classList.add('highlighted');
+            }
+        });
+    }
+
+    // Toggle highlighter mode
+    function toggleHighlighter(event) {
+        event.stopPropagation();
+        highlighterActive = !highlighterActive;
+
+        const btn = event.target.closest('.highlighter-btn');
+        const icon = btn.querySelector('#highlighterIcon');
+
+        if (highlighterActive) {
+            btn.classList.add('active');
+            icon.textContent = '🖍️';
+            document.body.classList.add('highlighter-mode-active');
+        } else {
+            btn.classList.remove('active');
+            icon.textContent = '🖊️';
+            document.body.classList.remove('highlighter-mode-active');
+        }
+    }
+
+    // Clear all highlights for this question
+    function clearHighlights() {
+        const questionId = getQuestionId();
+        questionHighlights = {};
+        localStorage.removeItem('highlights_' + questionId);
+        document.querySelectorAll('.highlighted').forEach(el => {
+            el.classList.remove('highlighted');
+        });
+    }
+
+    // Handle text selection and highlighting
+    document.addEventListener('mouseup', function(e) {
+        if (!highlighterActive) return;
+
+        const selection = window.getSelection();
+        if (!selection.toString().trim()) return;
+
+        const range = selection.getRangeAt(0);
+        const container = range.commonAncestorContainer;
+
+        // Only highlight text in paragraphs, not in buttons or other elements
+        const paragraph = container.nodeType === 3 ? container.parentElement : container;
+        if (paragraph.tagName !== 'P' && paragraph.tagName !== 'LI' && paragraph.tagName !== 'TD') {
+            return;
+        }
+
+        // Create highlight span
+        const span = document.createElement('span');
+        span.classList.add('highlighted');
+
+        // Generate unique ID for this highlight
+        const highlightId = 'hl-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+        span.setAttribute('data-highlight-id', highlightId);
+
+        try {
+            range.surroundContents(span);
+            questionHighlights[highlightId] = true;
+            saveHighlights();
+        } catch (e) {
+            console.log('Could not highlight selection');
+        }
+
+        selection.removeAllRanges();
+    });
+
+    // Load highlights when page loads
+    window.addEventListener('load', loadHighlights);
+
+    // Keyboard shortcut: Ctrl+H to toggle highlighter
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'h') {
+            e.preventDefault();
+            const btn = document.querySelector('.highlighter-btn');
+            if (btn) {
+                toggleHighlighter({target: btn, stopPropagation: () => {}});
+            }
+        }
+        // Ctrl+Shift+H to clear all highlights
+        if (e.ctrlKey && e.shiftKey && e.key === 'H') {
+            e.preventDefault();
+            if (confirm('Clear all highlights for this question?')) {
+                clearHighlights();
+            }
+        }
+    });
+</script>
+
+
+
+
+
+
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Communicate with parent window (if in iframe)
+    function notifyParent(choice) {
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'choiceSelected',
+                questionId: getQuestionId(),
+                choice: choice
+            }, '*');
+        }
+    }
+
+    // Load saved choice from parent or localStorage
+    function loadSavedChoice() {
+        const questionId = getQuestionId();
+
+        // Try to get from localStorage first
+        const saved = localStorage.getItem('choice_q' + questionId);
+        if (saved) {
+            selectChoice(saved, false);
+        }
+
+        // Ask parent for saved choice (if in iframe)
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'getChoice',
+                questionId: questionId
+            }, '*');
+        }
+    }
+
+    // Listen for messages from parent
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'setChoice' && event.data.questionId === getQuestionId()) {
+            selectChoice(event.data.choice, false);
+        }
+    });
+
+    // Select a choice
+    function selectChoice(choice, notify = true) {
+        if (!choice) return;
+
+        const questionId = getQuestionId();
+
+        // Remove previous selection
+        document.querySelectorAll('tr.answer-choice').forEach(row => {
+            row.classList.remove('selected');
+        });
+
+        // Add selection to clicked choice
+        const choiceRow = document.querySelector(`tr.answer-choice[data-choice="${choice}"]`);
+        if (choiceRow) {
+            choiceRow.classList.add('selected');
+
+            // Save to localStorage
+            localStorage.setItem('choice_q' + questionId, choice);
+
+            // Notify parent (if in iframe)
+            if (notify) {
+                notifyParent(choice);
+            }
+        }
+    }
+
+    // Initialize answer choices
+    function initializeChoices() {
+        // Find all answer choice rows (A, B, C, D, E, F, etc.)
+        const choicePattern = /^[A-Z]\.$/;
+        const tables = document.querySelectorAll('table.simple-table');
+
+        tables.forEach(table => {
+            const rows = table.querySelectorAll('tr');
+            rows.forEach(row => {
+                const firstCell = row.querySelector('td:first-child');
+                if (firstCell && choicePattern.test(firstCell.textContent.trim())) {
+                    const choice = firstCell.textContent.trim().replace('.', '');
+                    row.classList.add('answer-choice');
+                    row.setAttribute('data-choice', choice);
+                    row.style.position = 'relative';
+
+                    // Add click handler
+                    row.addEventListener('click', function(e) {
+                        // Don't trigger if clicking inside a link or button
+                        if (e.target.tagName === 'A' || e.target.closest('a')) return;
+
+                        // Toggle selection
+                        if (this.classList.contains('selected')) {
+                            this.classList.remove('selected');
+                            const questionId = getQuestionId();
+                            localStorage.removeItem('choice_q' + questionId);
+                            notifyParent('');
+                        } else {
+                            selectChoice(choice);
+                        }
+                    });
+                }
+            });
+        });
+
+        // Load saved choice after a short delay
+        setTimeout(loadSavedChoice, 100);
+    }
+
+    // Run when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeChoices);
+    } else {
+        initializeChoices();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+
+                    // Notify parent that Submit/Explanation was opened
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'submitOpened',
+                            questionId: getQuestionId()
+                        }, '*');
+                    }
+                } else {
+                    // Notify parent that Submit/Explanation was closed
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'submitClosed',
+                            questionId: getQuestionId()
+                        }, '*');
+                    }
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>

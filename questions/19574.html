@@ -1,0 +1,1843 @@
+
+<style>
+    * {
+        box-sizing: border-box !important;
+    }
+
+    body {
+        font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        line-height: 1.9 !important;
+        color: #1f1f1f !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 8px 16px 16px 16px !important;
+        background: #ffffff !important;
+        font-size: 16.5px !important;
+    }
+
+    p {
+        margin-bottom: 20px !important;
+        font-size: 16.5px !important;
+        line-height: 1.95 !important;
+        color: #1f1f1f !important;
+        font-weight: 400 !important;
+    }
+
+    strong, b {
+        color: #1a73e8 !important;
+        font-weight: 700 !important;
+        background: rgba(26, 115, 232, 0.08) !important;
+        padding: 2px 6px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Details/Summary (collapsible sections) */
+    details {
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
+        border-radius: 8px !important;
+        padding: 24px 28px !important;
+        margin: 24px 0 !important;
+        border: none;
+        box-shadow: none !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    details:hover {
+        border-color: #1a73e8 !important;
+        box-shadow: none !important;
+        transform: translateY(-2px) !important;
+    }
+
+    details[open] {
+        background: #ffffff !important;
+        border-color: #1a73e8 !important;
+        box-shadow: none !important;
+    }
+
+    summary {
+        cursor: pointer !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        font-size: 20px !important;
+        padding: 16px 24px !important;
+        border-radius: 8px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        display: flex !important;
+        align-items: center !important;
+        user-select: none !important;
+        box-shadow: none !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    summary:hover {
+        background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%) !important;
+        transform: translateX(6px) scale(1.02) !important;
+        box-shadow: none !important;
+    }
+
+    summary:active {
+        transform: translateX(4px) scale(0.99) !important;
+    }
+
+    summary::marker {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 1.3em !important;
+    }
+
+    summary strong {
+        background: rgba(255, 255, 255, 0.2) !important;
+        color: #ffffff !important;
+        padding: 4px 12px !important;
+        border-radius: 8px !important;
+        margin-left: 8px !important;
+        font-size: 19px !important;
+        letter-spacing: 1px !important;
+    }
+
+    /* Tables - Premium Design */
+    table {
+        width: 100% !important;
+        border-collapse: separate !important;
+        border-spacing: 0 !important;
+        margin: 28px 0 !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: #ffffff !important;
+    }
+
+    table.simple-table {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+    }
+
+    table tr {
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        position: relative !important;
+    }
+
+    table tr:nth-child(odd) {
+        background: rgba(248, 249, 250, 0.5) !important;
+    }
+
+    table tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    table tr:hover {
+        background: linear-gradient(90deg, #e8f0fe 0%, #f1f8ff 100%) !important;
+        transform: translateX(4px) scale(1.01) !important;
+        box-shadow: none !important;
+        z-index: 1 !important;
+    }
+
+    table td {
+        padding: 18px 24px !important;
+        border-bottom: 1px solid rgba(232, 234, 237, 0.6) !important;
+        font-size: 16.5px !important;
+        line-height: 1.7 !important;
+        color: #1f1f1f !important;
+        vertical-align: middle !important;
+    }
+
+    table tr:last-child td {
+        border-bottom: none !important;
+    }
+
+    /* First column (A, B, C, D, E) */
+    table td:first-child {
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        width: 52px !important;
+        text-align: center !important;
+        font-size: 18px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+        border-right: 3px solid #1557b0 !important;
+        position: relative !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    table tr:hover td:first-child {
+        background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%) !important;
+        box-shadow: none !important;
+    }
+
+    /* Second column (content) */
+    table td:nth-child(2) {
+        font-weight: 500 !important;
+        padding-left: 28px !important;
+    }
+
+    /* Third column (empty - hide it) */
+    table td:last-child:empty {
+        display: none !important;
+    }
+
+    /* Lists */
+    ul, ol {
+        margin: 16px 0 !important;
+        padding-left: 32px !important;
+    }
+
+    li {
+        margin: 10px 0 !important;
+        line-height: 1.8 !important;
+        color: #1f1f1f !important;
+    }
+
+    ul.bulleted-list li {
+        position: relative !important;
+        padding-left: 8px !important;
+    }
+
+    ul.toggle {
+        list-style: none !important;
+        padding-left: 0 !important;
+    }
+
+    /* Links */
+    a {
+        color: #1a73e8 !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        border-bottom: 2px solid transparent !important;
+        transition: all 0.2s !important;
+    }
+
+    a:hover {
+        border-bottom-color: #1a73e8 !important;
+        background: rgba(26,115,232,0.08) !important;
+        padding: 2px 4px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Images & Media */
+    img, video {
+        max-width: none !important;
+        height: auto !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
+        margin: 24px 0 !important;
+        display: block !important;
+        border: none !important;
+    }
+
+    img:hover, video:hover {
+        box-shadow: none !important;
+        border-color: #1a73e8 !important;
+    }
+
+    /* Code blocks (if any) */
+    code {
+        background: #f1f3f4 !important;
+        padding: 2px 8px !important;
+        border-radius: 8px !important;
+        font-family: 'Courier New', monospace !important;
+        font-size: 14px !important;
+        color: #d93025 !important;
+    }
+
+    pre {
+        background: #f8f9fa !important;
+        padding: 8px 16px 16px 16px !important;
+        border-radius: 8px !important;
+        overflow-x: auto !important;
+        border-left: 4px solid #1a73e8 !important;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+        color: #1a73e8 !important;
+        font-weight: 700 !important;
+        margin-top: 24px !important;
+        margin-bottom: 16px !important;
+        line-height: 1.4 !important;
+    }
+
+    h1 { font-size: 32px !important; }
+    h2 { font-size: 26px !important; }
+    h3 { font-size: 22px !important; }
+    h4 { font-size: 19px !important; }
+
+    /* Blockquotes */
+    blockquote {
+        border-left: 4px solid #1a73e8 !important;
+        padding-left: 20px !important;
+        margin: 20px 0 !important;
+        font-style: italic !important;
+        color: #5f6368 !important;
+        background: #f8f9fa !important;
+        padding: 16px 20px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Horizontal Rule */
+    hr {
+        border: none !important;
+        height: 2px !important;
+        background: linear-gradient(to right, transparent, #1a73e8, transparent) !important;
+        margin: 32px 0 !important;
+    }
+
+    /* Selection */
+    ::selection {
+        background: #e8f0fe !important;
+        color: #1a73e8 !important;
+    }
+
+    /* Highlighter styles */
+    .highlighted {
+        background-color: #ffeb3b !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .highlighter-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        font-size: 20px !important;
+        padding: 0 8px !important;
+        margin-left: 8px !important;
+        transition: transform 0.2s ease !important;
+        vertical-align: middle !important;
+    }
+
+    .highlighter-btn:hover {
+        transform: scale(1.2) !important;
+    }
+
+    .highlighter-btn.active {
+        transform: scale(1.1) !important;
+        filter: brightness(1.2) !important;
+    }
+
+    .highlighter-mode-active {
+        cursor: text !important;
+    }
+
+
+    /* Right padding to avoid overlap with sidebar buttons */
+    body {
+        padding-right: 50px !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 16px !important;
+        }
+    }
+
+</style>
+
+
+
+
+<details open>
+<summary><strong>19574</strong><button class="bionic-reading-btn" onclick="toggleBionicReading(event)" title="Toggle Bionic Reading (Ctrl+B)"><span id="bionicIcon">👁️</span></button><button class="highlighter-btn" onclick="toggleHighlighter(event)" title="Toggle Highlighter (Ctrl+H)"><span id="highlighterIcon">🖊️</span></button></summary>
+<p class="" id="0fa61896-605a-4232-9095-f2e4dc495a5b">A 6-month-old boy is brought
+                                        to the emergency department due to lethargy for several hours.  His mother says
+                                        he is usually a "very active baby," and she is afraid that he is
+                                        "coming down with something."  The patient's birth history is
+                                        unremarkable, and he was born at 38 weeks gestation.  He is afebrile.  Blood
+                                        pressure is 70/44 mm Hg, pulse is 240 beats/min, and respirations are 52/min. 
+                                        The patient appears pale and is perspiring.  Capillary refill time is less than
+                                        2 seconds.  The lungs are clear to auscultation.  No murmurs are heard.  An ECG
+                                        shows a regular heart rate of 240/min with narrow QRS complexes and no
+                                        identifiable P waves.  Which of the following is the most likely cause of this
+                                        patient's hypotension?</p>
+<table class="simple-table" id="4572d292-484a-42b8-b301-54fced610327">
+<tbody>
+<tr id="4c90ecb7-59e7-4e18-bbe2-46819a52f650">
+<td class="" id="?Zxy">A.</td>
+<td class="" id="ldZ@">Decreased effective intravascular volume</td>
+<td class="" id="YuQj"></td>
+</tr>
+<tr id="30dcb9e5-7a8a-431d-8d8f-1a2e0e915d58">
+<td class="" id="?Zxy">B.</td>
+<td class="" id="ldZ@">Decreased myocardial contractility</td>
+<td class="" id="YuQj"></td>
+</tr>
+<tr id="7617918b-491e-43b2-a4c6-ab490921fa1f">
+<td class="" id="?Zxy">C.</td>
+<td class="" id="ldZ@">Decreased peripheral vascular resistance</td>
+<td class="" id="YuQj"></td>
+</tr>
+<tr id="8c126d69-62cb-405f-ba31-96efa3c0fc6a">
+<td class="" id="?Zxy">D.</td>
+<td class="" id="ldZ@">Left-to-right intracardiac shunting</td>
+<td class="" id="YuQj"></td>
+</tr>
+<tr id="c05986e3-3e2c-4018-b838-209d0508d693">
+<td class="" id="?Zxy">E.</td>
+<td class="" id="ldZ@">Shortening of ventricular diastole</td>
+<td class="" id="YuQj"></td>
+</tr>
+</tbody>
+</table>
+<ul class="toggle" id="b3c6782a-9b48-44a7-817c-73eac8aa531c">
+<li>
+<details>
+<summary>Submit</summary>
+<table class="simple-table" id="bd46f20b-3991-41bf-a7db-a414811ec510">
+<tbody>
+<tr id="6065deb8-60c9-474b-871f-d5193695bb1b">
+<td class="" id="wexk">A.</td>
+<td class="" id="}p~T">Decreased effective intravascular
+                                                                volume (9%)</td>
+<td class="" id=";f_O"></td>
+</tr>
+<tr id="8dab6d8e-731a-444f-ba2d-ea151b7d6c54">
+<td class="" id="wexk">B.</td>
+<td class="" id="}p~T">Decreased myocardial contractility
+                                                                (8%)</td>
+<td class="" id=";f_O"></td>
+</tr>
+<tr id="a245be05-fc77-4f40-a282-71c6f51b5ae8">
+<td class="" id="wexk">C.</td>
+<td class="" id="}p~T">Decreased peripheral vascular
+                                                                resistance (10%)</td>
+<td class="" id=";f_O"></td>
+</tr>
+<tr id="724fc877-7a59-4663-b25f-8dfcf3d030ff">
+<td class="" id="wexk">D.</td>
+<td class="" id="}p~T">Left-to-right intracardiac shunting
+                                                                (8%)</td>
+<td class="" id=";f_O"></td>
+</tr>
+<tr id="19a3964c-dd24-42ef-bfc5-76f672e1f26d">
+<td class="" id="wexk">E.</td>
+<td class="" id="}p~T">Shortening of ventricular diastole
+                                                                (64%)</td>
+<td class="" id=";f_O"></td>
+</tr>
+</tbody>
+</table>
+<p class="" id="25cd2e6b-97f8-4cd0-a57a-de01408bd5bd">Omitted</p>
+<p class="" id="32d9e19d-c1dc-4495-a87b-68abc0eb4dde">Correct answer E
+                                                </p>
+<p class="" id="90b9b009-fdd2-40bc-bc79-f99595264b0d">64%Answered
+                                                    correctly</p>
+<p class="" id="7674f808-31e5-41e3-a30e-f31038caf29f">0 secsTime Spent
+                                                </p>
+<p class="" id="9e3738ad-de8f-4ff1-9bac-5dca5210f123">2024Version</p>
+<ul class="bulleted-list" id="e09b4a87-f4d1-4192-8fe4-6192a095611b">
+<li style="list-style-type:disc">Explanation</li>
+</ul>
+<ul class="bulleted-list" id="1d8a574b-40ff-4a5d-8d17-8c5020e30cdf">
+<li style="list-style-type:disc"></li>
+</ul>
+<figure class="image" id="857fcd00-13f6-44a3-9bb1-53ac5171d35d"><a href="https://lh7-us.googleusercontent.com/zS6j3WuzWkVBOJkseNli-s0aWlvu7Q4Qmp9toalC35TFVtbVVd0yxRKkpRMsso_9DleZhZh3vfRFKN4SHo7s1uMB-ptc-HtVdXLbyyhfHnMyuG5feFIP7HddrvWQtFC3oBLFL21WRlxNm0FDtiNHpAQ"><img loading="lazy" src="https://lh7-us.googleusercontent.com/zS6j3WuzWkVBOJkseNli-s0aWlvu7Q4Qmp9toalC35TFVtbVVd0yxRKkpRMsso_9DleZhZh3vfRFKN4SHo7s1uMB-ptc-HtVdXLbyyhfHnMyuG5feFIP7HddrvWQtFC3oBLFL21WRlxNm0FDtiNHpAQ" style="width:602px"/></a>
+</figure>
+<figure id="2ea2799a-d76b-4814-86da-89a6e871844f">
+<div class="source"><a href="https://apps.uworld.com/media/videos/mp4/69023.mp4">https://apps.uworld.com/media/videos/mp4/69023.mp4</a>
+</div>
+</figure>
+<p class="" id="88f75afd-7a78-400c-9c15-7690df04356a">This patient is
+                                                    pale, lethargic, and diaphoretic with ECG findings consistent with
+                                                    supraventricular tachycardia (SVT), the most common pediatric
+                                                    arrhythmia.</p>
+<p class="" id="bff64455-83e5-419c-ae3b-c8f95ffbd5c8">Normally,
+                                                    depolarization impulses originate at the sinoatrial node and travel
+                                                    through the atrial myocardium to the atrioventricular (AV) node,
+                                                    where the signal pauses to allow ventricular filling following
+                                                    atrial contraction.  The impulse then continues through the
+                                                    His-Purkinje system to the ventricular myocardium.</p>
+<p class="" id="4ed93f36-61fa-4060-9d02-e75eda504bd6">SVT occurs when an
+                                                    impulse originates at an abnormal focus above the ventricles, most
+                                                    commonly a reentrant circuit within the AV node (ie, AV nodal
+                                                    reentry tachycardia).  Heart rate is elevated (usually &gt;150/min
+                                                    in adults or &gt;220/min in infants), but rhythm is usually
+                                                    regular.  QRS complexes are narrow, and P waves are generally buried
+                                                    within the QRS complex due to retrograde atrial depolarization
+                                                    occurring in conjunction with anterograde ventricular
+                                                    depolarization.</p>
+<p class="" id="130b4dc0-050c-4d71-a4d5-8e0c84e092fd">With persistent
+                                                    tachycardia, ventricular diastole shortens, allowing less time for
+                                                    ventricular relaxation and filling.  Stroke volume and cardiac
+                                                    output decrease, leading to hypotension and poor peripheral
+                                                    perfusion.  Infants may become altered (eg, lethargic, poor feeding)
+                                                    and develop signs of heart failure (eg, tachypnea, crackles,
+                                                    hepatomegaly).</p>
+<p class="" id="4b17dec3-77dc-4cf6-81fe-f0f005086050">(Choice A) 
+                                                    Decreased effective intravascular volume is the mechanism for
+                                                    hypotension associated with hypovolemic shock.  This patient has
+                                                    normal capillary refill without a history of volume depletion (eg,
+                                                    diarrhea, vomiting, blood loss).</p>
+<p class="" id="1aeb3231-cd23-4eac-82eb-90a3f8c87b6f">(Choice B) 
+                                                    Hypotension due to decreased myocardial contractility is seen with a
+                                                    myocardial infarction, which is extremely rare in infancy, or a
+                                                    viral-induced cardiomyopathy, which is unlikely in the absence of
+                                                    infectious symptoms (eg, fever, rhinorrhea).</p>
+<p class="" id="d09bdfec-0d14-4609-93bd-496c164556c3">(Choice C)  Low
+                                                    cardiac output associated with SVT would lead to a compensatory
+                                                    increase, not a decrease, in peripheral vascular resistance.</p>
+<p class="" id="2df40e31-253e-4d6a-a452-478113b60e89">(Choice D)  A
+                                                    large left-to-right intracardiac shunt (eg, ventricular septal
+                                                    defect [VSD]) can cause hypotension and tachycardia, but signs of
+                                                    heart failure (eg, crackles, hepatomegaly) would be expected.  In
+                                                    addition, depending on the size of VSD, ECG may show left or
+                                                    biventricular hypertrophy, not narrow QRS complexes with absent P
+                                                    waves.</p>
+<p class="" id="3e3ff3e1-fe50-4909-a385-ebef536e8d85">Educational
+                                                    objective:</p>
+<p class="" id="81fb1dff-fab1-4c49-948d-6ddb12a22472">Supraventricular
+                                                    tachycardia is characterized by an elevated heart rate with a
+                                                    regular rhythm and narrow QRS complexes due to an abnormal
+                                                    electrical impulse originating above the ventricles.  Sustained
+                                                    tachycardia shortens ventricular diastole, leading to decreased
+                                                    stroke volume and cardiac output and subsequent hypotension.</p>
+<p class="" id="2dfd9a4c-60ca-4a45-a8c6-9429ed115740">References</p>
+<ul class="bulleted-list" id="e4cbc53f-b216-4388-8b98-9ea8e3cc716d">
+<li style="list-style-type:disc"><a href="http://www.ncbi.nlm.nih.gov/pubmed/28723001">Supraventricular
+                                                            tachycardia (SVT).</a></li>
+</ul>
+<p class="" id="5d198d7e-319d-487b-9f88-6bab6728f8aa">Pathophysiology
+                                                </p>
+<p class="" id="60505c3d-d064-451b-a411-ffd3ef0a8d0d">Subject</p>
+<p class="" id="3867d7e6-808f-4b29-b9f5-b6e6cb0e30e1">Cardiovascular
+                                                    System</p>
+<p class="" id="a608a150-6c00-47c3-9623-1b152c9f77f7">System</p>
+<p class="" id="dfff334e-fba5-490c-af32-bcf0cf38012f">Supraventricular
+                                                    tachycardia</p>
+<p class="" id="f8011805-aa96-4d69-9cc6-2700a470b23e">Topic</p>
+<p class="" id="35b8bc9d-5748-40ee-9791-f73d8a9d76bb">Copyright ©
+                                                    UWorld. All rights reserved.</p>
+<p class="" id="71f56e73-22f7-4e54-89d9-651518ec8347">REVIEW</p>
+<p class="" id="15bfb90c-b054-4c78-9978-a1cd288c2991">My Notebook</p>
+<p class="" id="5465fb00-578c-4ee5-9606-cb2a5a8d9ad0">0</p>
+<p class="" id="eaa1e915-405d-4044-96de-1d60b7424cf9">Flashcards</p>
+<p class="" id="0eed436a-7143-488b-afe7-317c81155127">Feedback</p>
+<p class="" id="b9f092e7-adc5-4681-8876-947f16405304">End Block</p>
+<p class="" id="6da1c1c9-76f9-45d4-9a83-101c3e46208a">✨Done</p>
+<p class="" id="229a7f03-09b8-44e1-be37-4a08992d25ed">Exhibit Display
+                                                </p>
+<p class="" id="b5ae004d-ca80-46c6-b475-4981ea144ec7">Exhibit Display
+                                                </p>
+<figure class="image" id="986e31ee-9205-491b-8f69-9272b49817b8"><a href="https://lh7-us.googleusercontent.com/SLQxHMooqlWLu02gb6nuNQvo7Wvpx4cSqspTslK08X3XcyMpIqXyhpew8-fk2ABCzk_DMevcd2xKho5dy7fT5ecal5DAGcFcf4gBjjjaDkvgY0rOGFMFZmT5rEmQy4hulO2Coggns15fHYJB_I4IpF0"><img loading="lazy" src="https://lh7-us.googleusercontent.com/SLQxHMooqlWLu02gb6nuNQvo7Wvpx4cSqspTslK08X3XcyMpIqXyhpew8-fk2ABCzk_DMevcd2xKho5dy7fT5ecal5DAGcFcf4gBjjjaDkvgY0rOGFMFZmT5rEmQy4hulO2Coggns15fHYJB_I4IpF0" style="width:602px"/></a>
+</figure>
+<p class="" id="8a332665-ad6f-4e02-b25e-543c83ccdb03">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="8b826257-b835-47b9-b6aa-7e1be4267c38">ExistingMy
+                                                    Notebook</p>
+</details>
+</li>
+</ul>
+<ul class="toggle" id="93c65aeb-ce95-4c10-8142-1292096af542">
+<li>
+<details>
+<summary>Submit</summary>
+<table class="simple-table" id="22863183-060b-49e0-ad18-38d0d3b4fdb0">
+<tbody>
+<tr id="e81d3ca1-ff80-4e7f-a602-7763e4a4b6aa">
+<td class="" id="TAwH">A.</td>
+<td class="" id="iRM&gt;">Decreased effective intravascular
+                                                                volume (9%)</td>
+<td class="" id="?G}a"></td>
+</tr>
+<tr id="a1203ea9-a0e0-4f89-9855-521602586a2f">
+<td class="" id="TAwH">B.</td>
+<td class="" id="iRM&gt;">Decreased myocardial contractility
+                                                                (8%)</td>
+<td class="" id="?G}a"></td>
+</tr>
+<tr id="b64c1d23-0e06-4a86-8772-c7126efc269d">
+<td class="" id="TAwH">C.</td>
+<td class="" id="iRM&gt;">Decreased peripheral vascular
+                                                                resistance (10%)</td>
+<td class="" id="?G}a"></td>
+</tr>
+<tr id="3f017522-d7f2-4d22-b767-8b2a78c8a413">
+<td class="" id="TAwH">D.</td>
+<td class="" id="iRM&gt;">Left-to-right intracardiac
+                                                                shunting (8%)</td>
+<td class="" id="?G}a"></td>
+</tr>
+<tr id="8ede832c-9266-4bb4-b96e-705eaf45f5ad">
+<td class="" id="TAwH">E.</td>
+<td class="" id="iRM&gt;">Shortening of ventricular diastole
+                                                                (64%)</td>
+<td class="" id="?G}a"></td>
+</tr>
+</tbody>
+</table>
+<p class="" id="867ff0c1-85de-4727-99bb-552e8ecb0306">Incorrect</p>
+<p class="" id="f13a97cb-7de1-4052-9c8a-209971ccbdc0">Correct answer E
+                                                </p>
+<p class="" id="b72c5646-17d3-4956-a6e7-b6f5d4d39e12">64%Answered
+                                                    correctly</p>
+<p class="" id="855cc5f9-6bd2-42b4-9694-ea1a0f362d3e">14 secsTime Spent
+                                                </p>
+<p class="" id="742fb320-0126-4fff-a908-9eed2ecef158">2024Version</p>
+<ul class="bulleted-list" id="d36bbb72-cfc6-4d69-9622-4c92259e4510">
+<li style="list-style-type:disc">Explanation</li>
+</ul>
+<ul class="bulleted-list" id="4a1bd556-9045-489a-ab9b-b2d93adad73f">
+<li style="list-style-type:disc"></li>
+</ul>
+<figure class="image" id="a3941840-c5cc-4c76-8091-11e16abc1b8c"><a href="https://lh7-us.googleusercontent.com/LtJdyEIz96p0ifRnbXP6ubaba5gA2SUYYT-B2T_aabTYlijNP0ffvrE8ueq4X0Hxpn8xlcWzA6yGbyCaR5oh2rsmMwr6HtTLotrxhixDoW-uoiYOWPrq7xQE-puP8Gvf8S7-FJm3yQ3spKTDQU8zP2s"><img loading="lazy" src="https://lh7-us.googleusercontent.com/LtJdyEIz96p0ifRnbXP6ubaba5gA2SUYYT-B2T_aabTYlijNP0ffvrE8ueq4X0Hxpn8xlcWzA6yGbyCaR5oh2rsmMwr6HtTLotrxhixDoW-uoiYOWPrq7xQE-puP8Gvf8S7-FJm3yQ3spKTDQU8zP2s" style="width:602px"/></a>
+</figure>
+<p class="" id="581b4c62-fd40-4176-83e5-4db3bf76aec6">This patient is
+                                                    pale, lethargic, and diaphoretic with ECG findings consistent with
+                                                    supraventricular tachycardia (SVT), the most common pediatric
+                                                    arrhythmia.</p>
+<p class="" id="56a7b99d-14b2-4c73-b82b-6ac6c2737267">Normally,
+                                                    depolarization impulses originate at the sinoatrial node and travel
+                                                    through the atrial myocardium to the atrioventricular (AV) node,
+                                                    where the signal pauses to allow ventricular filling following
+                                                    atrial contraction.  The impulse then continues through the
+                                                    His-Purkinje system to the ventricular myocardium.</p>
+<p class="" id="8bd8f835-38f0-4d19-9bdd-4637cbd455dc">SVT occurs when an
+                                                    impulse originates at an abnormal focus above the ventricles, most
+                                                    commonly a reentrant circuit within the AV node (ie, AV nodal
+                                                    reentry tachycardia).  Heart rate is elevated (usually &gt;150/min
+                                                    in adults or &gt;220/min in infants), but rhythm is usually
+                                                    regular.  QRS complexes are narrow, and P waves are generally buried
+                                                    within the QRS complex due to retrograde atrial depolarization
+                                                    occurring in conjunction with anterograde ventricular
+                                                    depolarization.</p>
+<p class="" id="518a8465-ef1d-4fa1-b062-5cdcd77c7bca">With persistent
+                                                    tachycardia, ventricular diastole shortens, allowing less time for
+                                                    ventricular relaxation and filling.  Stroke volume and cardiac
+                                                    output decrease, leading to hypotension and poor peripheral
+                                                    perfusion.  Infants may become altered (eg, lethargic, poor feeding)
+                                                    and develop signs of heart failure (eg, tachypnea, crackles,
+                                                    hepatomegaly).</p>
+<p class="" id="46b2d720-554a-4184-bf69-d4bef1169978">(Choice A) 
+                                                    Decreased effective intravascular volume is the mechanism for
+                                                    hypotension associated with hypovolemic shock.  This patient has
+                                                    normal capillary refill without a history of volume depletion (eg,
+                                                    diarrhea, vomiting, blood loss).</p>
+<p class="" id="2583362d-a45e-4bfd-9bed-15bfe49adaa3">(Choice B) 
+                                                    Hypotension due to decreased myocardial contractility is seen with a
+                                                    myocardial infarction, which is extremely rare in infancy, or a
+                                                    viral-induced cardiomyopathy, which is unlikely in the absence of
+                                                    infectious symptoms (eg, fever, rhinorrhea).</p>
+<p class="" id="8c799d4f-5483-49d1-beca-475c21815a10">(Choice C)  Low
+                                                    cardiac output associated with SVT would lead to a compensatory
+                                                    increase, not a decrease, in peripheral vascular resistance.</p>
+<p class="" id="a2920dd6-dfff-4506-8426-8b5ebcb73ad2">(Choice D)  A
+                                                    large left-to-right intracardiac shunt (eg, ventricular septal
+                                                    defect [VSD]) can cause hypotension and tachycardia, but signs of
+                                                    heart failure (eg, crackles, hepatomegaly) would be expected.  In
+                                                    addition, depending on the size of VSD, ECG may show left or
+                                                    biventricular hypertrophy, not narrow QRS complexes with absent P
+                                                    waves.</p>
+<p class="" id="3fee80e7-c771-4328-8663-9eaee1e45d3b">Educational
+                                                    objective:</p>
+<p class="" id="36114305-085f-4b06-93c8-944cae0870e5">Supraventricular
+                                                    tachycardia is characterized by an elevated heart rate with a
+                                                    regular rhythm and narrow QRS complexes due to an abnormal
+                                                    electrical impulse originating above the ventricles.  Sustained
+                                                    tachycardia shortens ventricular diastole, leading to decreased
+                                                    stroke volume and cardiac output and subsequent hypotension.</p>
+<p class="" id="7bb1ccfd-b506-40f7-ab65-cf8180975c24">References</p>
+<ul class="bulleted-list" id="0b2d78f6-e32f-421a-ab1d-8d20d1b5d66d">
+<li style="list-style-type:disc"><a href="http://www.ncbi.nlm.nih.gov/pubmed/28723001">Supraventricular
+                                                            tachycardia (SVT).</a></li>
+</ul>
+<p class="" id="0652c06b-122a-4544-8236-6cac5776c093">Pathophysiology
+                                                </p>
+<p class="" id="59f8220a-6ce0-4974-a1c0-baea703c045f">Subject</p>
+<p class="" id="35c94d21-c079-4625-b228-7b97a6d8b9ef">Cardiovascular
+                                                    System</p>
+<p class="" id="69d4849c-6c89-4009-9dd1-05836f73fd38">System</p>
+<p class="" id="d28378ad-5505-456d-acd1-677cd311eea9">Supraventricular
+                                                    tachycardia</p>
+<p class="" id="decc0d81-0a5e-4388-8948-fa4694130fc9">Topic</p>
+<p class="" id="0db6ec91-dba3-46c7-9243-0effc9c2218f">Copyright ©
+                                                    UWorld. All rights reserved.</p>
+</details>
+</li>
+</ul>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+.bionic-reading-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.bionic-reading-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.bionic-reading-btn.active {
+    background: rgba(52, 168, 83, 0.4);
+    border-color: rgba(52, 168, 83, 0.6);
+}
+
+.bionic-reading-btn.active:hover {
+    background: rgba(52, 168, 83, 0.5);
+}
+
+summary {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+    /* Highlighter styles */
+    .highlighted {
+        background-color: #ffeb3b !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .highlighter-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        font-size: 20px !important;
+        padding: 0 8px !important;
+        margin-left: 8px !important;
+        transition: transform 0.2s ease !important;
+        vertical-align: middle !important;
+    }
+
+    .highlighter-btn:hover {
+        transform: scale(1.2) !important;
+    }
+
+    .highlighter-btn.active {
+        transform: scale(1.1) !important;
+        filter: brightness(1.2) !important;
+    }
+
+    .highlighter-mode-active {
+        cursor: text !important;
+    }
+
+
+    /* Right padding to avoid overlap with sidebar buttons */
+    body {
+        padding-right: 50px !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 16px !important;
+        }
+    }
+
+
+    
+
+
+    
+
+    /* Adjust table padding to make room for radio button */
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+    /* Clickable Answer Choices */
+    table tr.answer-choice {
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+    }
+
+    table tr.answer-choice:hover {
+        background: #f8f9fa !important;
+    }
+
+    table tr.answer-choice td:first-child {
+        position: relative !important;
+        padding-left: 35px !important;
+    }
+
+    table tr.answer-choice td:first-child::before {
+        content: '';
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        border: 2px solid #999;
+        border-radius: 50%;
+        background: white;
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+    }
+
+    table tr.answer-choice.selected td:first-child::before {
+        border-color: #1a73e8;
+        border-width: 5px;
+    }
+
+    table tr.answer-choice.selected {
+        background: #e8f4ff !important;
+    }
+
+    table tr.answer-choice.selected td:first-child {
+        color: #1a73e8 !important;
+        font-weight: 600 !important;
+    }
+
+
+    
+
+
+    /* Answer Validation Styles */
+    tr.answer-choice.answer-correct {
+        background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%) !important;
+        border: 3px solid #28a745 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-correct td {
+        color: #155724 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-correct td:first-child::before {
+        border-color: #28a745 !important;
+        background: #28a745 !important;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    tr.answer-choice.answer-incorrect {
+        background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%) !important;
+        border: 3px solid #dc3545 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-incorrect td {
+        color: #721c24 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-incorrect td:first-child::before {
+        border-color: #dc3545 !important;
+        background: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+    }
+
+
+    /* Answer Validation Styles */
+    tr.answer-choice.answer-correct {
+        background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%) !important;
+        border: 3px solid #28a745 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-correct td {
+        color: #155724 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-correct td:first-child::before {
+        border-color: #28a745 !important;
+        background: #28a745 !important;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    tr.answer-choice.answer-incorrect {
+        background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%) !important;
+        border: 3px solid #dc3545 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-incorrect td {
+        color: #721c24 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-incorrect td:first-child::before {
+        border-color: #dc3545 !important;
+        background: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+    }
+
+</style>
+
+
+
+<script>
+let bionicEnabled = false;
+const originalContent = {};
+
+function toggleBionicReading(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    bionicEnabled = !bionicEnabled;
+    const btn = document.querySelector('.bionic-reading-btn');
+    const icon = document.getElementById('bionicIcon');
+
+    if (bionicEnabled) {
+        btn.classList.add('active');
+        icon.textContent = '✅';
+        applyBionicReading();
+    } else {
+        btn.classList.remove('active');
+        icon.textContent = '👁️';
+        restoreOriginalText();
+    }
+}
+
+function applyBionicReading() {
+    // Seleciona todos os elementos de texto, EXCETO summary e buttons
+    const textElements = document.querySelectorAll('p:not(summary p):not(button p), td:not(summary td):not(button td), li:not(summary li):not(button li)');
+
+    textElements.forEach((element, index) => {
+        // Ignora elementos que contêm outros elementos complexos
+        if (element.querySelector('p, td, li, h1, h2, h3, h4, h5, h6, button, summary')) {
+            return;
+        }
+
+        // Ignora se o elemento está dentro de um summary ou button
+        if (element.closest('summary') || element.closest('button') || element.closest('.bionic-reading-btn')) {
+            return;
+        }
+
+        // Salva o conteúdo original
+        if (!originalContent[index]) {
+            originalContent[index] = {
+                element: element,
+                html: element.innerHTML
+            };
+        }
+
+        // Aplica Bionic Reading
+        const bionicText = convertToBionic(element.textContent);
+        element.innerHTML = bionicText;
+    });
+}
+
+function restoreOriginalText() {
+    // Restaura o conteúdo original
+    Object.values(originalContent).forEach(item => {
+        item.element.innerHTML = item.html;
+    });
+}
+
+function convertToBionic(text) {
+    // Divide o texto em palavras, mantendo pontuação
+    const words = text.split(/(\s+|[.,;:!?()""''\-–—])/);
+
+    const bionicWords = words.map(word => {
+        // Ignora espaços e pontuação
+        if (word.match(/^\s+$/) || word.match(/^[.,;:!?()""''\-–—]+$/)) {
+            return word;
+        }
+
+        // Ignora palavras muito curtas (1-2 letras)
+        if (word.length <= 2) {
+            return word;
+        }
+
+        // Determina quantas letras deixar em negrito (metade da palavra, arredondado para cima)
+        const boldLength = Math.ceil(word.length / 2);
+
+        // Separa a parte em negrito da parte normal
+        const boldPart = word.substring(0, boldLength);
+        const normalPart = word.substring(boldLength);
+
+        // Retorna com a primeira parte em negrito
+        return `<strong style="font-weight: 700 !important; color: inherit !important; background: none !important; padding: 0 !important;">${boldPart}</strong>${normalPart}`;
+    });
+
+    return bionicWords.join('');
+}
+
+// Adiciona atalho de teclado (Ctrl+B ou Cmd+B)
+document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+        e.preventDefault();
+        toggleBionicReading();
+    }
+});
+</script>
+
+<script>
+    let highlighterActive = false;
+    let questionHighlights = {};
+
+    // Get question ID from the first summary strong tag
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Load highlights from localStorage
+    function loadHighlights() {
+        const questionId = getQuestionId();
+        const stored = localStorage.getItem('highlights_' + questionId);
+        if (stored) {
+            questionHighlights = JSON.parse(stored);
+            applyStoredHighlights();
+        }
+    }
+
+    // Save highlights to localStorage
+    function saveHighlights() {
+        const questionId = getQuestionId();
+        localStorage.setItem('highlights_' + questionId, JSON.stringify(questionHighlights));
+    }
+
+    // Apply stored highlights
+    function applyStoredHighlights() {
+        Object.keys(questionHighlights).forEach(key => {
+            const element = document.querySelector(`[data-highlight-id="${key}"]`);
+            if (element && questionHighlights[key]) {
+                element.classList.add('highlighted');
+            }
+        });
+    }
+
+    // Toggle highlighter mode
+    function toggleHighlighter(event) {
+        event.stopPropagation();
+        highlighterActive = !highlighterActive;
+
+        const btn = event.target.closest('.highlighter-btn');
+        const icon = btn.querySelector('#highlighterIcon');
+
+        if (highlighterActive) {
+            btn.classList.add('active');
+            icon.textContent = '🖍️';
+            document.body.classList.add('highlighter-mode-active');
+        } else {
+            btn.classList.remove('active');
+            icon.textContent = '🖊️';
+            document.body.classList.remove('highlighter-mode-active');
+        }
+    }
+
+    // Clear all highlights for this question
+    function clearHighlights() {
+        const questionId = getQuestionId();
+        questionHighlights = {};
+        localStorage.removeItem('highlights_' + questionId);
+        document.querySelectorAll('.highlighted').forEach(el => {
+            el.classList.remove('highlighted');
+        });
+    }
+
+    // Handle text selection and highlighting
+    document.addEventListener('mouseup', function(e) {
+        if (!highlighterActive) return;
+
+        const selection = window.getSelection();
+        if (!selection.toString().trim()) return;
+
+        const range = selection.getRangeAt(0);
+        const container = range.commonAncestorContainer;
+
+        // Only highlight text in paragraphs, not in buttons or other elements
+        const paragraph = container.nodeType === 3 ? container.parentElement : container;
+        if (paragraph.tagName !== 'P' && paragraph.tagName !== 'LI' && paragraph.tagName !== 'TD') {
+            return;
+        }
+
+        // Create highlight span
+        const span = document.createElement('span');
+        span.classList.add('highlighted');
+
+        // Generate unique ID for this highlight
+        const highlightId = 'hl-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+        span.setAttribute('data-highlight-id', highlightId);
+
+        try {
+            range.surroundContents(span);
+            questionHighlights[highlightId] = true;
+            saveHighlights();
+        } catch (e) {
+            console.log('Could not highlight selection');
+        }
+
+        selection.removeAllRanges();
+    });
+
+    // Load highlights when page loads
+    window.addEventListener('load', loadHighlights);
+
+    // Keyboard shortcut: Ctrl+H to toggle highlighter
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'h') {
+            e.preventDefault();
+            const btn = document.querySelector('.highlighter-btn');
+            if (btn) {
+                toggleHighlighter({target: btn, stopPropagation: () => {}});
+            }
+        }
+        // Ctrl+Shift+H to clear all highlights
+        if (e.ctrlKey && e.shiftKey && e.key === 'H') {
+            e.preventDefault();
+            if (confirm('Clear all highlights for this question?')) {
+                clearHighlights();
+            }
+        }
+    });
+</script>
+
+
+
+
+
+
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Communicate with parent window (if in iframe)
+    function notifyParent(choice) {
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'choiceSelected',
+                questionId: getQuestionId(),
+                choice: choice
+            }, '*');
+        }
+    }
+
+    // Load saved choice from parent or localStorage
+    function loadSavedChoice() {
+        const questionId = getQuestionId();
+
+        // Try to get from localStorage first
+        const saved = localStorage.getItem('choice_q' + questionId);
+        if (saved) {
+            selectChoice(saved, false);
+        }
+
+        // Ask parent for saved choice (if in iframe)
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'getChoice',
+                questionId: questionId
+            }, '*');
+        }
+    }
+
+    // Listen for messages from parent
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'setChoice' && event.data.questionId === getQuestionId()) {
+            selectChoice(event.data.choice, false);
+        }
+    });
+
+    // Select a choice
+    function selectChoice(choice, notify = true) {
+        if (!choice) return;
+
+        const questionId = getQuestionId();
+
+        // Remove previous selection
+        document.querySelectorAll('tr.answer-choice').forEach(row => {
+            row.classList.remove('selected');
+        });
+
+        // Add selection to clicked choice
+        const choiceRow = document.querySelector(`tr.answer-choice[data-choice="${choice}"]`);
+        if (choiceRow) {
+            choiceRow.classList.add('selected');
+
+            // Save to localStorage
+            localStorage.setItem('choice_q' + questionId, choice);
+
+            // Notify parent (if in iframe)
+            if (notify) {
+                notifyParent(choice);
+            }
+        }
+    }
+
+    // Initialize answer choices
+    function initializeChoices() {
+        // Find all answer choice rows (A, B, C, D, E, F, etc.)
+        const choicePattern = /^[A-Z]\.$/;
+        const tables = document.querySelectorAll('table.simple-table');
+
+        tables.forEach(table => {
+            const rows = table.querySelectorAll('tr');
+            rows.forEach(row => {
+                const firstCell = row.querySelector('td:first-child');
+                if (firstCell && choicePattern.test(firstCell.textContent.trim())) {
+                    const choice = firstCell.textContent.trim().replace('.', '');
+                    row.classList.add('answer-choice');
+                    row.setAttribute('data-choice', choice);
+                    row.style.position = 'relative';
+
+                    // Add click handler
+                    row.addEventListener('click', function(e) {
+                        // Don't trigger if clicking inside a link or button
+                        if (e.target.tagName === 'A' || e.target.closest('a')) return;
+
+                        // Toggle selection
+                        if (this.classList.contains('selected')) {
+                            this.classList.remove('selected');
+                            const questionId = getQuestionId();
+                            localStorage.removeItem('choice_q' + questionId);
+                            notifyParent('');
+                        } else {
+                            selectChoice(choice);
+                        }
+                    });
+                }
+            });
+        });
+
+        // Load saved choice after a short delay
+        setTimeout(loadSavedChoice, 100);
+    }
+
+    // Run when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeChoices);
+    } else {
+        initializeChoices();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+
+                    // Notify parent that Submit/Explanation was opened
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'submitOpened',
+                            questionId: getQuestionId()
+                        }, '*');
+                    }
+                } else {
+                    // Notify parent that Submit/Explanation was closed
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'submitClosed',
+                            questionId: getQuestionId()
+                        }, '*');
+                    }
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>

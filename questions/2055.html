@@ -1,0 +1,1783 @@
+
+<style>
+    * {
+        box-sizing: border-box !important;
+    }
+
+    body {
+        font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        line-height: 1.9 !important;
+        color: #1f1f1f !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 8px 16px 16px 16px !important;
+        background: #ffffff !important;
+        font-size: 16.5px !important;
+    }
+
+    p {
+        margin-bottom: 20px !important;
+        font-size: 16.5px !important;
+        line-height: 1.95 !important;
+        color: #1f1f1f !important;
+        font-weight: 400 !important;
+    }
+
+    strong, b {
+        color: #1a73e8 !important;
+        font-weight: 700 !important;
+        background: rgba(26, 115, 232, 0.08) !important;
+        padding: 2px 6px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Details/Summary (collapsible sections) */
+    details {
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
+        border-radius: 8px !important;
+        padding: 24px 28px !important;
+        margin: 24px 0 !important;
+        border: none;
+        box-shadow: none !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    details:hover {
+        border-color: #1a73e8 !important;
+        box-shadow: none !important;
+        transform: translateY(-2px) !important;
+    }
+
+    details[open] {
+        background: #ffffff !important;
+        border-color: #1a73e8 !important;
+        box-shadow: none !important;
+    }
+
+    summary {
+        cursor: pointer !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        font-size: 20px !important;
+        padding: 16px 24px !important;
+        border-radius: 8px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        display: flex !important;
+        align-items: center !important;
+        user-select: none !important;
+        box-shadow: none !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    summary:hover {
+        background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%) !important;
+        transform: translateX(6px) scale(1.02) !important;
+        box-shadow: none !important;
+    }
+
+    summary:active {
+        transform: translateX(4px) scale(0.99) !important;
+    }
+
+    summary::marker {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 1.3em !important;
+    }
+
+    summary strong {
+        background: rgba(255, 255, 255, 0.2) !important;
+        color: #ffffff !important;
+        padding: 4px 12px !important;
+        border-radius: 8px !important;
+        margin-left: 8px !important;
+        font-size: 19px !important;
+        letter-spacing: 1px !important;
+    }
+
+    /* Tables - Premium Design */
+    table {
+        width: 100% !important;
+        border-collapse: separate !important;
+        border-spacing: 0 !important;
+        margin: 28px 0 !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: #ffffff !important;
+    }
+
+    table.simple-table {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+    }
+
+    table tr {
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        position: relative !important;
+    }
+
+    table tr:nth-child(odd) {
+        background: rgba(248, 249, 250, 0.5) !important;
+    }
+
+    table tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    table tr:hover {
+        background: linear-gradient(90deg, #e8f0fe 0%, #f1f8ff 100%) !important;
+        transform: translateX(4px) scale(1.01) !important;
+        box-shadow: none !important;
+        z-index: 1 !important;
+    }
+
+    table td {
+        padding: 18px 24px !important;
+        border-bottom: 1px solid rgba(232, 234, 237, 0.6) !important;
+        font-size: 16.5px !important;
+        line-height: 1.7 !important;
+        color: #1f1f1f !important;
+        vertical-align: middle !important;
+    }
+
+    table tr:last-child td {
+        border-bottom: none !important;
+    }
+
+    /* First column (A, B, C, D, E) */
+    table td:first-child {
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        width: 52px !important;
+        text-align: center !important;
+        font-size: 18px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+        border-right: 3px solid #1557b0 !important;
+        position: relative !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    table tr:hover td:first-child {
+        background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%) !important;
+        box-shadow: none !important;
+    }
+
+    /* Second column (content) */
+    table td:nth-child(2) {
+        font-weight: 500 !important;
+        padding-left: 28px !important;
+    }
+
+    /* Third column (empty - hide it) */
+    table td:last-child:empty {
+        display: none !important;
+    }
+
+    /* Lists */
+    ul, ol {
+        margin: 16px 0 !important;
+        padding-left: 32px !important;
+    }
+
+    li {
+        margin: 10px 0 !important;
+        line-height: 1.8 !important;
+        color: #1f1f1f !important;
+    }
+
+    ul.bulleted-list li {
+        position: relative !important;
+        padding-left: 8px !important;
+    }
+
+    ul.toggle {
+        list-style: none !important;
+        padding-left: 0 !important;
+    }
+
+    /* Links */
+    a {
+        color: #1a73e8 !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        border-bottom: 2px solid transparent !important;
+        transition: all 0.2s !important;
+    }
+
+    a:hover {
+        border-bottom-color: #1a73e8 !important;
+        background: rgba(26,115,232,0.08) !important;
+        padding: 2px 4px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Images & Media */
+    img, video {
+        max-width: none !important;
+        height: auto !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
+        margin: 24px 0 !important;
+        display: block !important;
+        border: none !important;
+    }
+
+    img:hover, video:hover {
+        box-shadow: none !important;
+        border-color: #1a73e8 !important;
+    }
+
+    /* Code blocks (if any) */
+    code {
+        background: #f1f3f4 !important;
+        padding: 2px 8px !important;
+        border-radius: 8px !important;
+        font-family: 'Courier New', monospace !important;
+        font-size: 14px !important;
+        color: #d93025 !important;
+    }
+
+    pre {
+        background: #f8f9fa !important;
+        padding: 8px 16px 16px 16px !important;
+        border-radius: 8px !important;
+        overflow-x: auto !important;
+        border-left: 4px solid #1a73e8 !important;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+        color: #1a73e8 !important;
+        font-weight: 700 !important;
+        margin-top: 24px !important;
+        margin-bottom: 16px !important;
+        line-height: 1.4 !important;
+    }
+
+    h1 { font-size: 32px !important; }
+    h2 { font-size: 26px !important; }
+    h3 { font-size: 22px !important; }
+    h4 { font-size: 19px !important; }
+
+    /* Blockquotes */
+    blockquote {
+        border-left: 4px solid #1a73e8 !important;
+        padding-left: 20px !important;
+        margin: 20px 0 !important;
+        font-style: italic !important;
+        color: #5f6368 !important;
+        background: #f8f9fa !important;
+        padding: 16px 20px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Horizontal Rule */
+    hr {
+        border: none !important;
+        height: 2px !important;
+        background: linear-gradient(to right, transparent, #1a73e8, transparent) !important;
+        margin: 32px 0 !important;
+    }
+
+    /* Selection */
+    ::selection {
+        background: #e8f0fe !important;
+        color: #1a73e8 !important;
+    }
+
+    /* Highlighter styles */
+    .highlighted {
+        background-color: #ffeb3b !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .highlighter-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        font-size: 20px !important;
+        padding: 0 8px !important;
+        margin-left: 8px !important;
+        transition: transform 0.2s ease !important;
+        vertical-align: middle !important;
+    }
+
+    .highlighter-btn:hover {
+        transform: scale(1.2) !important;
+    }
+
+    .highlighter-btn.active {
+        transform: scale(1.1) !important;
+        filter: brightness(1.2) !important;
+    }
+
+    .highlighter-mode-active {
+        cursor: text !important;
+    }
+
+
+    /* Right padding to avoid overlap with sidebar buttons */
+    body {
+        padding-right: 50px !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 16px !important;
+        }
+    }
+
+</style>
+
+
+
+
+<details open>
+<summary><strong>2055</strong><button class="bionic-reading-btn" onclick="toggleBionicReading(event)" title="Toggle Bionic Reading (Ctrl+B)"><span id="bionicIcon">👁️</span></button><button class="highlighter-btn" onclick="toggleHighlighter(event)" title="Toggle Highlighter (Ctrl+H)"><span id="highlighterIcon">🖊️</span></button></summary>
+<p class="" id="a8497312-e523-4882-bd27-6154b31ad6a3">A 56-year-old man comes to the
+                                        emergency department due to chest palpitations.  The patient feels that his
+                                        heartbeat is fast and irregular.  He has had no chest pain, shortness of breath,
+                                        or dizziness.  The patient normally drinks only 2-3 times a year, but he hosted
+                                        a party last night for his wife's birthday and consumed a large amount of
+                                        alcohol.  He is otherwise healthy and takes no medications.  Pulse check
+                                        confirms the presence of an irregularly irregular rhythm with a rate of
+                                        138/min.  This patient's ECG strip is most likely to show which of the
+                                        following?</p>
+<figure class="image" id="440105b0-3b74-4d05-8dac-054cf582e620"><a href="Cardiovascular%20System%20413%20(1)%2000ec7d08e3d043799e7a2b4ad3501529/Untitled%209.png"><img loading="lazy" src="Cardiovascular%20System%20413%20(1)%2000ec7d08e3d043799e7a2b4ad3501529/Untitled%209.png" style="width:326px"/></a>
+</figure>
+<figure class="image" id="ccb5422e-2043-4852-a2fe-e982b8ecabe8"><a href="Cardiovascular%20System%20413%20(1)%2000ec7d08e3d043799e7a2b4ad3501529/Untitled%2010.png"><img loading="lazy" src="Cardiovascular%20System%20413%20(1)%2000ec7d08e3d043799e7a2b4ad3501529/Untitled%2010.png" style="width:326px"/></a>
+</figure>
+<figure class="image" id="ad34ba9b-0591-47e4-ba2b-02c94e31e973"><a href="Cardiovascular%20System%20413%20(1)%2000ec7d08e3d043799e7a2b4ad3501529/Untitled%2011.png"><img loading="lazy" src="Cardiovascular%20System%20413%20(1)%2000ec7d08e3d043799e7a2b4ad3501529/Untitled%2011.png" style="width:1400px"/></a>
+</figure>
+<figure class="image" id="14d36b8c-d428-4248-aaab-f1668b0e4d75"><a href="Cardiovascular%20System%20413%20(1)%2000ec7d08e3d043799e7a2b4ad3501529/Untitled%2012.png"><img loading="lazy" src="Cardiovascular%20System%20413%20(1)%2000ec7d08e3d043799e7a2b4ad3501529/Untitled%2012.png" style="width:1400px"/></a>
+</figure>
+<figure class="image" id="23f1ad49-74c4-4169-a3eb-47a9d66323f2"><a href="Cardiovascular%20System%20413%20(1)%2000ec7d08e3d043799e7a2b4ad3501529/Untitled%2013.png"><img loading="lazy" src="Cardiovascular%20System%20413%20(1)%2000ec7d08e3d043799e7a2b4ad3501529/Untitled%2013.png" style="width:326px"/></a>
+</figure>
+<ul class="toggle" id="e6b7732c-e577-4d0f-8301-745fd41602c3">
+<li>
+<details>
+<summary>Submit</summary>
+<div class="collection-content" id="c3791985-006b-454d-b7c1-07bdf8cdc4a2">
+<h4 class="collection-title"></h4>
+<table class="collection-content">
+<thead>
+<tr>
+<th><span class="icon property-icon"><svg class="typesTitle" role="graphics-symbol" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" viewbox="0 0 16 16">
+<path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z">
+</path>
+</svg></span>A.</th>
+<th><span class="icon property-icon"><svg class="typesText" role="graphics-symbol" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" viewbox="0 0 16 16">
+<path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z">
+</path>
+</svg></span>(1%)</th>
+<th><span class="icon property-icon"><svg class="typesText" role="graphics-symbol" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" viewbox="0 0 16 16">
+<path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z">
+</path>
+</svg></span>Property</th>
+<th><span class="icon property-icon"><svg class="typesFile" role="graphics-symbol" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" viewbox="0 0 16 16">
+<path d="M12.5938 8.44043L7.54883 13.4854C6.26367 14.7773 4.54102 14.6475 3.44043 13.54C2.32617 12.4326 2.20312 10.7168 3.49512 9.4248L10.3926 2.52734C11.1445 1.77539 12.2725 1.63867 13.0039 2.37695C13.7422 3.11523 13.6055 4.22949 12.8535 4.98828L6.08594 11.7627C5.77832 12.0703 5.41602 11.9814 5.2041 11.7764C4.99902 11.5576 4.91016 11.2021 5.21777 10.8877L9.93457 6.1709C10.1738 5.93164 10.1875 5.58301 9.96191 5.35059C9.72949 5.13184 9.38086 5.13867 9.1416 5.37793L4.39746 10.1152C3.67285 10.8535 3.7002 11.9746 4.34961 12.624C5.05371 13.3281 6.12012 13.3145 6.8584 12.5762L13.6602 5.77441C14.9795 4.45508 14.9316 2.71875 13.7764 1.55664C12.6416 0.428711 10.8779 0.34668 9.55176 1.66602L2.61328 8.61816C0.883789 10.3477 1 12.8291 2.57227 14.4014C4.14453 15.9668 6.63281 16.0898 8.3623 14.3672L13.4414 9.28809C13.6738 9.0625 13.667 8.64551 13.4346 8.41992C13.209 8.18066 12.833 8.21484 12.5938 8.44043Z">
+</path>
+</svg></span>Files</th>
+</tr>
+</thead>
+<tbody>
+<tr id="270b1651-f3fb-46ed-92e2-f53250581d81">
+<td class="cell-title"><a href="Cardiovascular%20System%20413%20(1)%2000ec7d08e3d043799e7a2b4ad3501529/Untitled%20Database%20c3791985006b454db7c107bdf8cdc4a2/B%20270b1651f3fb46ed92e2f53250581d81.html">B.</a>
+</td>
+<td class="cell-vYmr">(2%)</td>
+<td class="cell-cMsX"></td>
+<td class="cell-[fas"><span style="margin-right:6px"><a href="https://lh7-us.googleusercontent.com/3Xtyg-7T2m6bINPPw2OW1-K7Q2t5odFnnEZ20LXky1uHiFAx3xkN8myBmiaI1qYZ9Xivd2rZXVa86xkmFyq5kPVHl_XPTo8CkMLLDsc1mote9RtmAEfoXKnMV9ZAZDdFPBR8jloZB-x0Y_VY5rjitB4">https://lh7-us.googleusercontent.com/3Xtyg-7T2m6bINPPw2OW1-K7Q2t5odFnnEZ20LXky1uHiFAx3xkN8myBmiaI1qYZ9Xivd2rZXVa86xkmFyq5kPVHl_XPTo8CkMLLDsc1mote9RtmAEfoXKnMV9ZAZDdFPBR8jloZB-x0Y_VY5rjitB4</a></span>
+</td>
+</tr>
+<tr id="40155255-dc23-41fb-88df-67469d6c0881">
+<td class="cell-title"><a href="Cardiovascular%20System%20413%20(1)%2000ec7d08e3d043799e7a2b4ad3501529/Untitled%20Database%20c3791985006b454db7c107bdf8cdc4a2/C%2040155255dc2341fb88df67469d6c0881.html">C.</a>
+</td>
+<td class="cell-vYmr">(6%)</td>
+<td class="cell-cMsX"></td>
+<td class="cell-[fas"><span style="margin-right:6px"><a href="https://lh7-us.googleusercontent.com/UmCefjT8BPOMZYNTsc-zLrdlu6BuSF76ok-Xidz1Bzu_wIy6d7Zu3BpP4wBy8KTKbCBVstTgSyIl9vzXJRmptBcJMw0qkMZBwt5gPg49aoldWkyvJWz2Db0E38yrGYgCRIHZMoiAMfPFQ9sKA_BlcKo">https://lh7-us.googleusercontent.com/UmCefjT8BPOMZYNTsc-zLrdlu6BuSF76ok-Xidz1Bzu_wIy6d7Zu3BpP4wBy8KTKbCBVstTgSyIl9vzXJRmptBcJMw0qkMZBwt5gPg49aoldWkyvJWz2Db0E38yrGYgCRIHZMoiAMfPFQ9sKA_BlcKo</a></span>
+</td>
+</tr>
+<tr id="a3e5ef18-f343-4b56-afde-789447a8e8a2">
+<td class="cell-title"><a href="Cardiovascular%20System%20413%20(1)%2000ec7d08e3d043799e7a2b4ad3501529/Untitled%20Database%20c3791985006b454db7c107bdf8cdc4a2/D%20a3e5ef18f3434b56afde789447a8e8a2.html">D.</a>
+</td>
+<td class="cell-vYmr">(87%)</td>
+<td class="cell-cMsX"></td>
+<td class="cell-[fas"><span style="margin-right:6px"><a href="https://lh7-us.googleusercontent.com/yTSjV3DPcklcoGj7Ky6MXtBlmpn6p_5nNGY83cet11EwNx4EhOmf7BmjGBHCDHvvps0wOPy88fWbMroQc9kjBTroF0itBGsMylBm4xvvrxDIABrs3iExpYxJ-eNO7kEXGkK5brIlEXQ9vPNEtiBlimM">https://lh7-us.googleusercontent.com/yTSjV3DPcklcoGj7Ky6MXtBlmpn6p_5nNGY83cet11EwNx4EhOmf7BmjGBHCDHvvps0wOPy88fWbMroQc9kjBTroF0itBGsMylBm4xvvrxDIABrs3iExpYxJ-eNO7kEXGkK5brIlEXQ9vPNEtiBlimM</a></span>
+</td>
+</tr>
+<tr id="298b6553-832d-4bca-8057-878545ab111f">
+<td class="cell-title"><a href="Cardiovascular%20System%20413%20(1)%2000ec7d08e3d043799e7a2b4ad3501529/Untitled%20Database%20c3791985006b454db7c107bdf8cdc4a2/E%20298b6553832d4bca8057878545ab111f.html">E.</a>
+</td>
+<td class="cell-vYmr">(2%)</td>
+<td class="cell-cMsX"></td>
+<td class="cell-[fas"><span style="margin-right:6px"><a href="https://lh7-us.googleusercontent.com/69A0qFUL-e9LgcyryrdHH4HY_waJxRnIM1O2PdIU4MGNFmGQJtxeRkFPDxJQL9Umn0ErtRCuGJLQGShL79T44W2YmAaNpqXmUT0T4n6SBzZVNl5Te4W5jBUFjwzgg3FOtUYxyZvukokI1dYdIQ042v4">https://lh7-us.googleusercontent.com/69A0qFUL-e9LgcyryrdHH4HY_waJxRnIM1O2PdIU4MGNFmGQJtxeRkFPDxJQL9Umn0ErtRCuGJLQGShL79T44W2YmAaNpqXmUT0T4n6SBzZVNl5Te4W5jBUFjwzgg3FOtUYxyZvukokI1dYdIQ042v4</a></span>
+</td>
+</tr>
+</tbody>
+</table><br/><br/>
+</div>
+<p class="" id="50744e3b-ddd1-4881-be68-ebbba9dc8438">Omitted</p>
+<p class="" id="6f09dcc5-707c-49ec-a5a8-84670416746c">Correct answer D
+                                                </p>
+<p class="" id="bf72b848-a1ac-4f4e-98c2-3a046066aac9">87%Answered
+                                                    correctly</p>
+<p class="" id="d6733ab0-a41a-4002-a662-f02a71814bf7">08 secsTime Spent
+                                                </p>
+<p class="" id="e244cbf5-a92d-47ab-b057-6d17db535136">2024Version</p>
+<ul class="bulleted-list" id="a7e900dc-b4a6-464b-a036-7535fdb81ed6">
+<li style="list-style-type:disc">Explanation</li>
+</ul>
+<ul class="bulleted-list" id="0bc9fb3a-d100-4a18-b512-4d026789363d">
+<li style="list-style-type:disc"></li>
+</ul>
+<table class="simple-table" id="1979896f-589f-4681-b094-4ec307f241da">
+<tbody>
+<tr id="2e9314a5-ffe6-4a36-b9fd-92716f373d7f">
+<td class="" id="SYxf">Atrial fibrillation</td>
+<td class="" id="zV:r"></td>
+</tr>
+<tr id="75f9886c-2a8b-49d9-a155-247e5c3c12f5">
+<td class="" id="SYxf">Pathogenesis</td>
+<td class="" id="zV:r">• Atrial remodeling due to:<br/> ◦
+                                                                Age-related myocardial changes<br/> ◦ Atrial
+                                                                enlargement from heart disease (eg, HTN, MS)<br/>• Foci
+                                                                of rapid electrical activity:<br/> ◦ Commonly originate
+                                                                in pulmonary veins<br/> ◦ Alcohol intake &amp; ↑
+                                                                sympathetic drive may contribute<br/></td>
+</tr>
+<tr id="07cef9b0-c081-463c-bd28-6ffdebf4b0e8">
+<td class="" id="SYxf">Clinical<br/>presentation<br/></td>
+<td class="" id="zV:r">• Asymptomatic or palpitations ±
+                                                                dyspnea, fatigue<br/>• Irregularly irregular
+                                                                pulse<br/>• May present with thromboembolic event (eg,
+                                                                stroke)<br/></td>
+</tr>
+<tr id="01088695-83cd-4a8a-8d71-15cbca6c2b9c">
+<td class="" id="SYxf">Diagnosis</td>
+<td class="" id="zV:r">• ECG shows variable R-R intervals
+                                                                &amp; no P waves<br/>• Continuous ECG often needed for
+                                                                paroxysmal disease<br/></td>
+</tr>
+<tr id="dfdcd8e3-6f1d-4bf3-a151-44ffd5423f84">
+<td class="" id="SYxf">HTN = hypertension; MS = mitral
+                                                                stenosis.</td>
+<td class="" id="zV:r"></td>
+</tr>
+</tbody>
+</table>
+<p class="" id="234c4f00-c692-42f8-8cf2-c2486b64b384">Palpitations are a
+                                                    subjective sensation of the heartbeat usually caused by rapid
+                                                    arrhythmia or forceful ventricular contraction.  This patient with
+                                                    palpitations and an irregularly irregular pulse most likely has
+                                                    atrial fibrillation, the most common cause of an irregularly
+                                                    irregular rhythm.</p>
+<p class="" id="6464f346-2bb4-4f6c-83bc-80b194c8bd62">In atrial
+                                                    fibrillation, the atria experience rapid and chaotic electrical
+                                                    activity, and organized atrial depolarization is lost.  In addition,
+                                                    because the rate of atrial electrical impulses is so high (eg,
+                                                    500-600/min) and the atrioventricular node does not transmit
+                                                    impulses that quickly, impulses are transmitted to the ventricles
+                                                    randomly and intermittently.  Therefore, ECG typically shows an
+                                                    absence of P waves and an irregularly irregular rhythm with varying
+                                                    R-R intervals; the ventricular rate is often (but not always)
+                                                    &gt;100/min.  In addition, irregular, low-amplitude fibrillatory
+                                                    waves are sometimes present between the QRS complexes.</p>
+<p class="" id="75b2f695-24b5-431e-96c0-6dd412e0a923">The development of
+                                                    atrial fibrillation is encouraged by atrial remodeling, which
+                                                    involves changes to atrial conduction pathways that occur as a
+                                                    result of aging and underlying chronic disease (eg, hypertension,
+                                                    heart failure).  Once a certain degree of remodeling is present,
+                                                    acute illness (eg, sepsis or other causes of increased sympathetic
+                                                    tone) and other conditions (eg, hyperthyroidism) can initiate foci
+                                                    of electrical activity that trigger the arrhythmia.  Excessive
+                                                    alcohol consumption is also a common trigger (ie, "holiday
+                                                    heart syndrome").</p>
+<p class="" id="67cce4a0-78a0-4caa-8bcb-dbc2a44195be">(Choice A) 
+                                                    Ventricular bigeminy involves a premature ventricular contraction
+                                                    after each normal sinus beat and is often triggered by periods of
+                                                    increased sympathetic tone.  Palpitations are common, but the rhythm
+                                                    is regularly irregular (ie, R-R interval varies in a predictable
+                                                    manner), with 2 beats occurring close together followed by a
+                                                    relatively long pause before the next beat.</p>
+<p class="" id="d0300e07-12c0-4f9a-afa5-ff354dd6bf22">(Choice B) 
+                                                    Ventricular tachycardia demonstrates wide QRS complexes on ECG.  It
+                                                    may cause palpitations, but the rhythm is regular.</p>
+<p class="" id="7dfce5c4-a493-404c-bf38-5c90040d80e0">(Choice C)  Atrial
+                                                    flutter demonstrates saw-toothed flutter waves on ECG and may cause
+                                                    palpitations.  Because atrial activity is slower (eg, 300/min) and
+                                                    somewhat more organized than in atrial fibrillation, the rhythm can
+                                                    be regular or irregular, depending on the steadiness of conduction
+                                                    through the atrioventricular node.  This ECG shows steady 2:1
+                                                    conduction with a regular rhythm, which is not consistent with this
+                                                    patient's irregularly irregular pulse.</p>
+<p class="" id="efb6fc65-37c9-42a1-aa73-be1b49ae3443">(Choice E) 
+                                                    Atrioventricular nodal reentrant tachycardia commonly causes
+                                                    palpitations, but the rhythm is regular.  P waves are often not
+                                                    visible on ECG because they are buried within the QRS complexes.</p>
+<p class="" id="96c02ecd-7479-48c1-92ec-0c75f165e9e2">Educational
+                                                    objective:</p>
+<p class="" id="4f542a43-b00d-48d4-82e8-2fadd789ffeb">Atrial
+                                                    fibrillation is the most common cause of an irregularly irregular
+                                                    rhythm.  It often presents with palpitations and is confirmed by ECG
+                                                    showing an absence of organized P waves and irregularly irregular
+                                                    R-R intervals.</p>
+<p class="" id="7c1791a1-2d97-491e-a2d8-a976b2f0c88a">Physiology</p>
+<p class="" id="7e46ebf8-3931-4f23-8195-498a34607495">Subject</p>
+<p class="" id="1d749677-86bf-4bc4-9e90-edf6e1d2f285">Cardiovascular
+                                                    System</p>
+<p class="" id="50184326-0cbe-478c-a85a-668439cbd488">System</p>
+<p class="" id="b40e92e4-9981-40ab-ae3a-681b4efcd49a">Atrial
+                                                    fibrillation</p>
+<p class="" id="465c9933-cd97-474f-9163-ba6eec563793">Topic</p>
+<p class="" id="03f5dd89-c5c9-482f-8595-debde58946fa">Copyright ©
+                                                    UWorld. All rights reserved.</p>
+<p class="" id="cef07aa4-dfd6-4948-8ce7-5b4bcb9929b0">REVIEW</p>
+<p class="" id="303fe8e1-e199-4359-b7fe-538a08fb12ba">My Notebook</p>
+<p class="" id="e386973d-e015-404b-9503-f61b91450ce4">0</p>
+<p class="" id="4bac33d9-a368-4bf7-baa7-1c68fecd4d60">Flashcards</p>
+<p class="" id="a82376dd-815d-4bd3-95fd-d2f802e6b4bd">Feedback</p>
+<p class="" id="94af6b67-85d2-49c3-8500-9f53df9099fc">End Block</p>
+<p class="" id="a3b3f3ee-e737-4bbe-91cf-65c4feace634">✨Done</p>
+<p class="" id="7202a8d7-8ef0-40cf-8197-2c833d648b2e">Exhibit Display
+                                                </p>
+<figure class="image" id="ef3477ad-1259-486b-a018-9296e926bf61"><a href="https://lh7-us.googleusercontent.com/Wo8lNTSQw0kVe4_XthlsYBMsx9o2k88zZaiN08uB6PIyrrcvMFoS_lt7Dgouc85_6UP4aYq_Uyw3d_JAFTWLKB7AkSuztzfGrJ1DGTW0id7LSEPOdTlpma7Kr0zuLgsFoiRbnyRe_UCUCPI_LRHfzzs"><img loading="lazy" src="https://lh7-us.googleusercontent.com/Wo8lNTSQw0kVe4_XthlsYBMsx9o2k88zZaiN08uB6PIyrrcvMFoS_lt7Dgouc85_6UP4aYq_Uyw3d_JAFTWLKB7AkSuztzfGrJ1DGTW0id7LSEPOdTlpma7Kr0zuLgsFoiRbnyRe_UCUCPI_LRHfzzs" style="width:602px"/></a>
+</figure>
+<p class="" id="fe1a1a1b-bd1b-4dc3-aadc-d3ee4b76b133">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="c967b996-7c04-4a9d-9cb5-0f722a1c1ed9">ExistingMy
+                                                    Notebook</p>
+<p class="" id="b6964c01-77fa-424b-98ff-5b6063fffa84">Exhibit Display
+                                                </p>
+<figure class="image" id="e58d2253-271e-4a28-b1d4-0305bb4ab9f9"><a href="https://lh7-us.googleusercontent.com/RuxqH4NjDavNYOKGJ62--zzNwdZVB9StxHGU91vecPjV-IwGQQbyB464EOpZq6SNtm2zQa83lTnL78114yw5Jl9dPxymKhy2brf5EZLGxIQezuSY7PKnDlg2EscpmqMU20xIMI4qX26BskMOkdJo934"><img loading="lazy" src="https://lh7-us.googleusercontent.com/RuxqH4NjDavNYOKGJ62--zzNwdZVB9StxHGU91vecPjV-IwGQQbyB464EOpZq6SNtm2zQa83lTnL78114yw5Jl9dPxymKhy2brf5EZLGxIQezuSY7PKnDlg2EscpmqMU20xIMI4qX26BskMOkdJo934" style="width:602px"/></a>
+</figure>
+<p class="" id="7c37ef7e-a95a-428b-a204-7c7067a5d5e5">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="0074daa9-d6d3-401d-9540-7b4e98bfe80d">ExistingMy
+                                                    Notebook</p>
+<p class="" id="4d627b78-8ae3-4586-af04-0ad83c809fa5">Exhibit Display
+                                                </p>
+<figure class="image" id="4c36f124-31ba-49d0-a221-f08cf3de3bf0"><a href="https://lh7-us.googleusercontent.com/8T990EWh5MPMwg2HLaC5NwyloqA_k1-4D5z02km9x_BCcrk2AoDaCDrFZWzxYmNK0J177WYNVRc9Vj2C22fJT18X_IqE4z9ithY381tWs6976Bp6QKgTkFaauo5Phm1Cg--PBrWgA1zRQWdFYiqrFXw"><img loading="lazy" src="https://lh7-us.googleusercontent.com/8T990EWh5MPMwg2HLaC5NwyloqA_k1-4D5z02km9x_BCcrk2AoDaCDrFZWzxYmNK0J177WYNVRc9Vj2C22fJT18X_IqE4z9ithY381tWs6976Bp6QKgTkFaauo5Phm1Cg--PBrWgA1zRQWdFYiqrFXw" style="width:602px"/></a>
+</figure>
+<p class="" id="83139bc8-6f48-440b-960a-74757ae0c4db">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="8352819d-eb5a-43ff-adee-c3ff85a0c5b3">ExistingMy
+                                                    Notebook</p>
+<p class="" id="7bd3825f-98de-4d31-b674-8d0daf67349c">Exhibit Display
+                                                </p>
+<figure class="image" id="0d823034-9311-4cd9-85ac-6d57192bbe36"><a href="https://lh7-us.googleusercontent.com/RsRHX8zpcnW7aPrUdsK6D64sEzj18RHMpbfJllN8Fb3V3crNyxecViQfieY0SZOUCZSIoPyKZMF99RJ-WMvXgWyhjlXAjfZ8l9AXnGzG2Bbu8LRVQkLFNcZiBUcE70NbTMeDNBxK5r3x61tZC6U9Bq4"><img loading="lazy" src="https://lh7-us.googleusercontent.com/RsRHX8zpcnW7aPrUdsK6D64sEzj18RHMpbfJllN8Fb3V3crNyxecViQfieY0SZOUCZSIoPyKZMF99RJ-WMvXgWyhjlXAjfZ8l9AXnGzG2Bbu8LRVQkLFNcZiBUcE70NbTMeDNBxK5r3x61tZC6U9Bq4" style="width:602px"/></a>
+</figure>
+<p class="" id="40f6e34a-22d4-4091-83bb-5996dd4c8481">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="d62f0033-78e1-41ba-8ab6-4d76ce82d8d0">ExistingMy
+                                                    Notebook</p>
+<p class="" id="70397476-5cce-486f-82ba-98a35e05dec0">Exhibit Display
+                                                </p>
+<figure class="image" id="2d6e7981-3c3e-482a-a1a4-c50dc47bc914"><a href="https://lh7-us.googleusercontent.com/iQxZLIERupf77elaYfZX19Z0g0qfxob3ywY7YJcXvEXy6jcroN0auny6u6nD4kndrp-tpFEooM9Zj8FG-4kuw4GDCEWX-RXyFmb4ykiYQBjlru8Pzbk1OajGaehiE90NvBacKsb6tz1eH35qPShhGZc"><img loading="lazy" src="https://lh7-us.googleusercontent.com/iQxZLIERupf77elaYfZX19Z0g0qfxob3ywY7YJcXvEXy6jcroN0auny6u6nD4kndrp-tpFEooM9Zj8FG-4kuw4GDCEWX-RXyFmb4ykiYQBjlru8Pzbk1OajGaehiE90NvBacKsb6tz1eH35qPShhGZc" style="width:602px"/></a>
+</figure>
+<p class="" id="5829e0e7-1c51-4a5e-9e90-746469ea06c3">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="154fd640-a573-4c21-9347-de58b3a34e8a">ExistingMy
+                                                    Notebook</p>
+<p class="" id="febe5e17-67fb-45fd-8f84-76212fdc75cc">Exhibit Display
+                                                </p>
+<figure class="image" id="4b4751c1-67c7-45f9-a650-eb02bc612f9b"><a href="https://lh7-us.googleusercontent.com/T2iBu6qlVYTVrlCJCsWYCBhGU6thoDZvKXSn8wGERQHb8NQpOxP6t_k3rZTGP_oudvbw9DHGxIwKTqqeSfFURx1E1gP6SbTpnElfVo98-gNZ50j0ziS7z-w2ZGi6V98_afbStFQUrYE0zl06ePoUSmc"><img loading="lazy" src="https://lh7-us.googleusercontent.com/T2iBu6qlVYTVrlCJCsWYCBhGU6thoDZvKXSn8wGERQHb8NQpOxP6t_k3rZTGP_oudvbw9DHGxIwKTqqeSfFURx1E1gP6SbTpnElfVo98-gNZ50j0ziS7z-w2ZGi6V98_afbStFQUrYE0zl06ePoUSmc" style="width:602px"/></a>
+</figure>
+<p class="" id="640058db-a190-457d-8627-0d2da4a26717">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="5528d076-49f6-450f-bd7f-009a7c32f3ff">ExistingMy
+                                                    Notebook</p>
+</details>
+</li>
+</ul>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+.bionic-reading-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.bionic-reading-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.bionic-reading-btn.active {
+    background: rgba(52, 168, 83, 0.4);
+    border-color: rgba(52, 168, 83, 0.6);
+}
+
+.bionic-reading-btn.active:hover {
+    background: rgba(52, 168, 83, 0.5);
+}
+
+summary {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+    /* Highlighter styles */
+    .highlighted {
+        background-color: #ffeb3b !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .highlighter-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        font-size: 20px !important;
+        padding: 0 8px !important;
+        margin-left: 8px !important;
+        transition: transform 0.2s ease !important;
+        vertical-align: middle !important;
+    }
+
+    .highlighter-btn:hover {
+        transform: scale(1.2) !important;
+    }
+
+    .highlighter-btn.active {
+        transform: scale(1.1) !important;
+        filter: brightness(1.2) !important;
+    }
+
+    .highlighter-mode-active {
+        cursor: text !important;
+    }
+
+
+    /* Right padding to avoid overlap with sidebar buttons */
+    body {
+        padding-right: 50px !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 16px !important;
+        }
+    }
+
+
+    
+
+
+    
+
+    /* Adjust table padding to make room for radio button */
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+    /* Clickable Answer Choices */
+    table tr.answer-choice {
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+    }
+
+    table tr.answer-choice:hover {
+        background: #f8f9fa !important;
+    }
+
+    table tr.answer-choice td:first-child {
+        position: relative !important;
+        padding-left: 35px !important;
+    }
+
+    table tr.answer-choice td:first-child::before {
+        content: '';
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        border: 2px solid #999;
+        border-radius: 50%;
+        background: white;
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+    }
+
+    table tr.answer-choice.selected td:first-child::before {
+        border-color: #1a73e8;
+        border-width: 5px;
+    }
+
+    table tr.answer-choice.selected {
+        background: #e8f4ff !important;
+    }
+
+    table tr.answer-choice.selected td:first-child {
+        color: #1a73e8 !important;
+        font-weight: 600 !important;
+    }
+
+
+    
+
+
+    /* Answer Validation Styles */
+    tr.answer-choice.answer-correct {
+        background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%) !important;
+        border: 3px solid #28a745 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-correct td {
+        color: #155724 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-correct td:first-child::before {
+        border-color: #28a745 !important;
+        background: #28a745 !important;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    tr.answer-choice.answer-incorrect {
+        background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%) !important;
+        border: 3px solid #dc3545 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-incorrect td {
+        color: #721c24 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-incorrect td:first-child::before {
+        border-color: #dc3545 !important;
+        background: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+    }
+
+
+    /* Answer Validation Styles */
+    tr.answer-choice.answer-correct {
+        background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%) !important;
+        border: 3px solid #28a745 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-correct td {
+        color: #155724 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-correct td:first-child::before {
+        border-color: #28a745 !important;
+        background: #28a745 !important;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    tr.answer-choice.answer-incorrect {
+        background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%) !important;
+        border: 3px solid #dc3545 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-incorrect td {
+        color: #721c24 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-incorrect td:first-child::before {
+        border-color: #dc3545 !important;
+        background: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+    }
+
+</style>
+
+
+
+<script>
+let bionicEnabled = false;
+const originalContent = {};
+
+function toggleBionicReading(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    bionicEnabled = !bionicEnabled;
+    const btn = document.querySelector('.bionic-reading-btn');
+    const icon = document.getElementById('bionicIcon');
+
+    if (bionicEnabled) {
+        btn.classList.add('active');
+        icon.textContent = '✅';
+        applyBionicReading();
+    } else {
+        btn.classList.remove('active');
+        icon.textContent = '👁️';
+        restoreOriginalText();
+    }
+}
+
+function applyBionicReading() {
+    // Seleciona todos os elementos de texto, EXCETO summary e buttons
+    const textElements = document.querySelectorAll('p:not(summary p):not(button p), td:not(summary td):not(button td), li:not(summary li):not(button li)');
+
+    textElements.forEach((element, index) => {
+        // Ignora elementos que contêm outros elementos complexos
+        if (element.querySelector('p, td, li, h1, h2, h3, h4, h5, h6, button, summary')) {
+            return;
+        }
+
+        // Ignora se o elemento está dentro de um summary ou button
+        if (element.closest('summary') || element.closest('button') || element.closest('.bionic-reading-btn')) {
+            return;
+        }
+
+        // Salva o conteúdo original
+        if (!originalContent[index]) {
+            originalContent[index] = {
+                element: element,
+                html: element.innerHTML
+            };
+        }
+
+        // Aplica Bionic Reading
+        const bionicText = convertToBionic(element.textContent);
+        element.innerHTML = bionicText;
+    });
+}
+
+function restoreOriginalText() {
+    // Restaura o conteúdo original
+    Object.values(originalContent).forEach(item => {
+        item.element.innerHTML = item.html;
+    });
+}
+
+function convertToBionic(text) {
+    // Divide o texto em palavras, mantendo pontuação
+    const words = text.split(/(\s+|[.,;:!?()""''\-–—])/);
+
+    const bionicWords = words.map(word => {
+        // Ignora espaços e pontuação
+        if (word.match(/^\s+$/) || word.match(/^[.,;:!?()""''\-–—]+$/)) {
+            return word;
+        }
+
+        // Ignora palavras muito curtas (1-2 letras)
+        if (word.length <= 2) {
+            return word;
+        }
+
+        // Determina quantas letras deixar em negrito (metade da palavra, arredondado para cima)
+        const boldLength = Math.ceil(word.length / 2);
+
+        // Separa a parte em negrito da parte normal
+        const boldPart = word.substring(0, boldLength);
+        const normalPart = word.substring(boldLength);
+
+        // Retorna com a primeira parte em negrito
+        return `<strong style="font-weight: 700 !important; color: inherit !important; background: none !important; padding: 0 !important;">${boldPart}</strong>${normalPart}`;
+    });
+
+    return bionicWords.join('');
+}
+
+// Adiciona atalho de teclado (Ctrl+B ou Cmd+B)
+document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+        e.preventDefault();
+        toggleBionicReading();
+    }
+});
+</script>
+
+<script>
+    let highlighterActive = false;
+    let questionHighlights = {};
+
+    // Get question ID from the first summary strong tag
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Load highlights from localStorage
+    function loadHighlights() {
+        const questionId = getQuestionId();
+        const stored = localStorage.getItem('highlights_' + questionId);
+        if (stored) {
+            questionHighlights = JSON.parse(stored);
+            applyStoredHighlights();
+        }
+    }
+
+    // Save highlights to localStorage
+    function saveHighlights() {
+        const questionId = getQuestionId();
+        localStorage.setItem('highlights_' + questionId, JSON.stringify(questionHighlights));
+    }
+
+    // Apply stored highlights
+    function applyStoredHighlights() {
+        Object.keys(questionHighlights).forEach(key => {
+            const element = document.querySelector(`[data-highlight-id="${key}"]`);
+            if (element && questionHighlights[key]) {
+                element.classList.add('highlighted');
+            }
+        });
+    }
+
+    // Toggle highlighter mode
+    function toggleHighlighter(event) {
+        event.stopPropagation();
+        highlighterActive = !highlighterActive;
+
+        const btn = event.target.closest('.highlighter-btn');
+        const icon = btn.querySelector('#highlighterIcon');
+
+        if (highlighterActive) {
+            btn.classList.add('active');
+            icon.textContent = '🖍️';
+            document.body.classList.add('highlighter-mode-active');
+        } else {
+            btn.classList.remove('active');
+            icon.textContent = '🖊️';
+            document.body.classList.remove('highlighter-mode-active');
+        }
+    }
+
+    // Clear all highlights for this question
+    function clearHighlights() {
+        const questionId = getQuestionId();
+        questionHighlights = {};
+        localStorage.removeItem('highlights_' + questionId);
+        document.querySelectorAll('.highlighted').forEach(el => {
+            el.classList.remove('highlighted');
+        });
+    }
+
+    // Handle text selection and highlighting
+    document.addEventListener('mouseup', function(e) {
+        if (!highlighterActive) return;
+
+        const selection = window.getSelection();
+        if (!selection.toString().trim()) return;
+
+        const range = selection.getRangeAt(0);
+        const container = range.commonAncestorContainer;
+
+        // Only highlight text in paragraphs, not in buttons or other elements
+        const paragraph = container.nodeType === 3 ? container.parentElement : container;
+        if (paragraph.tagName !== 'P' && paragraph.tagName !== 'LI' && paragraph.tagName !== 'TD') {
+            return;
+        }
+
+        // Create highlight span
+        const span = document.createElement('span');
+        span.classList.add('highlighted');
+
+        // Generate unique ID for this highlight
+        const highlightId = 'hl-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+        span.setAttribute('data-highlight-id', highlightId);
+
+        try {
+            range.surroundContents(span);
+            questionHighlights[highlightId] = true;
+            saveHighlights();
+        } catch (e) {
+            console.log('Could not highlight selection');
+        }
+
+        selection.removeAllRanges();
+    });
+
+    // Load highlights when page loads
+    window.addEventListener('load', loadHighlights);
+
+    // Keyboard shortcut: Ctrl+H to toggle highlighter
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'h') {
+            e.preventDefault();
+            const btn = document.querySelector('.highlighter-btn');
+            if (btn) {
+                toggleHighlighter({target: btn, stopPropagation: () => {}});
+            }
+        }
+        // Ctrl+Shift+H to clear all highlights
+        if (e.ctrlKey && e.shiftKey && e.key === 'H') {
+            e.preventDefault();
+            if (confirm('Clear all highlights for this question?')) {
+                clearHighlights();
+            }
+        }
+    });
+</script>
+
+
+
+
+
+
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Communicate with parent window (if in iframe)
+    function notifyParent(choice) {
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'choiceSelected',
+                questionId: getQuestionId(),
+                choice: choice
+            }, '*');
+        }
+    }
+
+    // Load saved choice from parent or localStorage
+    function loadSavedChoice() {
+        const questionId = getQuestionId();
+
+        // Try to get from localStorage first
+        const saved = localStorage.getItem('choice_q' + questionId);
+        if (saved) {
+            selectChoice(saved, false);
+        }
+
+        // Ask parent for saved choice (if in iframe)
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'getChoice',
+                questionId: questionId
+            }, '*');
+        }
+    }
+
+    // Listen for messages from parent
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'setChoice' && event.data.questionId === getQuestionId()) {
+            selectChoice(event.data.choice, false);
+        }
+    });
+
+    // Select a choice
+    function selectChoice(choice, notify = true) {
+        if (!choice) return;
+
+        const questionId = getQuestionId();
+
+        // Remove previous selection
+        document.querySelectorAll('tr.answer-choice').forEach(row => {
+            row.classList.remove('selected');
+        });
+
+        // Add selection to clicked choice
+        const choiceRow = document.querySelector(`tr.answer-choice[data-choice="${choice}"]`);
+        if (choiceRow) {
+            choiceRow.classList.add('selected');
+
+            // Save to localStorage
+            localStorage.setItem('choice_q' + questionId, choice);
+
+            // Notify parent (if in iframe)
+            if (notify) {
+                notifyParent(choice);
+            }
+        }
+    }
+
+    // Initialize answer choices
+    function initializeChoices() {
+        // Find all answer choice rows (A, B, C, D, E, F, etc.)
+        const choicePattern = /^[A-Z]\.$/;
+        const tables = document.querySelectorAll('table.simple-table');
+
+        tables.forEach(table => {
+            const rows = table.querySelectorAll('tr');
+            rows.forEach(row => {
+                const firstCell = row.querySelector('td:first-child');
+                if (firstCell && choicePattern.test(firstCell.textContent.trim())) {
+                    const choice = firstCell.textContent.trim().replace('.', '');
+                    row.classList.add('answer-choice');
+                    row.setAttribute('data-choice', choice);
+                    row.style.position = 'relative';
+
+                    // Add click handler
+                    row.addEventListener('click', function(e) {
+                        // Don't trigger if clicking inside a link or button
+                        if (e.target.tagName === 'A' || e.target.closest('a')) return;
+
+                        // Toggle selection
+                        if (this.classList.contains('selected')) {
+                            this.classList.remove('selected');
+                            const questionId = getQuestionId();
+                            localStorage.removeItem('choice_q' + questionId);
+                            notifyParent('');
+                        } else {
+                            selectChoice(choice);
+                        }
+                    });
+                }
+            });
+        });
+
+        // Load saved choice after a short delay
+        setTimeout(loadSavedChoice, 100);
+    }
+
+    // Run when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeChoices);
+    } else {
+        initializeChoices();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+
+                    // Notify parent that Submit/Explanation was opened
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'submitOpened',
+                            questionId: getQuestionId()
+                        }, '*');
+                    }
+                } else {
+                    // Notify parent that Submit/Explanation was closed
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'submitClosed',
+                            questionId: getQuestionId()
+                        }, '*');
+                    }
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>

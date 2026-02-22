@@ -1,0 +1,1766 @@
+
+<style>
+    * {
+        box-sizing: border-box !important;
+    }
+
+    body {
+        font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        line-height: 1.9 !important;
+        color: #1f1f1f !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 8px 16px 16px 16px !important;
+        background: #ffffff !important;
+        font-size: 16.5px !important;
+    }
+
+    p {
+        margin-bottom: 20px !important;
+        font-size: 16.5px !important;
+        line-height: 1.95 !important;
+        color: #1f1f1f !important;
+        font-weight: 400 !important;
+    }
+
+    strong, b {
+        color: #1a73e8 !important;
+        font-weight: 700 !important;
+        background: rgba(26, 115, 232, 0.08) !important;
+        padding: 2px 6px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Details/Summary (collapsible sections) */
+    details {
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%) !important;
+        border-radius: 8px !important;
+        padding: 24px 28px !important;
+        margin: 24px 0 !important;
+        border: none;
+        box-shadow: none !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    details:hover {
+        border-color: #1a73e8 !important;
+        box-shadow: none !important;
+        transform: translateY(-2px) !important;
+    }
+
+    details[open] {
+        background: #ffffff !important;
+        border-color: #1a73e8 !important;
+        box-shadow: none !important;
+    }
+
+    summary {
+        cursor: pointer !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        font-size: 20px !important;
+        padding: 16px 24px !important;
+        border-radius: 8px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        display: flex !important;
+        align-items: center !important;
+        user-select: none !important;
+        box-shadow: none !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    summary:hover {
+        background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%) !important;
+        transform: translateX(6px) scale(1.02) !important;
+        box-shadow: none !important;
+    }
+
+    summary:active {
+        transform: translateX(4px) scale(0.99) !important;
+    }
+
+    summary::marker {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-size: 1.3em !important;
+    }
+
+    summary strong {
+        background: rgba(255, 255, 255, 0.2) !important;
+        color: #ffffff !important;
+        padding: 4px 12px !important;
+        border-radius: 8px !important;
+        margin-left: 8px !important;
+        font-size: 19px !important;
+        letter-spacing: 1px !important;
+    }
+
+    /* Tables - Premium Design */
+    table {
+        width: 100% !important;
+        border-collapse: separate !important;
+        border-spacing: 0 !important;
+        margin: 28px 0 !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: #ffffff !important;
+    }
+
+    table.simple-table {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+    }
+
+    table tr {
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        position: relative !important;
+    }
+
+    table tr:nth-child(odd) {
+        background: rgba(248, 249, 250, 0.5) !important;
+    }
+
+    table tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    table tr:hover {
+        background: linear-gradient(90deg, #e8f0fe 0%, #f1f8ff 100%) !important;
+        transform: translateX(4px) scale(1.01) !important;
+        box-shadow: none !important;
+        z-index: 1 !important;
+    }
+
+    table td {
+        padding: 18px 24px !important;
+        border-bottom: 1px solid rgba(232, 234, 237, 0.6) !important;
+        font-size: 16.5px !important;
+        line-height: 1.7 !important;
+        color: #1f1f1f !important;
+        vertical-align: middle !important;
+    }
+
+    table tr:last-child td {
+        border-bottom: none !important;
+    }
+
+    /* First column (A, B, C, D, E) */
+    table td:first-child {
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        width: 52px !important;
+        text-align: center !important;
+        font-size: 18px !important;
+        background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%) !important;
+        border-right: 3px solid #1557b0 !important;
+        position: relative !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    table tr:hover td:first-child {
+        background: linear-gradient(135deg, #1557b0 0%, #0d47a1 100%) !important;
+        box-shadow: none !important;
+    }
+
+    /* Second column (content) */
+    table td:nth-child(2) {
+        font-weight: 500 !important;
+        padding-left: 28px !important;
+    }
+
+    /* Third column (empty - hide it) */
+    table td:last-child:empty {
+        display: none !important;
+    }
+
+    /* Lists */
+    ul, ol {
+        margin: 16px 0 !important;
+        padding-left: 32px !important;
+    }
+
+    li {
+        margin: 10px 0 !important;
+        line-height: 1.8 !important;
+        color: #1f1f1f !important;
+    }
+
+    ul.bulleted-list li {
+        position: relative !important;
+        padding-left: 8px !important;
+    }
+
+    ul.toggle {
+        list-style: none !important;
+        padding-left: 0 !important;
+    }
+
+    /* Links */
+    a {
+        color: #1a73e8 !important;
+        text-decoration: none !important;
+        font-weight: 600 !important;
+        border-bottom: 2px solid transparent !important;
+        transition: all 0.2s !important;
+    }
+
+    a:hover {
+        border-bottom-color: #1a73e8 !important;
+        background: rgba(26,115,232,0.08) !important;
+        padding: 2px 4px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Images & Media */
+    img, video {
+        max-width: none !important;
+        height: auto !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
+        margin: 24px 0 !important;
+        display: block !important;
+        border: none !important;
+    }
+
+    img:hover, video:hover {
+        box-shadow: none !important;
+        border-color: #1a73e8 !important;
+    }
+
+    /* Code blocks (if any) */
+    code {
+        background: #f1f3f4 !important;
+        padding: 2px 8px !important;
+        border-radius: 8px !important;
+        font-family: 'Courier New', monospace !important;
+        font-size: 14px !important;
+        color: #d93025 !important;
+    }
+
+    pre {
+        background: #f8f9fa !important;
+        padding: 8px 16px 16px 16px !important;
+        border-radius: 8px !important;
+        overflow-x: auto !important;
+        border-left: 4px solid #1a73e8 !important;
+    }
+
+    /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+        color: #1a73e8 !important;
+        font-weight: 700 !important;
+        margin-top: 24px !important;
+        margin-bottom: 16px !important;
+        line-height: 1.4 !important;
+    }
+
+    h1 { font-size: 32px !important; }
+    h2 { font-size: 26px !important; }
+    h3 { font-size: 22px !important; }
+    h4 { font-size: 19px !important; }
+
+    /* Blockquotes */
+    blockquote {
+        border-left: 4px solid #1a73e8 !important;
+        padding-left: 20px !important;
+        margin: 20px 0 !important;
+        font-style: italic !important;
+        color: #5f6368 !important;
+        background: #f8f9fa !important;
+        padding: 16px 20px !important;
+        border-radius: 8px !important;
+    }
+
+    /* Horizontal Rule */
+    hr {
+        border: none !important;
+        height: 2px !important;
+        background: linear-gradient(to right, transparent, #1a73e8, transparent) !important;
+        margin: 32px 0 !important;
+    }
+
+    /* Selection */
+    ::selection {
+        background: #e8f0fe !important;
+        color: #1a73e8 !important;
+    }
+
+    /* Highlighter styles */
+    .highlighted {
+        background-color: #ffeb3b !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .highlighter-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        font-size: 20px !important;
+        padding: 0 8px !important;
+        margin-left: 8px !important;
+        transition: transform 0.2s ease !important;
+        vertical-align: middle !important;
+    }
+
+    .highlighter-btn:hover {
+        transform: scale(1.2) !important;
+    }
+
+    .highlighter-btn.active {
+        transform: scale(1.1) !important;
+        filter: brightness(1.2) !important;
+    }
+
+    .highlighter-mode-active {
+        cursor: text !important;
+    }
+
+
+    /* Right padding to avoid overlap with sidebar buttons */
+    body {
+        padding-right: 50px !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 16px !important;
+        }
+    }
+
+</style>
+
+
+
+
+<details open>
+<summary><strong>1865</strong><button class="bionic-reading-btn" onclick="toggleBionicReading(event)" title="Toggle Bionic Reading (Ctrl+B)"><span id="bionicIcon">👁️</span></button><button class="highlighter-btn" onclick="toggleHighlighter(event)" title="Toggle Highlighter (Ctrl+H)"><span id="highlighterIcon">🖊️</span></button></summary>
+<p class="" id="3df8849f-7ca0-4938-bbe5-38ab7ec3c46c">A 23-year-old man comes to the
+                                        emergency department due to 4 days of cramping abdominal pain.  He has been
+                                        feeling weak for the past 2 weeks.  The patient tried over-the-counter antacids
+                                        without relief.  He is an industrial laborer with no significant medical history
+                                        or known allergies.  The patient lives in Massachusetts.  The patient's
+                                        parents have hypertension, and his siblings are healthy.  Temperature is 37.1 C
+                                        (98.8 F).  Physical examination is unremarkable.  The patient's peripheral
+                                        blood smear is shown in the image below:</p>
+<figure class="image" id="258ff3bf-b143-4740-b0a1-023638e2519b"><a href="https://lh7-us.googleusercontent.com/uUfGPZ1K5aV8OMChvZTEXgv2PYeyZRf8PSK7aLiDQbmHY9rAvlQcULAr9bnAvQsKbkN7wCRxVjGRjTBSCV3TYyCDqHlKA_TNagPTETNKhGoG8Lnkr1rIxPdrnckgWxEhDcQX3UXS9Jd3wabNlJprUg"><img loading="lazy" src="https://lh7-us.googleusercontent.com/uUfGPZ1K5aV8OMChvZTEXgv2PYeyZRf8PSK7aLiDQbmHY9rAvlQcULAr9bnAvQsKbkN7wCRxVjGRjTBSCV3TYyCDqHlKA_TNagPTETNKhGoG8Lnkr1rIxPdrnckgWxEhDcQX3UXS9Jd3wabNlJprUg" style="width:576px"/></a>
+</figure>
+<p class="" id="b0ebd209-3dd5-4c8f-b590-b146613a0ffe">Which of the following is the
+                                        most likely cause of this patient's symptoms?</p>
+<table class="simple-table" id="f84597de-648f-4a73-998f-4cc4d57eddb0">
+<tbody>
+<tr id="d47c96d1-1069-463b-bb9e-60561895cb22">
+<td class="" id="[bhR">A.</td>
+<td class="" id="qVee">Acute intermittent porphyria</td>
+<td class="" id="E}XK"></td>
+</tr>
+<tr id="f33ea5bc-a239-4227-b81a-0071879de8c2">
+<td class="" id="[bhR">B.</td>
+<td class="" id="qVee">Acute leukemia</td>
+<td class="" id="E}XK"></td>
+</tr>
+<tr id="9deab95a-6c92-4aa3-8eb7-f721ed7d4fb4">
+<td class="" id="[bhR">C.</td>
+<td class="" id="qVee">Atrophic gastritis</td>
+<td class="" id="E}XK"></td>
+</tr>
+<tr id="35be6cda-b23b-44a7-aefc-ad7484d49535">
+<td class="" id="[bhR">D.</td>
+<td class="" id="qVee">Metal poisoning</td>
+<td class="" id="E}XK"></td>
+</tr>
+<tr id="7ecc4018-9724-465c-ad2c-8b51c03fc7c3">
+<td class="" id="[bhR">E.</td>
+<td class="" id="qVee">Parasitic infection</td>
+<td class="" id="E}XK"></td>
+</tr>
+<tr id="936cddcf-09e4-4a90-9e77-6415bd2308bb">
+<td class="" id="[bhR">F.</td>
+<td class="" id="qVee">Splenic dysfunction</td>
+<td class="" id="E}XK"></td>
+</tr>
+</tbody>
+</table>
+<ul class="toggle" id="2a9221ec-90a0-43e6-b757-c4586af8270f">
+<li>
+<details>
+<summary>Submit</summary>
+<table class="simple-table" id="be73c66e-feaa-434d-82b9-758b7833e60e">
+<tbody>
+<tr id="8e25a5ab-40a4-4b81-8946-fc5579f36ff2">
+<td class="" id="a_WA">A.</td>
+<td class="" id="QUBH">Acute intermittent porphyria (8%)
+                                                            </td>
+<td class="" id="v&lt;f["></td>
+</tr>
+<tr id="823d6741-5452-4e54-953e-910125669114">
+<td class="" id="a_WA">B.</td>
+<td class="" id="QUBH">Acute leukemia (0%)</td>
+<td class="" id="v&lt;f["></td>
+</tr>
+<tr id="97a8a88d-01ee-4b9f-9608-399ae905118b">
+<td class="" id="a_WA">C.</td>
+<td class="" id="QUBH">Atrophic gastritis (1%)</td>
+<td class="" id="v&lt;f["></td>
+</tr>
+<tr id="ec02fbc5-7fd7-46c3-9e0f-e7c144df12c4">
+<td class="" id="a_WA">D.</td>
+<td class="" id="QUBH">Metal poisoning (78%)</td>
+<td class="" id="v&lt;f["></td>
+</tr>
+<tr id="8ac6b6c9-58c3-4cfe-a129-bbdd0c1ab92d">
+<td class="" id="a_WA">E.</td>
+<td class="" id="QUBH">Parasitic infection (4%)</td>
+<td class="" id="v&lt;f["></td>
+</tr>
+<tr id="658e57c3-d89e-4bce-b322-fd9954829ddd">
+<td class="" id="a_WA">F.</td>
+<td class="" id="QUBH">Splenic dysfunction (7%)</td>
+<td class="" id="v&lt;f["></td>
+</tr>
+</tbody>
+</table>
+<p class="" id="ae1a16be-2cf7-41c9-8912-d047a15cb778">Incorrect</p>
+<p class="" id="3110f659-5cb2-4e3f-b18f-57b1c8dbbbb4">Correct answer D
+                                                </p>
+<p class="" id="64daf601-d083-416b-bff1-33172791c8e8">78%Answered
+                                                    correctly</p>
+<p class="" id="8f8c4c0f-963b-4874-aea0-712168bc9013">35 secsTime Spent
+                                                </p>
+<p class="" id="c95d871a-9b89-40fa-acf1-a9d2ebe52e44">2024Version</p>
+<ul class="bulleted-list" id="9ec5b2a9-61a9-4a59-ab08-c1d5610bd8e2">
+<li style="list-style-type:disc">Explanation</li>
+</ul>
+<ul class="bulleted-list" id="89014ee5-7bf9-49cf-90b9-3ac12bb2b256">
+<li style="list-style-type:disc"></li>
+</ul>
+<figure class="image" id="fecbcf36-f51d-42ab-85e2-26648022d659"><a href="https://lh7-us.googleusercontent.com/SPedZEB3YJlpQe244lOic98AeX2xMADBpi87ZyVnzgTjClNgng6Cfi2fwQNzHuQ6iHWCMPlU7UarIYP1yCRHBqmSd9gW5s42JcBEYXVnvsRo8w59E2575dny_hhbeKyQGHaIee4lYMY7jwXBXqoVsQ"><img loading="lazy" src="https://lh7-us.googleusercontent.com/SPedZEB3YJlpQe244lOic98AeX2xMADBpi87ZyVnzgTjClNgng6Cfi2fwQNzHuQ6iHWCMPlU7UarIYP1yCRHBqmSd9gW5s42JcBEYXVnvsRo8w59E2575dny_hhbeKyQGHaIee4lYMY7jwXBXqoVsQ" style="width:596px"/></a>
+</figure>
+<p class="" id="82eb99ce-42b2-40de-a24a-719f361d5769">This patient
+                                                    likely has lead poisoning.  Lead poisoning (ie, plumbism) is often a
+                                                    pediatric condition that results from children ingesting
+                                                    lead-containing paint chips.  However, lead poisoning can also occur
+                                                    in adults.  Affected individuals are usually miners or industrial
+                                                    workers (especially those in battery manufacturing) who inhale
+                                                    particulate lead while working.</p>
+<p class="" id="c7488085-75d3-4140-96d5-578d08938ad9">Adults with lead
+                                                    poisoning experience weakness, abdominal pain, and constipation.  In
+                                                    severe cases, there may be neurologic manifestations (eg, headache,
+                                                    cognitive symptoms, peripheral neuropathy).  On physical
+                                                    examination, patients may have blue "lead lines" at the
+                                                    junction of the teeth and gingivae.</p>
+<p class="" id="f1200236-bb6d-475e-8d70-4cf5560d0343">The classic
+                                                    findings on peripheral blood smear are coarse basophilic stippling
+                                                    and hypochromic, microcytic anemia.  Basophilic stippling results
+                                                    from impaired degradation of ribosomal RNA, which is normally
+                                                    degraded and eliminated during reticulocyte maturation.  Lead
+                                                    inhibits an enzyme involved in this process, resulting in ribosomal
+                                                    precipitates that appear as dark blue-purple granules throughout red
+                                                    blood cells (RBCs).  Hypochromic microcytic anemia results from
+                                                    inhibition of delta-aminolevulinate dehydratase (delta-ALA
+                                                    dehydratase) and ferrochelatase, which are involved in heme
+                                                    synthesis.  This causes decreased hemoglobin synthesis, which gives
+                                                    the RBCs a pale appearance.</p>
+<p class="" id="8144fa23-f5eb-4bb1-8998-ef25823d9a6c">(Choice A)  Acute
+                                                    intermittent porphyria is characterized by reduced activity of
+                                                    porphobilinogen deaminase (an enzyme in the heme synthesis pathway)
+                                                    in the liver, causing buildup of neurotoxic heme pathway
+                                                    intermediates.  It can cause attacks of abdominal pain (without
+                                                    abdominal tenderness) due to autonomic neuropathy.  Erythropoiesis
+                                                    is not affected, and the peripheral blood smear is normal.</p>
+<p class="" id="c8605f1f-072f-48c2-b49b-0e3a867e516e">(Choice B) 
+                                                    Myeloblasts containing cytoplasmic Auer rods on peripheral blood
+                                                    smear are a characteristic finding of acute myeloid leukemia, which
+                                                    typically presents with complications of pancytopenia (eg, bruising
+                                                    from thrombocytopenia, infection from neutropenia).</p>
+<p class="" id="b04f09ac-22c1-4661-919b-ba0145bbec36">(Choice C) 
+                                                    Autoimmune destruction of gastric parietal cells causes atrophic
+                                                    gastritis, which can lead to pernicious anemia (a type of
+                                                    megaloblastic anemia) due to vitamin B12 malabsorption. 
+                                                    Megaloblastic anemia is characterized by hypersegmented neutrophils
+                                                    and macro-ovalocytes (large, oval RBCs).</p>
+<p class="" id="dc8d0282-c34b-4e33-a8ef-dfca0cfa5d74">(Choice E) 
+                                                    Babesiosis is endemic in the northeastern United States and commonly
+                                                    presents with fever, fatigue, and myalgia.  Although it can be
+                                                    detected in a peripheral blood smear, <em>Babesia</em> typically
+                                                    appears as a ring or tetrad form (ie, Maltese cross) within RBCs.
+                                                </p>
+<p class="" id="8f5403fd-9d03-42d8-a131-2558b9b5fe80">(Choice F) 
+                                                    Patients with splenic dysfunction (eg, functional asplenia,
+                                                    splenectomy) may have Howell-Jolly bodies (nuclear remnants normally
+                                                    removed by the spleen), which typically appear as solitary, dark
+                                                    blue-purple inclusions at the periphery of RBCs.</p>
+<p class="" id="4029053d-b47c-4691-af70-93ad4f547896">Educational
+                                                    objective:</p>
+<p class="" id="f4767e60-1c96-4842-9d49-5a02385d1abe">Coarse basophilic
+                                                    stippling (dark blue-purple granules throughout red blood cells) and
+                                                    hypochromic, microcytic anemia are common peripheral blood smear
+                                                    findings in lead poisoning.  High-risk groups include young children
+                                                    ingesting paint chips and industrial workers inhaling particulate
+                                                    lead.</p>
+<p class="" id="fe922128-c400-4e7a-9bd8-d0cae8bd6f2e">Pathology</p>
+<p class="" id="2c0af7fd-415a-4de5-99bd-53c41e040b81">Subject</p>
+<p class="" id="a3f53c5f-0156-463d-97a0-ed92f44c0732">Hematology &amp;
+                                                    Oncology</p>
+<p class="" id="3602940d-91e5-4e85-8b36-992e4526ac7a">System</p>
+<p class="" id="14c56160-3f19-4c35-999d-2ae972b1d600">Lead poisoning</p>
+<p class="" id="23c32e65-2ee6-4511-b0b2-6b71d0f1ba2c">Topic</p>
+<p class="" id="a7632fd2-d755-4255-a47d-38f28a0f2659">Copyright ©
+                                                    UWorld. All rights reserved.</p>
+<p class="" id="abbcf293-28a3-4097-9c68-83b225f99a6a">My Notebook</p>
+<p class="" id="bfacb4be-cc6a-4097-bb26-a7f343d9832a">0</p>
+<p class="" id="0e6d87e5-3587-46b8-b4b0-6b330252384e">Flashcards</p>
+<p class="" id="4664a340-5ccf-412b-8d92-8db6bdec415f">Feedback</p>
+<p class="" id="aa82deda-8155-4f27-8464-c4fec7a1c8f8">Suspend</p>
+<p class="" id="c1bcff39-7a49-4a39-9cc3-c3bd1e75f822">End Block</p>
+<p class="" id="5de2a607-fe07-4555-b10e-746c4088cb7d">✨Done</p>
+<p class="" id="c710a5ae-cc68-456d-b5f7-31e69123d8ec">Exhibit Display
+                                                </p>
+<figure class="image" id="280ec527-ebb5-4e86-9e7e-4f351bfa271d"><a href="https://lh7-us.googleusercontent.com/Y5kSs54fDE8ojUMEsWMAB7P4F5WMIcC2a8dpkBK0SnDkfWRjROcbXuU3mSqXp46gJo9-pCHcq2WqLtY6gQlUeOSvz6J6wST6ZZniJRIzhEB7UGjAvt8X6JqY7MAYNwdz_odmnXFNTupY1UP2KaY-YQ"><img loading="lazy" src="https://lh7-us.googleusercontent.com/Y5kSs54fDE8ojUMEsWMAB7P4F5WMIcC2a8dpkBK0SnDkfWRjROcbXuU3mSqXp46gJo9-pCHcq2WqLtY6gQlUeOSvz6J6wST6ZZniJRIzhEB7UGjAvt8X6JqY7MAYNwdz_odmnXFNTupY1UP2KaY-YQ" style="width:602px"/></a>
+</figure>
+<p class="" id="75c2a0f0-1352-43a9-8b30-a58a8e022abd">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="f1099b02-0a71-484d-b4d9-527ff75b2483">ExistingMy
+                                                    Notebook</p>
+<p class="" id="e62ada22-004f-4187-90c8-595683753f20">Exhibit Display
+                                                </p>
+<figure class="image" id="f8ed3a9b-62c9-4fb2-8d6f-02d0f73c6c79"><a href="https://lh7-us.googleusercontent.com/01FRfObGBbmsa25iHvb9B9g7Wvw6yGM_jDb6Ghkf0D55n-VAyOouyMyxB_gr-4sNZ9KR8QJB8pgPgruHENzE9hEJ24IZa6PaZ4qq3-QKYpomfAQNwmDQh9upYn0CYOXzOa5XHr9SsEMHfjiH1tCSPw"><img loading="lazy" src="https://lh7-us.googleusercontent.com/01FRfObGBbmsa25iHvb9B9g7Wvw6yGM_jDb6Ghkf0D55n-VAyOouyMyxB_gr-4sNZ9KR8QJB8pgPgruHENzE9hEJ24IZa6PaZ4qq3-QKYpomfAQNwmDQh9upYn0CYOXzOa5XHr9SsEMHfjiH1tCSPw" style="width:602px"/></a>
+</figure>
+<p class="" id="5f3e1d15-f9c3-4e99-979e-1a644eab80e8">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="9e503639-4c9d-434b-8003-7e07bf27f6db">ExistingMy
+                                                    Notebook</p>
+<p class="" id="3a9ca9aa-6622-4b4d-aef2-06958a3a66bf">Exhibit Display
+                                                </p>
+<figure class="image" id="dbcab9f9-03b6-4a5d-a22a-7347b0fc006a"><a href="https://lh7-us.googleusercontent.com/WuOL8XRDF18tysTYnvzsT9H3Vrv-H4LCYlzUgME9_6FeQDcwpdNmyj73NrnXtNB4WMYenn9tD1TmGN7QZQmILzqTzShp_wpekRPnl5hhWIouvEZKiulIU2xYXDSqhnFppuSYAcK51aEkcwRFHJ0vlA"><img loading="lazy" src="https://lh7-us.googleusercontent.com/WuOL8XRDF18tysTYnvzsT9H3Vrv-H4LCYlzUgME9_6FeQDcwpdNmyj73NrnXtNB4WMYenn9tD1TmGN7QZQmILzqTzShp_wpekRPnl5hhWIouvEZKiulIU2xYXDSqhnFppuSYAcK51aEkcwRFHJ0vlA" style="width:602px"/></a>
+</figure>
+<p class="" id="f3e31459-1217-4870-abb4-43669ed4b4a6">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="ff3142a8-45f8-4b27-84c5-bc23c60c3a90">ExistingMy
+                                                    Notebook</p>
+<p class="" id="1f8b44cf-b5af-4450-9e70-4ea3bf1fb0ff">Exhibit Display
+                                                </p>
+<figure class="image" id="8f4e5a8c-a8bd-4180-9689-3017916f29c3"><a href="https://lh7-us.googleusercontent.com/08C9zhuVWg9wQfTzihCZ-AKDnVqY8849RMIk9UbgTQ1T7K-GGrepA5YNS6E2rFaBisvqgmWzQJVdTS0AvHiiRH5qw0uZ1De4WTRMdHTbViDp-tU-Yi2mLYtO4slom4X-i80Br4gbMWkVtZ8QnghgHQ"><img loading="lazy" src="https://lh7-us.googleusercontent.com/08C9zhuVWg9wQfTzihCZ-AKDnVqY8849RMIk9UbgTQ1T7K-GGrepA5YNS6E2rFaBisvqgmWzQJVdTS0AvHiiRH5qw0uZ1De4WTRMdHTbViDp-tU-Yi2mLYtO4slom4X-i80Br4gbMWkVtZ8QnghgHQ" style="width:602px"/></a>
+</figure>
+<p class="" id="4da1b46b-4620-47c9-85ca-9df847246e7a">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="fc6b2bce-e93d-46a2-a2e3-2523180df8a7">ExistingMy
+                                                    Notebook</p>
+<p class="" id="06a7f308-6fd7-4c6d-87c3-e07099ebc374">Exhibit Display
+                                                </p>
+<figure class="image" id="649e8eae-6a13-47cc-ad8f-8668a8266ee2"><a href="https://lh7-us.googleusercontent.com/ep4-NfZjJg6K5RLVYhceMsqvh1BfeK3zI2g_sKbNbZFMikXsgD9MUCmAroOYdYGUVtXlaGhBo1yz5r7eQZannM32o3_Y4Y6Yv5UZfxeGLset_jruxN_MbZEo8w9lQS-4cfTx5Xa2LPa-uV3VDBoKgA"><img loading="lazy" src="https://lh7-us.googleusercontent.com/ep4-NfZjJg6K5RLVYhceMsqvh1BfeK3zI2g_sKbNbZFMikXsgD9MUCmAroOYdYGUVtXlaGhBo1yz5r7eQZannM32o3_Y4Y6Yv5UZfxeGLset_jruxN_MbZEo8w9lQS-4cfTx5Xa2LPa-uV3VDBoKgA" style="width:602px"/></a>
+</figure>
+<p class="" id="b0a7045d-3fb0-42d2-8d92-b9c744bb8378">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="117b80a5-e56e-4605-8dde-800d3a39d25f">ExistingMy
+                                                    Notebook</p>
+<p class="" id="8bf0ebdd-f9ac-4161-90b9-e6992f15de0d">Exhibit Display
+                                                </p>
+<figure class="image" id="46c7e1f7-855a-4a30-ad88-59c78005193b"><a href="https://lh7-us.googleusercontent.com/xhTKy7JBkRfv4jtwiTSzlTMycNMF5L43xW7q5-KOvCUs88DIO0fUnT7hydIazvDKEZZfg-ZBd1v-GMALnInlkMiGu_ZsInliiQ60GOlYzdqoyg4Cgt_dJZQWKGyf-OdPUU73G1idTscgSfRjuxTq-A"><img loading="lazy" src="https://lh7-us.googleusercontent.com/xhTKy7JBkRfv4jtwiTSzlTMycNMF5L43xW7q5-KOvCUs88DIO0fUnT7hydIazvDKEZZfg-ZBd1v-GMALnInlkMiGu_ZsInliiQ60GOlYzdqoyg4Cgt_dJZQWKGyf-OdPUU73G1idTscgSfRjuxTq-A" style="width:602px"/></a>
+</figure>
+<p class="" id="d70946ee-1b2b-4187-bad9-09d9387ef562">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="15be767b-9b53-4d81-938a-54583c9a22d7">ExistingMy
+                                                    Notebook</p>
+<p class="" id="a00362f6-ef8e-4d71-a9e5-72318dc58b3b">Exhibit Display
+                                                </p>
+<figure class="image" id="60c8e40b-f6e4-436c-8fb7-e706bd825995"><a href="https://lh7-us.googleusercontent.com/i3uH3cf8bPcAmuYlEHYR16LvyuoB39TH0hkYOTsR50456n57D_SAII8v5YdV8RhOVUysDT5IKESG0zHIO8J7dBE_Jh-pTcZ48Vrml_rbeM97N0ZmBy_2zSM94_ucE0AOrwtWuA1Oy1vSWOVIoDVqrA"><img loading="lazy" src="https://lh7-us.googleusercontent.com/i3uH3cf8bPcAmuYlEHYR16LvyuoB39TH0hkYOTsR50456n57D_SAII8v5YdV8RhOVUysDT5IKESG0zHIO8J7dBE_Jh-pTcZ48Vrml_rbeM97N0ZmBy_2zSM94_ucE0AOrwtWuA1Oy1vSWOVIoDVqrA" style="width:602px"/></a>
+</figure>
+<p class="" id="b3b30fbe-14d0-4103-bb51-d349f4cf9f36">Zoom InZoom Out 
+                                                    ResetNew</p>
+<p class="" id="3e038fc0-8429-4466-8287-b6f8341b7ea6">ExistingMy
+                                                    Notebook</p>
+</details>
+</li>
+</ul>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+.bionic-reading-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.bionic-reading-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.bionic-reading-btn.active {
+    background: rgba(52, 168, 83, 0.4);
+    border-color: rgba(52, 168, 83, 0.6);
+}
+
+.bionic-reading-btn.active:hover {
+    background: rgba(52, 168, 83, 0.5);
+}
+
+summary {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+    /* Highlighter styles */
+    .highlighted {
+        background-color: #ffeb3b !important;
+        transition: background-color 0.2s ease !important;
+    }
+
+    .highlighter-btn {
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
+        font-size: 20px !important;
+        padding: 0 8px !important;
+        margin-left: 8px !important;
+        transition: transform 0.2s ease !important;
+        vertical-align: middle !important;
+    }
+
+    .highlighter-btn:hover {
+        transform: scale(1.2) !important;
+    }
+
+    .highlighter-btn.active {
+        transform: scale(1.1) !important;
+        filter: brightness(1.2) !important;
+    }
+
+    .highlighter-mode-active {
+        cursor: text !important;
+    }
+
+
+    /* Right padding to avoid overlap with sidebar buttons */
+    body {
+        padding-right: 50px !important;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding-right: 16px !important;
+        }
+    }
+
+
+    
+
+
+    
+
+    /* Adjust table padding to make room for radio button */
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+    /* Clickable Answer Choices */
+    table tr.answer-choice {
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+    }
+
+    table tr.answer-choice:hover {
+        background: #f8f9fa !important;
+    }
+
+    table tr.answer-choice td:first-child {
+        position: relative !important;
+        padding-left: 35px !important;
+    }
+
+    table tr.answer-choice td:first-child::before {
+        content: '';
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 16px;
+        height: 16px;
+        border: 2px solid #999;
+        border-radius: 50%;
+        background: white;
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+    }
+
+    table tr.answer-choice.selected td:first-child::before {
+        border-color: #1a73e8;
+        border-width: 5px;
+    }
+
+    table tr.answer-choice.selected {
+        background: #e8f4ff !important;
+    }
+
+    table tr.answer-choice.selected td:first-child {
+        color: #1a73e8 !important;
+        font-weight: 600 !important;
+    }
+
+
+    
+
+
+    /* Answer Validation Styles */
+    tr.answer-choice.answer-correct {
+        background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%) !important;
+        border: 3px solid #28a745 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-correct td {
+        color: #155724 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-correct td:first-child::before {
+        border-color: #28a745 !important;
+        background: #28a745 !important;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    tr.answer-choice.answer-incorrect {
+        background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%) !important;
+        border: 3px solid #dc3545 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-incorrect td {
+        color: #721c24 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-incorrect td:first-child::before {
+        border-color: #dc3545 !important;
+        background: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+    }
+
+
+    /* Answer Validation Styles */
+    tr.answer-choice.answer-correct {
+        background: linear-gradient(90deg, #d4edda 0%, #c3e6cb 100%) !important;
+        border: 3px solid #28a745 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-correct td {
+        color: #155724 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-correct td:first-child::before {
+        border-color: #28a745 !important;
+        background: #28a745 !important;
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2) !important;
+    }
+
+    tr.answer-choice.answer-incorrect {
+        background: linear-gradient(90deg, #f8d7da 0%, #f5c6cb 100%) !important;
+        border: 3px solid #dc3545 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+    }
+
+    tr.answer-choice.answer-incorrect td {
+        color: #721c24 !important;
+        font-weight: 600 !important;
+    }
+
+    tr.answer-choice.answer-incorrect td:first-child::before {
+        border-color: #dc3545 !important;
+        background: #dc3545 !important;
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2) !important;
+    }
+
+</style>
+
+
+
+<script>
+let bionicEnabled = false;
+const originalContent = {};
+
+function toggleBionicReading(event) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    bionicEnabled = !bionicEnabled;
+    const btn = document.querySelector('.bionic-reading-btn');
+    const icon = document.getElementById('bionicIcon');
+
+    if (bionicEnabled) {
+        btn.classList.add('active');
+        icon.textContent = '✅';
+        applyBionicReading();
+    } else {
+        btn.classList.remove('active');
+        icon.textContent = '👁️';
+        restoreOriginalText();
+    }
+}
+
+function applyBionicReading() {
+    // Seleciona todos os elementos de texto, EXCETO summary e buttons
+    const textElements = document.querySelectorAll('p:not(summary p):not(button p), td:not(summary td):not(button td), li:not(summary li):not(button li)');
+
+    textElements.forEach((element, index) => {
+        // Ignora elementos que contêm outros elementos complexos
+        if (element.querySelector('p, td, li, h1, h2, h3, h4, h5, h6, button, summary')) {
+            return;
+        }
+
+        // Ignora se o elemento está dentro de um summary ou button
+        if (element.closest('summary') || element.closest('button') || element.closest('.bionic-reading-btn')) {
+            return;
+        }
+
+        // Salva o conteúdo original
+        if (!originalContent[index]) {
+            originalContent[index] = {
+                element: element,
+                html: element.innerHTML
+            };
+        }
+
+        // Aplica Bionic Reading
+        const bionicText = convertToBionic(element.textContent);
+        element.innerHTML = bionicText;
+    });
+}
+
+function restoreOriginalText() {
+    // Restaura o conteúdo original
+    Object.values(originalContent).forEach(item => {
+        item.element.innerHTML = item.html;
+    });
+}
+
+function convertToBionic(text) {
+    // Divide o texto em palavras, mantendo pontuação
+    const words = text.split(/(\s+|[.,;:!?()""''\-–—])/);
+
+    const bionicWords = words.map(word => {
+        // Ignora espaços e pontuação
+        if (word.match(/^\s+$/) || word.match(/^[.,;:!?()""''\-–—]+$/)) {
+            return word;
+        }
+
+        // Ignora palavras muito curtas (1-2 letras)
+        if (word.length <= 2) {
+            return word;
+        }
+
+        // Determina quantas letras deixar em negrito (metade da palavra, arredondado para cima)
+        const boldLength = Math.ceil(word.length / 2);
+
+        // Separa a parte em negrito da parte normal
+        const boldPart = word.substring(0, boldLength);
+        const normalPart = word.substring(boldLength);
+
+        // Retorna com a primeira parte em negrito
+        return `<strong style="font-weight: 700 !important; color: inherit !important; background: none !important; padding: 0 !important;">${boldPart}</strong>${normalPart}`;
+    });
+
+    return bionicWords.join('');
+}
+
+// Adiciona atalho de teclado (Ctrl+B ou Cmd+B)
+document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+        e.preventDefault();
+        toggleBionicReading();
+    }
+});
+</script>
+
+<script>
+    let highlighterActive = false;
+    let questionHighlights = {};
+
+    // Get question ID from the first summary strong tag
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Load highlights from localStorage
+    function loadHighlights() {
+        const questionId = getQuestionId();
+        const stored = localStorage.getItem('highlights_' + questionId);
+        if (stored) {
+            questionHighlights = JSON.parse(stored);
+            applyStoredHighlights();
+        }
+    }
+
+    // Save highlights to localStorage
+    function saveHighlights() {
+        const questionId = getQuestionId();
+        localStorage.setItem('highlights_' + questionId, JSON.stringify(questionHighlights));
+    }
+
+    // Apply stored highlights
+    function applyStoredHighlights() {
+        Object.keys(questionHighlights).forEach(key => {
+            const element = document.querySelector(`[data-highlight-id="${key}"]`);
+            if (element && questionHighlights[key]) {
+                element.classList.add('highlighted');
+            }
+        });
+    }
+
+    // Toggle highlighter mode
+    function toggleHighlighter(event) {
+        event.stopPropagation();
+        highlighterActive = !highlighterActive;
+
+        const btn = event.target.closest('.highlighter-btn');
+        const icon = btn.querySelector('#highlighterIcon');
+
+        if (highlighterActive) {
+            btn.classList.add('active');
+            icon.textContent = '🖍️';
+            document.body.classList.add('highlighter-mode-active');
+        } else {
+            btn.classList.remove('active');
+            icon.textContent = '🖊️';
+            document.body.classList.remove('highlighter-mode-active');
+        }
+    }
+
+    // Clear all highlights for this question
+    function clearHighlights() {
+        const questionId = getQuestionId();
+        questionHighlights = {};
+        localStorage.removeItem('highlights_' + questionId);
+        document.querySelectorAll('.highlighted').forEach(el => {
+            el.classList.remove('highlighted');
+        });
+    }
+
+    // Handle text selection and highlighting
+    document.addEventListener('mouseup', function(e) {
+        if (!highlighterActive) return;
+
+        const selection = window.getSelection();
+        if (!selection.toString().trim()) return;
+
+        const range = selection.getRangeAt(0);
+        const container = range.commonAncestorContainer;
+
+        // Only highlight text in paragraphs, not in buttons or other elements
+        const paragraph = container.nodeType === 3 ? container.parentElement : container;
+        if (paragraph.tagName !== 'P' && paragraph.tagName !== 'LI' && paragraph.tagName !== 'TD') {
+            return;
+        }
+
+        // Create highlight span
+        const span = document.createElement('span');
+        span.classList.add('highlighted');
+
+        // Generate unique ID for this highlight
+        const highlightId = 'hl-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+        span.setAttribute('data-highlight-id', highlightId);
+
+        try {
+            range.surroundContents(span);
+            questionHighlights[highlightId] = true;
+            saveHighlights();
+        } catch (e) {
+            console.log('Could not highlight selection');
+        }
+
+        selection.removeAllRanges();
+    });
+
+    // Load highlights when page loads
+    window.addEventListener('load', loadHighlights);
+
+    // Keyboard shortcut: Ctrl+H to toggle highlighter
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'h') {
+            e.preventDefault();
+            const btn = document.querySelector('.highlighter-btn');
+            if (btn) {
+                toggleHighlighter({target: btn, stopPropagation: () => {}});
+            }
+        }
+        // Ctrl+Shift+H to clear all highlights
+        if (e.ctrlKey && e.shiftKey && e.key === 'H') {
+            e.preventDefault();
+            if (confirm('Clear all highlights for this question?')) {
+                clearHighlights();
+            }
+        }
+    });
+</script>
+
+
+
+
+
+
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Communicate with parent window (if in iframe)
+    function notifyParent(choice) {
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'choiceSelected',
+                questionId: getQuestionId(),
+                choice: choice
+            }, '*');
+        }
+    }
+
+    // Load saved choice from parent or localStorage
+    function loadSavedChoice() {
+        const questionId = getQuestionId();
+
+        // Try to get from localStorage first
+        const saved = localStorage.getItem('choice_q' + questionId);
+        if (saved) {
+            selectChoice(saved, false);
+        }
+
+        // Ask parent for saved choice (if in iframe)
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'getChoice',
+                questionId: questionId
+            }, '*');
+        }
+    }
+
+    // Listen for messages from parent
+    window.addEventListener('message', function(event) {
+        if (event.data.type === 'setChoice' && event.data.questionId === getQuestionId()) {
+            selectChoice(event.data.choice, false);
+        }
+    });
+
+    // Select a choice
+    function selectChoice(choice, notify = true) {
+        if (!choice) return;
+
+        const questionId = getQuestionId();
+
+        // Remove previous selection
+        document.querySelectorAll('tr.answer-choice').forEach(row => {
+            row.classList.remove('selected');
+        });
+
+        // Add selection to clicked choice
+        const choiceRow = document.querySelector(`tr.answer-choice[data-choice="${choice}"]`);
+        if (choiceRow) {
+            choiceRow.classList.add('selected');
+
+            // Save to localStorage
+            localStorage.setItem('choice_q' + questionId, choice);
+
+            // Notify parent (if in iframe)
+            if (notify) {
+                notifyParent(choice);
+            }
+        }
+    }
+
+    // Initialize answer choices
+    function initializeChoices() {
+        // Find all answer choice rows (A, B, C, D, E, F, etc.)
+        const choicePattern = /^[A-Z]\.$/;
+        const tables = document.querySelectorAll('table.simple-table');
+
+        tables.forEach(table => {
+            const rows = table.querySelectorAll('tr');
+            rows.forEach(row => {
+                const firstCell = row.querySelector('td:first-child');
+                if (firstCell && choicePattern.test(firstCell.textContent.trim())) {
+                    const choice = firstCell.textContent.trim().replace('.', '');
+                    row.classList.add('answer-choice');
+                    row.setAttribute('data-choice', choice);
+                    row.style.position = 'relative';
+
+                    // Add click handler
+                    row.addEventListener('click', function(e) {
+                        // Don't trigger if clicking inside a link or button
+                        if (e.target.tagName === 'A' || e.target.closest('a')) return;
+
+                        // Toggle selection
+                        if (this.classList.contains('selected')) {
+                            this.classList.remove('selected');
+                            const questionId = getQuestionId();
+                            localStorage.removeItem('choice_q' + questionId);
+                            notifyParent('');
+                        } else {
+                            selectChoice(choice);
+                        }
+                    });
+                }
+            });
+        });
+
+        // Load saved choice after a short delay
+        setTimeout(loadSavedChoice, 100);
+    }
+
+    // Run when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeChoices);
+    } else {
+        initializeChoices();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
+
+<script>
+(function() {
+    // Get question ID from summary
+    function getQuestionId() {
+        const firstSummary = document.querySelector('summary strong');
+        return firstSummary ? firstSummary.textContent.trim() : '1';
+    }
+
+    // Find the correct answer by highest percentage
+    function findCorrectAnswer() {
+        // Find the Submit or Explanation details element
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (!submitDetails) return null;
+
+        // Find all answer rows with percentages inside Submit section
+        const table = submitDetails.querySelector('table.simple-table');
+        if (!table) return null;
+
+        const rows = table.querySelectorAll('tr');
+        let maxPercentage = -1;
+        let correctChoice = null;
+
+        rows.forEach(row => {
+            const firstCell = row.querySelector('td:first-child');
+            const secondCell = row.querySelector('td:nth-child(2)');
+
+            if (firstCell && secondCell) {
+                const choiceMatch = firstCell.textContent.trim().match(/^([A-Z])\./);
+                const percentMatch = secondCell.textContent.match(/(\d+)%/);
+
+                if (choiceMatch && percentMatch) {
+                    const choice = choiceMatch[1];
+                    const percentage = parseInt(percentMatch[1]);
+
+                    if (percentage > maxPercentage) {
+                        maxPercentage = percentage;
+                        correctChoice = choice;
+                    }
+                }
+            }
+        });
+
+        return correctChoice;
+    }
+
+    // Check user's answer when Submit is opened
+    function checkAnswer() {
+        const questionId = getQuestionId();
+        const choiceKey = 'choice_q' + questionId;
+        const userChoice = localStorage.getItem(choiceKey);
+
+        if (!userChoice) {
+            console.log('No answer selected');
+            return;
+        }
+
+        const correctAnswer = findCorrectAnswer();
+        if (!correctAnswer) {
+            console.log('Could not determine correct answer');
+            return;
+        }
+
+        const isCorrect = userChoice === correctAnswer;
+
+        // Save result to localStorage
+        const resultKey = 'result_q' + questionId;
+        const resultValue = isCorrect ? 'correct' : 'incorrect';
+        localStorage.setItem(resultKey, resultValue);
+
+        // Force storage event for parent window
+        try {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: resultKey,
+                newValue: resultValue,
+                storageArea: localStorage
+            }));
+        } catch (e) {
+            console.log('Could not dispatch storage event:', e);
+        }
+
+        // Visual feedback - highlight the selected answer row
+        const selectedRow = document.querySelector(`tr.answer-choice[data-choice="${userChoice}"]`);
+        if (selectedRow) {
+            // Remove any existing validation classes
+            document.querySelectorAll('tr.answer-choice').forEach(row => {
+                row.classList.remove('answer-correct', 'answer-incorrect');
+            });
+
+            // Add appropriate class
+            if (isCorrect) {
+                selectedRow.classList.add('answer-correct');
+            } else {
+                selectedRow.classList.add('answer-incorrect');
+
+                // Also highlight the correct answer
+                const correctRow = document.querySelector(`tr.answer-choice[data-choice="${correctAnswer}"]`);
+                if (correctRow) {
+                    correctRow.classList.add('answer-correct');
+                }
+            }
+        }
+
+        // Notify parent window
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'answerValidated',
+                questionId: questionId,
+                userChoice: userChoice,
+                correctAnswer: correctAnswer,
+                isCorrect: isCorrect
+            }, '*');
+        }
+
+        console.log(`Answer checked: User=${userChoice}, Correct=${correctAnswer}, Result=${isCorrect ? 'Correct' : 'Incorrect'}`);
+    }
+
+    // Monitor Submit or Explanation details opening
+    function setupSubmitMonitor() {
+        const submitDetails = Array.from(document.querySelectorAll('details')).find(d => {
+            const summary = d.querySelector('summary');
+            return summary && (summary.textContent.includes('Submit') || summary.textContent.includes('Explanation'));
+        });
+
+        if (submitDetails) {
+            submitDetails.addEventListener('toggle', function() {
+                if (this.open) {
+                    // Small delay to ensure everything is rendered
+                    setTimeout(checkAnswer, 100);
+
+                    // Notify parent that Submit/Explanation was opened
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'submitOpened',
+                            questionId: getQuestionId()
+                        }, '*');
+                    }
+                } else {
+                    // Notify parent that Submit/Explanation was closed
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage({
+                            type: 'submitClosed',
+                            questionId: getQuestionId()
+                        }, '*');
+                    }
+                }
+            });
+        }
+    }
+
+    // Initialize when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupSubmitMonitor);
+    } else {
+        setupSubmitMonitor();
+    }
+})();
+</script>
