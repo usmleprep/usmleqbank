@@ -6,7 +6,7 @@ let cachedDb = null;
 async function connectToDatabase() {
     if (cachedDb) return cachedDb;
 
-    const uri = process.env.MONGO_URI;
+    const uri = (process.env.MONGO_URI || '').trim();
     if (!uri) throw new Error('MONGO_URI not set');
 
     const client = new MongoClient(uri);
