@@ -26,8 +26,16 @@ module.exports = async function handler(req, res) {
             return res.status(400).json({ error: 'You already have full access!' });
         }
 
-        // Get or create Stripe customer
+        // Get or create Stripe customer (handle live/test mode mismatch)
         let customerId = user.stripeCustomerId;
+        if (customerId) {
+            try {
+                await stripe.customers.retrieve(customerId);
+            } catch (e) {
+                // Customer doesn't exist in this mode — create new one
+                customerId = null;
+            }
+        }
         if (!customerId) {
             const customer = await stripe.customers.create({
                 metadata: { username: user.username },
