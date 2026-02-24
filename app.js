@@ -411,26 +411,13 @@ const App = (() => {
         const recent = testHistory.slice(-5).reverse();
 
         const isPaid = (typeof Auth !== 'undefined' && Auth.isPaid) ? Auth.isPaid() : true;
-        const upgradeBar = isPaid ? '' : `
-            <div class="upgrade-banner" onclick="App.showPaywall()">
-                <div class="upgrade-banner-left">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                    <div>
-                        <strong>Upgrade to Full Access</strong>
-                        <span>Unlimited tests · 3,600+ questions · Lifetime access</span>
-                    </div>
-                </div>
-                <button class="upgrade-banner-btn">Upgrade — $20</button>
-            </div>
-        `;
+        const upgradeBtn = isPaid ? '' : `<button class="upgrade-btn-small" onclick="App.showPaywall()"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> Upgrade</button>`;
 
         el.innerHTML = `
             <div class="page-header">
-                <h1>Dashboard</h1>
+                <div class="page-header-top"><h1>Dashboard</h1>${upgradeBtn}</div>
                 <p>Your USMLE Step 1 question bank overview</p>
             </div>
-
-            ${upgradeBar}
 
             <div class="stats-row">
                 <div class="stat-card">
