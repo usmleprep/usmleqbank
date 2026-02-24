@@ -386,6 +386,7 @@ const App = (() => {
             case 'search': renderSearch(); break;
             case 'previous': renderPreviousTests(); break;
             case 'notebook': renderNotebook(); break;
+            case 'admin': renderAdmin(); break;
         }
         updateSidebarStats();
     }
@@ -2480,6 +2481,122 @@ const App = (() => {
         const overlay = document.getElementById('sidebar-overlay');
         sidebar?.classList.remove('open');
         overlay?.classList.remove('open');
+    }
+
+    // ===== ADMIN DASHBOARD =====
+    async function renderAdmin() {
+        const el = document.getElementById('screen-admin');
+        if (!el) return;
+
+        // Check admin access
+        if (typeof Auth === 'undefined' || !Auth.isAdmin()) {
+            el.innerHTML = '<div class="page-header"><h1>Access Denied</h1></div>';
+            return;
+        }
+
+        el.innerHTML = `
+            <div class="page-header"><h1>Admin Dashboard</h1></div>
+            <div class="admin-loading">Loading users...</div>
+        `;
+
+        try {
+            const token = Auth.getToken();
+            const res = await fetch('/api/admin/users', {
+                headers: { 'Authorization': 'Bearer ' + token },
+            });
+            if (!res.ok) throw new Error('Failed to load');
+            const data = await res.json();
+
+            const statsHtml = `
+                <div class="admin-stats">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-number">${data.totalUsers}</div>
+                        <div class="admin-stat-label">Total Users</div>
+                    </div>
+                    <div class="admin-stat-card admin-stat-active">
+                        <div class="admin-stat-number">${data.activeUsers}</div>
+                        <div class="admin-stat-label">Active (72h)</div>
+                    </div>
+                    <div class="admin-stat-card admin-stat-paid">
+                        <div class="admin-stat-number">${data.paidUsers}</div>
+                        <div class="admin-stat-label">Paid Users</div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-number">${data.totalUsers - data.paidUsers}</div>
+                        <div class="admin-stat-label">Free Users</div>
+                    </div>
+                </div>
+            `;
+
+            const rowsHtml = data.users.map((u, i) => {
+                const regDate = u.registeredAt ? new Date(u.registeredAt).toLocaleDateString() : '—';
+                const lastLogin = u.lastLogin ? timeAgo(new Date(u.lastLogin)) : '—';
+                const lastSync = u.lastSync ? timeAgo(new Date(u.lastSync)) : 'Never';
+                const statusClass = u.isActive ? 'admin-status-active' : 'admin-status-inactive';
+                const statusText = u.isActive ? 'Active' : 'Inactive';
+                const paidBadge = u.paid ? '<span class="admin-badge-paid">PAID</span>' : '<span class="admin-badge-free">FREE</span>';
+                const payDate = u.paymentDate ? new Date(u.paymentDate).toLocaleDateString() : '—';
+
+                return `
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td><strong>${(u.username || '').replace(/[<>&"']/g, '')}</strong></td>
+                        <td><span class="${statusClass}">${statusText}</span></td>
+                        <td>${paidBadge}</td>
+                        <td>${u.testsCreated}</td>
+                        <td>${u.totalTests}</td>
+                        <td>${u.totalQuestions}</td>
+                        <td>${regDate}</td>
+                        <td>${lastLogin}</td>
+                        <td>${lastSync}</td>
+                        <td>${payDate}</td>
+                    </tr>
+                `;
+            }).join('');
+
+            el.innerHTML = `
+                <div class="page-header"><h1>Admin Dashboard</h1></div>
+                ${statsHtml}
+                <div class="admin-table-wrap">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Username</th>
+                                <th>Status</th>
+                                <th>Plan</th>
+                                <th>Tests Created</th>
+                                <th>Tests Done</th>
+                                <th>Questions</th>
+                                <th>Registered</th>
+                                <th>Last Login</th>
+                                <th>Last Sync</th>
+                                <th>Payment Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>${rowsHtml}</tbody>
+                    </table>
+                </div>
+            `;
+        } catch (err) {
+            el.innerHTML = `
+                <div class="page-header"><h1>Admin Dashboard</h1></div>
+                <div class="admin-error">Failed to load user data. Please try again.</div>
+            `;
+        }
+    }
+
+    function timeAgo(date) {
+        const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+        if (seconds < 60) return 'just now';
+        const minutes = Math.floor(seconds / 60);
+        if (minutes < 60) return minutes + 'm ago';
+        const hours = Math.floor(minutes / 60);
+        if (hours < 24) return hours + 'h ago';
+        const days = Math.floor(hours / 24);
+        if (days < 30) return days + 'd ago';
+        const months = Math.floor(days / 30);
+        return months + 'mo ago';
     }
 
     function init() {

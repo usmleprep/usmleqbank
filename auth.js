@@ -142,6 +142,16 @@ const Auth = (() => {
             const safe = (username || '').replace(/[<>&"']/g, '');
             userEl.innerHTML = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg> ${safe}`;
         }
+        // Show admin menu item only for ricardo
+        const adminItem = document.getElementById('admin-menu-item');
+        if (adminItem) {
+            adminItem.style.display = (username === 'ricardo') ? '' : 'none';
+        }
+    }
+
+    function isAdmin() {
+        const user = getCurrentUser();
+        return user && user.username === 'ricardo';
     }
 
     // ===== PAYMENT STATUS =====
@@ -224,6 +234,7 @@ const Auth = (() => {
         getToken,
         checkSession,
         isPaid,
+        isAdmin,
         getTestsCreated,
         canStartTest,
         updateSessionPayment,
