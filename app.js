@@ -1065,11 +1065,12 @@ const App = (() => {
             const pct = q.choicePercentages[choice.letter] || 0;
 
             html += `
-                <div class="${classes}" data-letter="${choice.letter}"
-                     onclick="App.selectChoice('${choice.letter}')"
-                     oncontextmenu="event.preventDefault(); App.strikethroughChoice(this)">
-                    <div class="choice-letter">${choice.letter}</div>
-                    <div class="choice-text">${choice.text}</div>
+                <div class="${classes}" data-letter="${choice.letter}">
+                    <div class="choice-radio" onclick="App.selectChoice('${choice.letter}')">
+                        <div class="choice-radio-inner"></div>
+                    </div>
+                    <div class="choice-letter">${choice.letter}.</div>
+                    <div class="choice-text" onclick="App.strikethroughChoice(this.closest('.choice-item'))">${choice.text}</div>
                     <div class="choice-percent">${pct}%</div>
                     <div class="choice-bar" style="width: ${pct}%"></div>
                 </div>
@@ -1148,7 +1149,10 @@ const App = (() => {
 
         // Update visual
         document.querySelectorAll('.choice-item').forEach(el => {
-            el.classList.toggle('selected', el.dataset.letter === letter);
+            const isSelected = el.dataset.letter === letter;
+            el.classList.toggle('selected', isSelected);
+            // Remove strikethrough if selecting this choice
+            if (isSelected) el.classList.remove('strikethrough');
         });
 
         const submitBtn = document.getElementById('submit-btn');
@@ -1160,6 +1164,15 @@ const App = (() => {
         if (test.completed) return;
         const qid = test.questionIds[state.currentQuestionIdx];
         if (test.submitted[qid]) return;
+
+        // If this choice is currently selected, deselect it first
+        if (el.classList.contains('selected')) {
+            el.classList.remove('selected');
+            delete test.answers[qid];
+            const submitBtn = document.getElementById('submit-btn');
+            if (submitBtn) submitBtn.disabled = true;
+        }
+
         el.classList.toggle('strikethrough');
     }
 
