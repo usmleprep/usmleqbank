@@ -46,6 +46,8 @@ module.exports = async function handler(req, res) {
             token,
             created: new Date(),
             lastLogin: new Date(),
+            paid: false,
+            testsCreated: 0,
         });
 
         // Create empty user data document
@@ -63,6 +65,8 @@ module.exports = async function handler(req, res) {
             ok: true,
             username: user,
             token,
+            paid: false,
+            testsCreated: 0,
         });
 
     } catch (err) {

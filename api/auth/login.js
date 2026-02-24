@@ -43,6 +43,8 @@ module.exports = async function handler(req, res) {
             ok: true,
             username: user,
             token,
+            paid: !!existing.paid,
+            testsCreated: existing.testsCreated || 0,
         });
 
     } catch (err) {

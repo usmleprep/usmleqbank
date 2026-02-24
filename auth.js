@@ -9,8 +9,12 @@ const Auth = (() => {
         catch { return null; }
     }
 
-    function setSession(username, token) {
-        localStorage.setItem(SESSION_KEY, JSON.stringify({ username, token, loginTime: Date.now() }));
+    function setSession(username, token, paid, testsCreated) {
+        localStorage.setItem(SESSION_KEY, JSON.stringify({
+            username, token, loginTime: Date.now(),
+            paid: !!paid,
+            testsCreated: testsCreated || 0,
+        }));
     }
 
     function clearSession() {
@@ -58,7 +62,7 @@ const Auth = (() => {
 
         try {
             const data = await apiPost('/api/auth/login', { username, password });
-            setSession(data.username, data.token);
+            setSession(data.username, data.token, data.paid, data.testsCreated);
             enterApp(data.username);
             // Load data from server after entering app
             if (typeof App !== 'undefined' && App.loadFromServer) {
@@ -95,7 +99,7 @@ const Auth = (() => {
 
         try {
             const data = await apiPost('/api/auth/register', { username, password });
-            setSession(data.username, data.token);
+            setSession(data.username, data.token, data.paid, data.testsCreated);
             enterApp(data.username);
         } catch (err) {
             errEl.textContent = err.message;
@@ -139,6 +143,50 @@ const Auth = (() => {
         }
     }
 
+    // ===== PAYMENT STATUS =====
+    function isPaid() {
+        const user = getCurrentUser();
+        return user ? !!user.paid : false;
+    }
+
+    function getTestsCreated() {
+        const user = getCurrentUser();
+        return user ? (user.testsCreated || 0) : 0;
+    }
+
+    function canStartTest() {
+        const user = getCurrentUser();
+        if (!user) return false;
+        if (user.paid) return true;
+        return (user.testsCreated || 0) < 2;
+    }
+
+    function updateSessionPayment(paid, testsCreated) {
+        const user = getCurrentUser();
+        if (!user) return;
+        user.paid = !!paid;
+        if (testsCreated !== undefined) user.testsCreated = testsCreated;
+        localStorage.setItem(SESSION_KEY, JSON.stringify(user));
+    }
+
+    async function refreshPaymentStatus() {
+        const token = getToken();
+        if (!token) return null;
+        try {
+            const res = await fetch('/api/payment/status', {
+                headers: { 'Authorization': `Bearer ${token}` },
+            });
+            const data = await res.json();
+            if (data.ok) {
+                updateSessionPayment(data.paid, data.testsCreated);
+                return data;
+            }
+        } catch (e) {
+            console.error('Payment status check failed:', e);
+        }
+        return null;
+    }
+
     // ===== AUTO LOGIN (check saved session) =====
     function checkSession() {
         const user = getCurrentUser();
@@ -174,5 +222,10 @@ const Auth = (() => {
         getUserPrefix,
         getToken,
         checkSession,
+        isPaid,
+        getTestsCreated,
+        canStartTest,
+        updateSessionPayment,
+        refreshPaymentStatus,
     };
 })();

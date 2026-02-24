@@ -814,6 +814,21 @@ const App = (() => {
 
     // ===== START TEST =====
     async function startTest() {
+        // ===== PAYWALL CHECK =====
+        if (typeof Auth !== 'undefined' && !Auth.canStartTest()) {
+            // Double-check with server before showing paywall
+            const status = await Auth.refreshPaymentStatus();
+            if (status && !status.paid && (status.testsCreated || 0) >= 2) {
+                showPaywall();
+                return;
+            }
+            if (!status) {
+                // If server check failed, use local data
+                showPaywall();
+                return;
+            }
+        }
+
         const available = getSelectedQuestionIds();
         const count = Math.min(parseInt(document.getElementById('q-count')?.value || 40), available.length);
 
@@ -854,6 +869,23 @@ const App = (() => {
             if (!usedQuestions.includes(id)) usedQuestions.push(id);
         });
         savePersist();
+
+        // Increment test counter on server (for paywall tracking)
+        try {
+            const token = (typeof Auth !== 'undefined' && Auth.getToken) ? Auth.getToken() : null;
+            if (token) {
+                const resp = await fetch('/api/payment/increment-test', {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${token}` },
+                });
+                const incData = await resp.json();
+                if (incData.ok && typeof Auth !== 'undefined') {
+                    Auth.updateSessionPayment(incData.paid, incData.testsCreated);
+                }
+            }
+        } catch (e) {
+            console.warn('Could not increment test counter:', e);
+        }
 
         // Start timer
         if (state.isTimed) {
@@ -2327,6 +2359,116 @@ const App = (() => {
         </div>
     `;
 
+    // ===== PAYWALL =====
+    function showPaywall() {
+        document.getElementById('paywall-modal').style.display = 'flex';
+    }
+
+    function closePaywall() {
+        document.getElementById('paywall-modal').style.display = 'none';
+    }
+
+    async function purchaseAccess() {
+        const btn = document.getElementById('paywall-buy-btn');
+        btn.disabled = true;
+        btn.innerHTML = '<span>Redirecting to PayPal...</span>';
+
+        try {
+            const token = (typeof Auth !== 'undefined' && Auth.getToken) ? Auth.getToken() : null;
+            if (!token) {
+                alert('Please log in first.');
+                btn.disabled = false;
+                btn.innerHTML = 'Upgrade Now — $20';
+                return;
+            }
+
+            const res = await fetch('/api/payment/create-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+            const data = await res.json();
+
+            if (data.ok && data.url) {
+                window.location.href = data.url;
+            } else {
+                alert(data.error || 'Failed to create payment. Please try again.');
+                btn.disabled = false;
+                btn.innerHTML = 'Upgrade Now — $20';
+            }
+        } catch (err) {
+            console.error('Purchase error:', err);
+            alert('Something went wrong. Please try again.');
+            btn.disabled = false;
+            btn.innerHTML = 'Upgrade Now — $20';
+        }
+    }
+
+    function handlePaymentReturn() {
+        const params = new URLSearchParams(window.location.search);
+        const payment = params.get('payment');
+
+        if (payment === 'capture') {
+            // PayPal redirected back after approval — capture the payment
+            const paypalToken = params.get('token'); // PayPal order ID
+            window.history.replaceState({}, '', window.location.pathname);
+
+            if (paypalToken) {
+                capturePayPalPayment(paypalToken);
+            }
+        } else if (payment === 'cancelled') {
+            window.history.replaceState({}, '', window.location.pathname);
+        }
+    }
+
+    async function capturePayPalPayment(orderId) {
+        // Show capturing overlay
+        const toast = document.getElementById('payment-success-toast');
+        if (toast) {
+            toast.querySelector('span').textContent = 'Processing payment...';
+            toast.style.display = 'flex';
+        }
+
+        try {
+            const token = (typeof Auth !== 'undefined' && Auth.getToken) ? Auth.getToken() : null;
+            if (!token) return;
+
+            const res = await fetch('/api/payment/capture-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({ orderId }),
+            });
+            const data = await res.json();
+
+            if (data.ok && data.paid) {
+                // Update local session
+                if (typeof Auth !== 'undefined') {
+                    Auth.updateSessionPayment(true);
+                }
+                // Show success toast
+                if (toast) {
+                    toast.querySelector('span').textContent = 'Payment successful! Full access unlocked.';
+                    toast.style.display = 'flex';
+                    setTimeout(() => { toast.style.display = 'none'; }, 5000);
+                }
+                // Close paywall if open
+                closePaywall();
+            } else {
+                if (toast) toast.style.display = 'none';
+                alert(data.error || 'Payment could not be processed. Please contact support.');
+            }
+        } catch (err) {
+            console.error('Capture error:', err);
+            if (toast) toast.style.display = 'none';
+            alert('Error processing payment. Please contact support.');
+        }
+    }
+
     // ===== INITIALIZATION =====
     // ===== MOBILE SIDEBAR =====
     function toggleSidebar() {
@@ -2348,6 +2490,8 @@ const App = (() => {
         if (typeof Auth !== 'undefined') {
             if (!Auth.checkSession()) return; // Will show login screen
         }
+        // Handle payment return from Stripe
+        handlePaymentReturn();
         navigate('dashboard');
         // Load data from server in background
         loadFromServer();
@@ -2410,5 +2554,8 @@ const App = (() => {
         resetProgress,
         copyQuestionIds,
         loadFromServer,
+        showPaywall,
+        closePaywall,
+        purchaseAccess,
     };
 })();
