@@ -2394,7 +2394,7 @@ const App = (() => {
             if (data.ok && data.url) {
                 window.location.href = data.url;
             } else {
-                alert(data.error || 'Failed to create checkout. Please try again.');
+                alert((data.error || 'Failed to create checkout.') + (data.detail ? '\n\nDetail: ' + data.detail : ''));
                 btn.disabled = false;
                 btn.innerHTML = 'Upgrade Now — $20';
             }

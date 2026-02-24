@@ -66,6 +66,6 @@ module.exports = async function handler(req, res) {
 
     } catch (err) {
         console.error('Checkout error:', err);
-        return res.status(500).json({ error: 'Could not create checkout session' });
+        return res.status(500).json({ error: 'Could not create checkout session', detail: err.message });
     }
 };
