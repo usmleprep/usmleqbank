@@ -2,7 +2,7 @@ const { connectToDatabase } = require('../db');
 const Stripe = require('stripe');
 
 module.exports = async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', 'https://usmleqbank.vercel.app');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     if (req.method === 'OPTIONS') return res.status(200).end();
@@ -20,6 +20,9 @@ module.exports = async function handler(req, res) {
         const db = await connectToDatabase();
         const user = await db.collection('users').findOne({ token });
         if (!user) return res.status(401).json({ error: 'Unauthorized' });
+        if (user.tokenCreatedAt && (Date.now() - new Date(user.tokenCreatedAt).getTime() > 72*60*60*1000)) {
+            return res.status(401).json({ error: 'Session expired' });
+        }
 
         // Check if already paid
         if (user.paid) {
@@ -74,6 +77,6 @@ module.exports = async function handler(req, res) {
 
     } catch (err) {
         console.error('Checkout error:', err);
-        return res.status(500).json({ error: 'Could not create checkout session', detail: err.message });
+        return res.status(500).json({ error: 'Could not create checkout session' });
     }
 };

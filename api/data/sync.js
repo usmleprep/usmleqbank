@@ -1,17 +1,20 @@
 const { connectToDatabase } = require('../db');
 
-// Verify token helper
+// Verify token helper (72h expiry)
+const TOKEN_MAX_AGE_MS = 72 * 60 * 60 * 1000;
 async function verifyToken(db, authHeader) {
     if (!authHeader || !authHeader.startsWith('Bearer ')) return null;
     const token = authHeader.slice(7);
     if (!token) return null;
     const user = await db.collection('users').findOne({ token });
-    return user ? user.username : null;
+    if (!user) return null;
+    if (user.tokenCreatedAt && (Date.now() - new Date(user.tokenCreatedAt).getTime() > TOKEN_MAX_AGE_MS)) return null;
+    return user.username;
 }
 
 module.exports = async function handler(req, res) {
     // CORS
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', 'https://usmleqbank.vercel.app');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     if (req.method === 'OPTIONS') return res.status(200).end();
@@ -49,7 +52,20 @@ module.exports = async function handler(req, res) {
 
         // ===== POST — Save user data =====
         if (req.method === 'POST') {
+            // Payload size validation (max 5MB)
+            const rawBody = JSON.stringify(req.body || {});
+            if (rawBody.length > 5 * 1024 * 1024) {
+                return res.status(413).json({ error: 'Payload too large' });
+            }
+
             const { testHistory, questionStatus, notes, usedQuestions, performance } = req.body || {};
+
+            // Type validation
+            if (testHistory !== undefined && !Array.isArray(testHistory)) return res.status(400).json({ error: 'Invalid testHistory' });
+            if (questionStatus !== undefined && (typeof questionStatus !== 'object' || Array.isArray(questionStatus))) return res.status(400).json({ error: 'Invalid questionStatus' });
+            if (notes !== undefined && (typeof notes !== 'object' || Array.isArray(notes))) return res.status(400).json({ error: 'Invalid notes' });
+            if (usedQuestions !== undefined && !Array.isArray(usedQuestions)) return res.status(400).json({ error: 'Invalid usedQuestions' });
+            if (performance !== undefined && (typeof performance !== 'object' || Array.isArray(performance))) return res.status(400).json({ error: 'Invalid performance' });
 
             const update = { lastSync: new Date() };
             if (testHistory !== undefined) update.testHistory = testHistory;
