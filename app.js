@@ -2371,7 +2371,7 @@ const App = (() => {
     async function purchaseAccess() {
         const btn = document.getElementById('paywall-buy-btn');
         btn.disabled = true;
-        btn.innerHTML = '<span>Redirecting to PayPal...</span>';
+        btn.innerHTML = '<span>Redirecting to Stripe...</span>';
 
         try {
             const token = (typeof Auth !== 'undefined' && Auth.getToken) ? Auth.getToken() : null;
@@ -2382,7 +2382,7 @@ const App = (() => {
                 return;
             }
 
-            const res = await fetch('/api/payment/create-order', {
+            const res = await fetch('/api/payment/create-checkout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -2394,7 +2394,7 @@ const App = (() => {
             if (data.ok && data.url) {
                 window.location.href = data.url;
             } else {
-                alert(data.error || 'Failed to create payment. Please try again.');
+                alert(data.error || 'Failed to create checkout. Please try again.');
                 btn.disabled = false;
                 btn.innerHTML = 'Upgrade Now — $20';
             }
@@ -2410,24 +2410,21 @@ const App = (() => {
         const params = new URLSearchParams(window.location.search);
         const payment = params.get('payment');
 
-        if (payment === 'capture') {
-            // PayPal redirected back after approval — capture the payment
-            const paypalToken = params.get('token'); // PayPal order ID
+        if (payment === 'success') {
+            const sessionId = params.get('session_id');
             window.history.replaceState({}, '', window.location.pathname);
-
-            if (paypalToken) {
-                capturePayPalPayment(paypalToken);
+            if (sessionId) {
+                verifyStripePayment(sessionId);
             }
         } else if (payment === 'cancelled') {
             window.history.replaceState({}, '', window.location.pathname);
         }
     }
 
-    async function capturePayPalPayment(orderId) {
-        // Show capturing overlay
+    async function verifyStripePayment(sessionId) {
         const toast = document.getElementById('payment-success-toast');
         if (toast) {
-            toast.querySelector('span').textContent = 'Processing payment...';
+            toast.querySelector('span').textContent = 'Verifying payment...';
             toast.style.display = 'flex';
         }
 
@@ -2435,37 +2432,34 @@ const App = (() => {
             const token = (typeof Auth !== 'undefined' && Auth.getToken) ? Auth.getToken() : null;
             if (!token) return;
 
-            const res = await fetch('/api/payment/capture-order', {
+            const res = await fetch('/api/payment/verify', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
                 },
-                body: JSON.stringify({ orderId }),
+                body: JSON.stringify({ sessionId }),
             });
             const data = await res.json();
 
             if (data.ok && data.paid) {
-                // Update local session
                 if (typeof Auth !== 'undefined') {
                     Auth.updateSessionPayment(true);
                 }
-                // Show success toast
                 if (toast) {
                     toast.querySelector('span').textContent = 'Payment successful! Full access unlocked.';
                     toast.style.display = 'flex';
                     setTimeout(() => { toast.style.display = 'none'; }, 5000);
                 }
-                // Close paywall if open
                 closePaywall();
             } else {
                 if (toast) toast.style.display = 'none';
-                alert(data.error || 'Payment could not be processed. Please contact support.');
+                alert(data.error || 'Payment could not be verified. Please contact support.');
             }
         } catch (err) {
-            console.error('Capture error:', err);
+            console.error('Verify error:', err);
             if (toast) toast.style.display = 'none';
-            alert('Error processing payment. Please contact support.');
+            alert('Error verifying payment. Please contact support.');
         }
     }
 
