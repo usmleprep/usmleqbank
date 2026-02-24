@@ -1813,15 +1813,26 @@ const App = (() => {
     }
 
     function resetProgress() {
-        if (confirm('Are you sure you want to reset ALL progress? This cannot be undone.')) {
-            testHistory = [];
-            performance = {};
-            questionStatus = {};
-            notes = {};
-            usedQuestions = [];
-            savePersist();
-            navigate('dashboard');
-        }
+        document.getElementById('reset-modal').style.display = 'flex';
+    }
+
+    function closeResetModal() {
+        document.getElementById('reset-modal').style.display = 'none';
+    }
+
+    async function confirmReset() {
+        const btn = document.getElementById('reset-confirm-btn');
+        if (btn) { btn.disabled = true; btn.textContent = 'Resetting...'; }
+
+        testHistory = [];
+        performance = {};
+        questionStatus = {};
+        notes = {};
+        usedQuestions = [];
+        savePersist();
+
+        closeResetModal();
+        navigate('dashboard');
     }
 
     // ===== SEARCH =====
@@ -2679,6 +2690,8 @@ const App = (() => {
         searchByTopic,
         previewQuestion,
         resetProgress,
+        closeResetModal,
+        confirmReset,
         copyQuestionIds,
         loadFromServer,
         showPaywall,
