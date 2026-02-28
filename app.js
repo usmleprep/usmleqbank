@@ -48,6 +48,8 @@ const App = (() => {
 
     // ===== SERVER SYNC =====
     let _syncTimer = null;
+    let _lastSyncTimestamp = null; // Track server's lastSync to prevent stale overwrites
+
     function debouncedSync() {
         clearTimeout(_syncTimer);
         _syncTimer = setTimeout(() => syncToServer(), 2000);
@@ -57,7 +59,7 @@ const App = (() => {
         const token = (typeof Auth !== 'undefined' && Auth.getToken) ? Auth.getToken() : null;
         if (!token) return;
         try {
-            await fetch('/api/data/sync', {
+            const res = await fetch('/api/data/sync', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -71,6 +73,10 @@ const App = (() => {
                     performance,
                 }),
             });
+            if (res.ok) {
+                const result = await res.json();
+                if (result.lastSync) _lastSyncTimestamp = new Date(result.lastSync).getTime();
+            }
         } catch (e) { console.warn('Sync to server failed:', e); }
     }
 
@@ -83,15 +89,65 @@ const App = (() => {
             });
             if (!res.ok) return;
             const data = await res.json();
-            if (data && data.testHistory) {
-                testHistory = data.testHistory;
+
+            // Determine if server data is newer
+            const serverTime = data.lastSync ? new Date(data.lastSync).getTime() : 0;
+            const localHasData = testHistory.length > 0 || Object.keys(questionStatus).length > 0;
+            const serverHasData = (data.testHistory && data.testHistory.length > 0) ||
+                                  (data.questionStatus && Object.keys(data.questionStatus).length > 0);
+
+            // If server has data, merge intelligently
+            if (serverHasData) {
+                // Merge test history: combine unique tests by id
+                const mergedHistory = [...(data.testHistory || [])];
+                const serverTestIds = new Set(mergedHistory.map(t => t.id));
+                for (const t of testHistory) {
+                    if (!serverTestIds.has(t.id)) mergedHistory.push(t);
+                }
+                testHistory = mergedHistory;
+
+                // Merge questionStatus: keep the entry with answered=true, or latest
+                const serverQS = data.questionStatus || {};
+                for (const qid of Object.keys(serverQS)) {
+                    if (!questionStatus[qid]) {
+                        questionStatus[qid] = serverQS[qid];
+                    } else if (serverQS[qid].answered && !questionStatus[qid].answered) {
+                        questionStatus[qid] = serverQS[qid];
+                    }
+                }
+
+                // Merge notes: server wins for same key unless local is newer
+                const serverNotes = data.notes || {};
+                for (const nid of Object.keys(serverNotes)) {
+                    if (!notes[nid]) notes[nid] = serverNotes[nid];
+                }
+
+                // Merge usedQuestions: union
+                const usedSet = new Set([...usedQuestions, ...(data.usedQuestions || [])]);
+                usedQuestions = [...usedSet];
+
+                // Merge performance: server wins if local is empty for that key
+                const serverPerf = data.performance || {};
+                for (const key of Object.keys(serverPerf)) {
+                    if (!performance[key]) performance[key] = serverPerf[key];
+                }
+
+                _lastSyncTimestamp = serverTime;
+
+                // Write merged data to localStorage
+                savePersistLocal();
+                // Push merged data back to server
+                syncToServer();
+                // Re-render current screen
+                if (state.screen === 'dashboard') navigate('dashboard');
+            } else if (!localHasData && data.testHistory) {
+                // Server has empty/initial data and local has nothing — just accept server
+                testHistory = data.testHistory || [];
                 questionStatus = data.questionStatus || {};
                 notes = data.notes || {};
                 usedQuestions = data.usedQuestions || [];
                 performance = data.performance || {};
-                // Write into localStorage as cache
                 savePersistLocal();
-                // Re-render current screen
                 if (state.screen === 'dashboard') navigate('dashboard');
             }
         } catch (e) { console.warn('Load from server failed:', e); }
