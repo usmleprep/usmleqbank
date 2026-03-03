@@ -2076,15 +2076,18 @@ const App = (() => {
         }
 
         list.innerHTML = tests.map(t => {
+          try {
             if (t.suspended) {
-                const answeredCount = t.answers ? t.answers.filter(a => a !== null && a !== undefined).length : 0;
+                const answeredCount = t.answers ? Object.keys(t.answers).length : 0;
+                const submittedCount = t.submitted ? Object.keys(t.submitted).length : 0;
+                const progress = Math.max(answeredCount, submittedCount);
                 return `
                 <div class="test-history-item suspended-item">
                     <div class="test-history-score" style="background:var(--warning-light);color:var(--warning)">
-                        <i class="fas fa-pause"></i>
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
                     </div>
                     <div class="test-history-info">
-                        <div class="th-title">${answeredCount}/${t.total} answered — ${t.mode}
+                        <div class="th-title">${progress}/${t.total} answered — ${t.mode || 'Mixed'}
                             <span class="th-status-badge suspended">SUSPENDED</span>
                         </div>
                         <div class="th-meta">${new Date(t.date).toLocaleString()} · ${t.total} questions</div>
@@ -2103,7 +2106,7 @@ const App = (() => {
                         ${t.score}%
                     </div>
                     <div class="test-history-info">
-                        <div class="th-title">${t.correct}/${t.answered || t.total} correct — ${t.mode}
+                        <div class="th-title">${t.correct}/${t.answered || t.total} correct — ${t.mode || 'Mixed'}
                             <span class="th-status-badge completed">COMPLETED</span>
                         </div>
                         <div class="th-meta">${new Date(t.date).toLocaleString()} · ${t.total} questions</div>
@@ -2113,6 +2116,10 @@ const App = (() => {
                     </div>
                 </div>
             `;
+          } catch (e) {
+            console.warn('Error rendering test entry:', e, t);
+            return '';
+          }
         }).join('');
     }
 
