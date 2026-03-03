@@ -1751,6 +1751,15 @@ const App = (() => {
         };
 
         state.currentQuestionIdx = hist.currentIdx || 0;
+
+        // Jump to first unanswered question
+        const submitted = state.currentTest.submitted || {};
+        const qIds = state.currentTest.questionIds || [];
+        const firstUnanswered = qIds.findIndex(qid => !submitted[qid]);
+        if (firstUnanswered >= 0) {
+            state.currentQuestionIdx = firstUnanswered;
+        }
+
         state.questionTimers = hist.questionTimers ? { ...hist.questionTimers } : {};
         state.navigatorOpen = false;
 
