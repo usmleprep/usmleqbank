@@ -395,6 +395,22 @@ const App = (() => {
             }
         }
 
+        // Determine correct answer by highest percentage (most reliable)
+        if (Object.keys(choicePercentages).length > 0) {
+            let maxPct = -1;
+            let maxLetter = '';
+            for (const [letter, pct] of Object.entries(choicePercentages)) {
+                if (pct > maxPct) {
+                    maxPct = pct;
+                    maxLetter = letter;
+                }
+            }
+            if (maxLetter) {
+                correctAnswer = maxLetter;
+                percentCorrect = maxPct;
+            }
+        }
+
         // Determine topic info from topics.js if not parsed
         const topicInfo = getTopicForQuestion(qid);
 
@@ -1121,12 +1137,17 @@ const App = (() => {
             const pct = q.choicePercentages[choice.letter] || 0;
 
             html += `
-                <div class="${classes}" data-letter="${choice.letter}">
-                    <div class="choice-radio" onclick="App.selectChoice('${choice.letter}')">
+                <div class="${classes}" data-letter="${choice.letter}"
+                     onclick="App.selectChoice('${choice.letter}')"
+                     oncontextmenu="event.preventDefault(); App.strikethroughChoice(this)">
+                    <div class="choice-radio">
                         <div class="choice-radio-inner"></div>
                     </div>
                     <div class="choice-letter">${choice.letter}.</div>
-                    <div class="choice-text" onclick="App.strikethroughChoice(this.closest('.choice-item'))">${choice.text}</div>
+                    <div class="choice-text">${choice.text}</div>
+                    <div class="choice-strikethrough-btn" onclick="event.stopPropagation(); App.strikethroughChoice(this.closest('.choice-item'))" title="Strikethrough">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M7.24 8.75c-.26-.48-.39-1.03-.39-1.67 0-.61.13-1.16.4-1.67.26-.5.63-.93 1.11-1.29.48-.35 1.05-.63 1.7-.83.66-.19 1.39-.29 2.18-.29.81 0 1.54.11 2.21.34.66.22 1.23.54 1.69.94.47.4.83.88 1.08 1.43.25.55.38 1.15.38 1.81h-3.01c0-.31-.05-.59-.15-.85-.09-.27-.24-.49-.44-.68-.2-.19-.45-.33-.75-.44-.3-.1-.66-.16-1.06-.16-.39 0-.72.05-1 .16-.28.1-.51.25-.69.43-.18.19-.31.41-.4.67-.09.26-.13.54-.13.84 0 .31.05.58.16.82.1.24.25.45.45.64.19.18.43.34.71.48.28.14.6.26.95.37H3v-2h4.24zM21 12.5H3v2h9.62c.18.07.4.14.55.2.37.17.66.34.87.51.21.17.35.36.43.57.07.2.11.43.11.69 0 .23-.05.45-.14.66-.09.2-.23.38-.42.53-.19.15-.42.27-.71.35-.29.08-.63.13-1.01.13-.43 0-.83-.04-1.18-.13-.35-.09-.66-.22-.93-.4-.27-.17-.48-.39-.63-.65-.15-.25-.22-.55-.22-.89H7.37c0 .67.12 1.27.37 1.81.24.53.58.99 1.02 1.36.43.37.95.65 1.57.84.62.18 1.3.27 2.05.27s1.42-.09 2.02-.27c.6-.18 1.11-.45 1.53-.81.42-.36.74-.79.96-1.27.21-.49.32-1.03.32-1.63 0-.56-.11-1.05-.34-1.46-.22-.41-.53-.76-.93-1.05H21v-2z"/></svg>
+                    </div>
                     <div class="choice-percent">${pct}%</div>
                     <div class="choice-bar" style="width: ${pct}%"></div>
                 </div>
