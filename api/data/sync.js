@@ -50,7 +50,7 @@ module.exports = async function handler(req, res) {
             });
         }
 
-        // ===== POST — Save user data =====
+        // ===== POST — Save user data (with server-side merge) =====
         if (req.method === 'POST') {
             // Payload size validation (max 5MB)
             const rawBody = JSON.stringify(req.body || {});
@@ -67,12 +67,65 @@ module.exports = async function handler(req, res) {
             if (usedQuestions !== undefined && !Array.isArray(usedQuestions)) return res.status(400).json({ error: 'Invalid usedQuestions' });
             if (performance !== undefined && (typeof performance !== 'object' || Array.isArray(performance))) return res.status(400).json({ error: 'Invalid performance' });
 
+            // Load existing server data for merge
+            const existing = await col.findOne({ username }) || {};
             const update = { lastSync: new Date() };
-            if (testHistory !== undefined) update.testHistory = testHistory;
-            if (questionStatus !== undefined) update.questionStatus = questionStatus;
-            if (notes !== undefined) update.notes = notes;
-            if (usedQuestions !== undefined) update.usedQuestions = usedQuestions;
-            if (performance !== undefined) update.performance = performance;
+
+            // Merge testHistory: union by test id (never lose tests)
+            if (testHistory !== undefined) {
+                const serverTests = existing.testHistory || [];
+                const merged = [...serverTests];
+                const serverIds = new Set(serverTests.map(t => t.id));
+                for (const t of testHistory) {
+                    if (!serverIds.has(t.id)) {
+                        merged.push(t);
+                    } else {
+                        // Update existing test if client version is completed and server isn't
+                        const idx = merged.findIndex(st => st.id === t.id);
+                        if (idx >= 0 && t.completed && !merged[idx].completed) {
+                            merged[idx] = t;
+                        } else if (idx >= 0 && t.completed && merged[idx].completed) {
+                            // Both completed — keep the one with more answers
+                            const clientAnswers = t.answers ? Object.keys(t.answers).length : 0;
+                            const serverAnswers = merged[idx].answers ? Object.keys(merged[idx].answers).length : 0;
+                            if (clientAnswers > serverAnswers) merged[idx] = t;
+                        }
+                    }
+                }
+                update.testHistory = merged;
+            }
+
+            // Merge questionStatus: keep answered=true entries, prefer more complete data
+            if (questionStatus !== undefined) {
+                const serverQS = existing.questionStatus || {};
+                const mergedQS = { ...serverQS };
+                for (const qid of Object.keys(questionStatus)) {
+                    if (!mergedQS[qid]) {
+                        mergedQS[qid] = questionStatus[qid];
+                    } else if (questionStatus[qid].answered && !mergedQS[qid].answered) {
+                        mergedQS[qid] = questionStatus[qid];
+                    }
+                }
+                update.questionStatus = mergedQS;
+            }
+
+            // Merge notes: never delete notes
+            if (notes !== undefined) {
+                const serverNotes = existing.notes || {};
+                update.notes = { ...serverNotes, ...notes };
+            }
+
+            // Merge usedQuestions: union
+            if (usedQuestions !== undefined) {
+                const serverUsed = existing.usedQuestions || [];
+                update.usedQuestions = [...new Set([...serverUsed, ...usedQuestions])];
+            }
+
+            // Merge performance: keep both, client wins for same key
+            if (performance !== undefined) {
+                const serverPerf = existing.performance || {};
+                update.performance = { ...serverPerf, ...performance };
+            }
 
             await col.updateOne(
                 { username },

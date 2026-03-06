@@ -49,8 +49,10 @@ const App = (() => {
     // ===== SERVER SYNC =====
     let _syncTimer = null;
     let _lastSyncTimestamp = null; // Track server's lastSync to prevent stale overwrites
+    let _serverLoaded = false; // Guard: don't sync until server data is loaded
 
     function debouncedSync() {
+        if (!_serverLoaded) return; // Don't sync empty data before server load
         clearTimeout(_syncTimer);
         _syncTimer = setTimeout(() => syncToServer(), 2000);
     }
@@ -83,11 +85,20 @@ const App = (() => {
     async function loadFromServer() {
         const token = (typeof Auth !== 'undefined' && Auth.getToken) ? Auth.getToken() : null;
         if (!token) return;
+
+        // Re-initialize data from correct user prefix (in case session changed after IIFE init)
+        const currentPrefix = getPrefix();
+        testHistory = loadData('testHistory', []);
+        performance = loadData('performance', {});
+        questionStatus = loadData('questionStatus', {});
+        notes = loadData('notes', {});
+        usedQuestions = loadData('usedQuestions', []);
+
         try {
             const res = await fetch('/api/data/sync', {
                 headers: { 'Authorization': 'Bearer ' + token },
             });
-            if (!res.ok) return;
+            if (!res.ok) { _serverLoaded = true; return; }
             const data = await res.json();
 
             // Determine if server data is newer
@@ -136,6 +147,8 @@ const App = (() => {
 
                 // Write merged data to localStorage
                 savePersistLocal();
+                // Mark server as loaded before syncing
+                _serverLoaded = true;
                 // Push merged data back to server
                 syncToServer();
                 // Re-render current screen
@@ -148,9 +161,15 @@ const App = (() => {
                 usedQuestions = data.usedQuestions || [];
                 performance = data.performance || {};
                 savePersistLocal();
+                _serverLoaded = true;
                 if (state.screen === 'dashboard') navigate('dashboard');
+            } else {
+                _serverLoaded = true;
             }
-        } catch (e) { console.warn('Load from server failed:', e); }
+        } catch (e) {
+            console.warn('Load from server failed:', e);
+            _serverLoaded = true; // Allow sync even if load failed
+        }
     }
 
     // Save to localStorage only (no server sync) — used after loading from server
@@ -2766,7 +2785,7 @@ const App = (() => {
         return months + 'mo ago';
     }
 
-    function init() {
+    async function init() {
         // Check auth session
         if (typeof Auth !== 'undefined') {
             if (!Auth.checkSession()) return; // Will show login screen
@@ -2774,8 +2793,8 @@ const App = (() => {
         // Handle payment return from Stripe
         handlePaymentReturn();
         navigate('dashboard');
-        // Load data from server in background
-        loadFromServer();
+        // Load data from server (must complete before any sync can happen)
+        await loadFromServer();
     }
 
     // Start the app
