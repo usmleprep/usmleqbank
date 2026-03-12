@@ -251,6 +251,7 @@ const App = (() => {
         let stemParts = [];
         let choicesTable = null;
         let stemImages = [];
+        let figureChoices = []; // Track consecutive figures for image-only choices
 
         for (const el of children) {
             if (el.tagName === 'SUMMARY') continue;
@@ -281,6 +282,15 @@ const App = (() => {
                 }
             }
 
+            // Track consecutive figure elements (potential image-only choices)
+            if (el.tagName === 'FIGURE') {
+                const img = el.querySelector('img');
+                if (img) figureChoices.push(el);
+            } else if (el.tagName !== 'TABLE') {
+                // Non-figure, non-table resets sequence unless we already have enough
+                if (figureChoices.length < 3) figureChoices = [];
+            }
+
             // Collect images from stem
             const imgs = el.querySelectorAll('img');
             imgs.forEach(img => {
@@ -292,6 +302,26 @@ const App = (() => {
 
         // Parse choices
         const choices = [];
+        // Image-only choices: consecutive figures before toggle with no choices table
+        if (!choicesTable && figureChoices.length >= 3) {
+            const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+            figureChoices.forEach((fig, i) => {
+                if (i < letters.length) {
+                    const img = fig.querySelector('img');
+                    const imgSrc = img ? img.src : '';
+                    choices.push({
+                        letter: letters[i],
+                        text: `Option ${letters[i]}`,
+                        image: imgSrc
+                    });
+                    // Remove figure images from stem
+                    if (imgSrc) stemImages = stemImages.filter(s => s !== imgSrc);
+                }
+            });
+            // Remove figure HTML from stem parts
+            const figureIds = new Set(figureChoices.map(f => f.outerHTML));
+            stemParts = stemParts.filter(s => !figureIds.has(s));
+        }
         if (choicesTable) {
             const rows = choicesTable.querySelectorAll('tr');
             // Detect header row (first row whose first cell is NOT a letter A-F)
@@ -351,6 +381,33 @@ const App = (() => {
                         const pctMatch = textWithPct.match(/\((\d+)%\)/);
                         if (pctMatch) {
                             choicePercentages[letter] = parseInt(pctMatch[1]);
+                        }
+                    }
+                });
+                // Also check <th> elements (collection-content tables for image-only questions)
+                const ths = answerTable.querySelectorAll('th');
+                ths.forEach(th => {
+                    const text = th.textContent.trim();
+                    const letterMatch = text.match(/^([A-F])\.?$/);
+                    const pctMatch = text.match(/^\((\d+)%\)$/);
+                    if (letterMatch) {
+                        // Next sibling th might have the percentage
+                        const nextTh = th.nextElementSibling;
+                        if (nextTh) {
+                            const nextPct = nextTh.textContent.trim().match(/\((\d+)%\)/);
+                            if (nextPct) choicePercentages[letterMatch[1]] = parseInt(nextPct[1]);
+                        }
+                    }
+                });
+                // Check <td class="cell-title"> rows (collection-content tbody)
+                const cellTitles = answerTable.querySelectorAll('td.cell-title');
+                cellTitles.forEach(td => {
+                    const letter = td.textContent.trim().replace('.', '');
+                    if (/^[A-F]$/.test(letter)) {
+                        const pctCell = td.nextElementSibling;
+                        if (pctCell) {
+                            const pctMatch = pctCell.textContent.trim().match(/\((\d+)%\)/);
+                            if (pctMatch) choicePercentages[letter] = parseInt(pctMatch[1]);
                         }
                     }
                 });
@@ -1216,7 +1273,7 @@ const App = (() => {
                         <div class="choice-radio-inner"></div>
                     </div>
                     <div class="choice-letter">${choice.letter}.</div>
-                    <div class="choice-text" onclick="App.strikethroughChoice(this.closest('.choice-item'))">${choice.text}</div>
+                    <div class="choice-text" onclick="App.strikethroughChoice(this.closest('.choice-item'))">${choice.image ? `<img src="${choice.image}" style="max-width:280px;max-height:200px;">` : choice.text}</div>
                     <div class="choice-percent">${pct}%</div>
                     <div class="choice-bar" style="width: ${pct}%"></div>
                 </div>
